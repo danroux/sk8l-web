@@ -116,32 +116,6 @@
 
       <Chart :cronJob="cronJob" />
 
-      <div v-if="cronJob">
-        <article class="markdown-body entry-content container-xl" itemprop="text">
-          <h3 tabindex="-1" dir="auto">
-            <a id="user-content-ruby" class="anchor" aria-hidden="true" href="#ruby">
-            <Octicon name="link" />
-            </a>Ruby
-          </h3>
-          <table>
-            <thead>
-              <tr>
-                <th>Jobs</th>
-                <th>Running Jobs</th>
-              </tr>
-            </thead>
-
-            <tbody>
-              <tr>
-                <td><pre>{{ cronJob.jobs }}</pre></td>
-                <td><pre>{{ cronJob.running_jobs }}</pre></td>
-              </tr>
-            </tbody>
-          </table>
-        </article>
-
-        <pre>{{ cronJob }}</pre>
-      </div>
     </div>
   </div>
 </template>

@@ -4,18 +4,8 @@
   <CronjobListHeader :namespace="namespace" :cronjobs="cronjobs" />
 
   <div class="container-xl pt-3">
-    <CronjobList :cron-jobs="cronjobs" :active-jobs="activeJobs" v-if="responseCronJobs()" />
+    <CronjobList :cron-jobs="cronjobs" v-if="responseCronJobs()" />
     <RootBlankSlate v-else />
-
-    <span v-if="cronjobs">
-      hello:
-     <pre>{{ JSON.stringify(cronjobs, null, 2) }}</pre>
-    </span>
-
-    <span v-if="jobPods">
-      hello:
-     <pre>{{ JSON.stringify(jobPods, null, 2) }}</pre>
-    </span>
   </div>
 </template>
 
@@ -52,13 +42,10 @@ export default {
       componentKey: 20,
       namespace: process.env.VUE_APP_SK8L_K8_NAMESPACE,
       cronjobs: [],
-      activeJobs: [],
-      jobPods: [],
     };
   },
   methods: {
     getData(app) {
-      // simple unary call
       var request = new CronjobsRequest();
 
       Sk8lCronjobClient.getCronjobs(request, {}, (err, response) => {
@@ -69,8 +56,6 @@ export default {
           // need to reset because of setInterval
           let resp = response.toObject();
           app.cronjobs = resp.cronjobsList;
-          app.activeJobs = resp.activejobsList;
-          app.jobPods = resp.jobpodsList;
         }
       });
     },

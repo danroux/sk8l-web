@@ -31,81 +31,38 @@
             <div class="BorderGrid-cell">
               <h2 class="h4 mt-0 mb-2">Cronjob activity</h2>
               <div class="text-small color-fg-muted">
-
                 <CronjobActivityProgressBar :cronjobs="cronJobs" />
+              </div>
 
+              <div class="mt-4">
+                <CronjobsTimeline :cronjobs="cronJobs" />
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <article class="markdown-body entry-content container-xl" itemprop="text">
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 40px; text-align: center;">#</th>
-            <th v-for="header in cronTableHeaders" :key="header">{{header}}</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr is="vue:CronJobItem"
-              :key="cronJob.name"
-              v-for="(cronJob, index) in []"
-              v-bind:index="index+1"
-              :cron-job="cronJob">
-          </tr>
-        </tbody>
-      </table>
-    </article>
   </div>
-
-  <ActiveJobs :active-jobs="activeJobs" v-if="activeJobs" />
 </template>
 
 <script>
-import ActiveJobs from '@/components/ActiveJobs.vue';
-import CronJobItem from '@/components/CronJobItem.vue';
+import CronjobsTimeline from '@/components/CronjobsTimeline.vue';
 import CronJobRow from '@/components/CronJobRow.vue';
 import CronjobActivityProgressBar from '@/components/CronjobActivityProgressBar';
-import Octicon from '@/components/Octicon.vue';
 
 export default {
   name: 'CronjobList',
   data() {
-    return {
-      componentKey: 20,
-      cronTableHeaders: [
-        'Name',
-        'Namespace',
-        'Schedule',
-        'Command',
-        'lastScheduleTime',
-        'lastSuccessfulTime',
-        'creationTimestamp',
-        'Original',
-        'Active',
-        'Last Duration',
-        'Current Duration',
-        'Status',
-        'Actions',
-        'Jobs',
-        'JobsPods',
-      ],
-    };
+    return {};
   },
   // props: {
   // msg: String,
   // },
-  props: ['cronJobs', 'activeJobs'],
+  props: ['cronJobs'],
   components: {
-    ActiveJobs,
+    CronjobsTimeline,
     CronjobActivityProgressBar,
-    CronJobItem,
     CronJobRow,
-    Octicon,
   },
 };
 </script>

@@ -25,10 +25,6 @@
         <div id="repository-details-container">
           <ul class="pagehead-actions flex-shrink-0 d-none d-md-inline" style="padding: 2px 0;">
             <li>
-              <a class="btn btn-sm">
-                <Octicon name="bell" />
-                Notifications
-              </a>
             </li>
           </ul>
         </div>
@@ -46,11 +42,11 @@
               </li>
 
               <li data-tab-item="org-header-projects-tab" class="d-flex js-responsive-underlinenav-item">
-                <a class="UnderlineNav-item " href="/orgs/primer/projects" data-hotkey="g b">
-                  <Octicon name="table" custom-class="UnderlineNav-octicon" />
-                  Jobs
-                  <span title="Not available" data-view-component="true" class="Counter js-profile-project-count">{{ cronjob.jobsList.length }}</span>
-                </a>
+                <Octicon name="table" custom-class="UnderlineNav-octicon" />
+                Jobs
+                <span title="Not available" data-view-component="true" class="Counter js-profile-project-count">
+                  {{ cronjob.jobsList.length }}
+                </span>
               </li>
 
               <li data-tab-item="org-header-repositories-tab" class="d-flex js-responsive-underlinenav-item">

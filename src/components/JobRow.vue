@@ -26,7 +26,9 @@
       <span class="mr-2" v-if="job.failed">
         <Octicon name="x-circle-fill" /> {{ lux1(lastFailureTime) }}
       </span>
-      <span class="mr-2" v-if="job.status.succeeded"><Octicon name="goal" /> Completed {{ luxs(job.status.completiontime.seconds) }}</span>
+      <span class="mr-2" v-if="job.status.succeeded && job.status.completiontime">
+        <Octicon name="goal" /> Completed {{ luxs(job.status.completiontime.seconds) }}
+      </span>
     </div>
   </li>
 </template>

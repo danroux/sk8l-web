@@ -21,6 +21,7 @@
 </template>
 
 <script>
+// DEPRECATED
 import ActiveJob from '@/components/ActiveJob.vue';
 
 export default {

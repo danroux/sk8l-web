@@ -30,6 +30,8 @@
 </template>
 
 <script>
+// DEPRECATED
+
 // npm install --save luxon
 import { DateTime } from 'luxon';
 // npm i -S cronstrue

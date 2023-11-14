@@ -2544,7 +2544,7 @@ proto.sk8l.PodYAMLResponse.prototype.setPod = function(value) {
  * @private {!Array<number>}
  * @const
  */
-proto.sk8l.PodResponse.repeatedFields_ = [7];
+proto.sk8l.PodResponse.repeatedFields_ = [8];
 
 
 
@@ -2580,9 +2580,10 @@ proto.sk8l.PodResponse.toObject = function(includeInstance, msg) {
     metadata: (f = msg.getMetadata()) && k8s_io_apimachinery_pkg_apis_meta_v1_generated_pb.ObjectMeta.toObject(includeInstance, f),
     spec: (f = msg.getSpec()) && k8s_io_api_core_v1_generated_pb.PodSpec.toObject(includeInstance, f),
     status: (f = msg.getStatus()) && k8s_io_api_core_v1_generated_pb.PodStatus.toObject(includeInstance, f),
+    phase: jspb.Message.getFieldWithDefault(msg, 4, ""),
     terminatedcontainers: (f = msg.getTerminatedcontainers()) && proto.sk8l.TerminatedContainers.toObject(includeInstance, f),
     failedcontainers: (f = msg.getFailedcontainers()) && proto.sk8l.TerminatedContainers.toObject(includeInstance, f),
-    failed: jspb.Message.getBooleanFieldWithDefault(msg, 6, false),
+    failed: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     terminationreasonsList: jspb.Message.toObjectList(msg.getTerminationreasonsList(),
     proto.sk8l.TerminationReason.toObject, includeInstance)
   };
@@ -2637,20 +2638,24 @@ proto.sk8l.PodResponse.deserializeBinaryFromReader = function(msg, reader) {
       msg.setStatus(value);
       break;
     case 4:
-      var value = new proto.sk8l.TerminatedContainers;
-      reader.readMessage(value,proto.sk8l.TerminatedContainers.deserializeBinaryFromReader);
-      msg.setTerminatedcontainers(value);
+      var value = /** @type {string} */ (reader.readString());
+      msg.setPhase(value);
       break;
     case 5:
       var value = new proto.sk8l.TerminatedContainers;
       reader.readMessage(value,proto.sk8l.TerminatedContainers.deserializeBinaryFromReader);
-      msg.setFailedcontainers(value);
+      msg.setTerminatedcontainers(value);
       break;
     case 6:
+      var value = new proto.sk8l.TerminatedContainers;
+      reader.readMessage(value,proto.sk8l.TerminatedContainers.deserializeBinaryFromReader);
+      msg.setFailedcontainers(value);
+      break;
+    case 7:
       var value = /** @type {boolean} */ (reader.readBool());
       msg.setFailed(value);
       break;
-    case 7:
+    case 8:
       var value = new proto.sk8l.TerminationReason;
       reader.readMessage(value,proto.sk8l.TerminationReason.deserializeBinaryFromReader);
       msg.addTerminationreasons(value);
@@ -2708,15 +2713,14 @@ proto.sk8l.PodResponse.serializeBinaryToWriter = function(message, writer) {
       k8s_io_api_core_v1_generated_pb.PodStatus.serializeBinaryToWriter
     );
   }
-  f = message.getTerminatedcontainers();
-  if (f != null) {
-    writer.writeMessage(
+  f = message.getPhase();
+  if (f.length > 0) {
+    writer.writeString(
       4,
-      f,
-      proto.sk8l.TerminatedContainers.serializeBinaryToWriter
+      f
     );
   }
-  f = message.getFailedcontainers();
+  f = message.getTerminatedcontainers();
   if (f != null) {
     writer.writeMessage(
       5,
@@ -2724,17 +2728,25 @@ proto.sk8l.PodResponse.serializeBinaryToWriter = function(message, writer) {
       proto.sk8l.TerminatedContainers.serializeBinaryToWriter
     );
   }
+  f = message.getFailedcontainers();
+  if (f != null) {
+    writer.writeMessage(
+      6,
+      f,
+      proto.sk8l.TerminatedContainers.serializeBinaryToWriter
+    );
+  }
   f = message.getFailed();
   if (f) {
     writer.writeBool(
-      6,
+      7,
       f
     );
   }
   f = message.getTerminationreasonsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
-      7,
+      8,
       f,
       proto.sk8l.TerminationReason.serializeBinaryToWriter
     );
@@ -2854,12 +2866,30 @@ proto.sk8l.PodResponse.prototype.hasStatus = function() {
 
 
 /**
- * optional TerminatedContainers terminatedContainers = 4;
+ * optional string phase = 4;
+ * @return {string}
+ */
+proto.sk8l.PodResponse.prototype.getPhase = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.sk8l.PodResponse} returns this
+ */
+proto.sk8l.PodResponse.prototype.setPhase = function(value) {
+  return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional TerminatedContainers terminatedContainers = 5;
  * @return {?proto.sk8l.TerminatedContainers}
  */
 proto.sk8l.PodResponse.prototype.getTerminatedcontainers = function() {
   return /** @type{?proto.sk8l.TerminatedContainers} */ (
-    jspb.Message.getWrapperField(this, proto.sk8l.TerminatedContainers, 4));
+    jspb.Message.getWrapperField(this, proto.sk8l.TerminatedContainers, 5));
 };
 
 
@@ -2868,7 +2898,7 @@ proto.sk8l.PodResponse.prototype.getTerminatedcontainers = function() {
  * @return {!proto.sk8l.PodResponse} returns this
 */
 proto.sk8l.PodResponse.prototype.setTerminatedcontainers = function(value) {
-  return jspb.Message.setWrapperField(this, 4, value);
+  return jspb.Message.setWrapperField(this, 5, value);
 };
 
 
@@ -2886,17 +2916,17 @@ proto.sk8l.PodResponse.prototype.clearTerminatedcontainers = function() {
  * @return {boolean}
  */
 proto.sk8l.PodResponse.prototype.hasTerminatedcontainers = function() {
-  return jspb.Message.getField(this, 4) != null;
+  return jspb.Message.getField(this, 5) != null;
 };
 
 
 /**
- * optional TerminatedContainers failedContainers = 5;
+ * optional TerminatedContainers failedContainers = 6;
  * @return {?proto.sk8l.TerminatedContainers}
  */
 proto.sk8l.PodResponse.prototype.getFailedcontainers = function() {
   return /** @type{?proto.sk8l.TerminatedContainers} */ (
-    jspb.Message.getWrapperField(this, proto.sk8l.TerminatedContainers, 5));
+    jspb.Message.getWrapperField(this, proto.sk8l.TerminatedContainers, 6));
 };
 
 
@@ -2905,7 +2935,7 @@ proto.sk8l.PodResponse.prototype.getFailedcontainers = function() {
  * @return {!proto.sk8l.PodResponse} returns this
 */
 proto.sk8l.PodResponse.prototype.setFailedcontainers = function(value) {
-  return jspb.Message.setWrapperField(this, 5, value);
+  return jspb.Message.setWrapperField(this, 6, value);
 };
 
 
@@ -2923,16 +2953,16 @@ proto.sk8l.PodResponse.prototype.clearFailedcontainers = function() {
  * @return {boolean}
  */
 proto.sk8l.PodResponse.prototype.hasFailedcontainers = function() {
-  return jspb.Message.getField(this, 5) != null;
+  return jspb.Message.getField(this, 6) != null;
 };
 
 
 /**
- * optional bool failed = 6;
+ * optional bool failed = 7;
  * @return {boolean}
  */
 proto.sk8l.PodResponse.prototype.getFailed = function() {
-  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 6, false));
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 7, false));
 };
 
 
@@ -2941,17 +2971,17 @@ proto.sk8l.PodResponse.prototype.getFailed = function() {
  * @return {!proto.sk8l.PodResponse} returns this
  */
 proto.sk8l.PodResponse.prototype.setFailed = function(value) {
-  return jspb.Message.setProto3BooleanField(this, 6, value);
+  return jspb.Message.setProto3BooleanField(this, 7, value);
 };
 
 
 /**
- * repeated TerminationReason terminationReasons = 7;
+ * repeated TerminationReason terminationReasons = 8;
  * @return {!Array<!proto.sk8l.TerminationReason>}
  */
 proto.sk8l.PodResponse.prototype.getTerminationreasonsList = function() {
   return /** @type{!Array<!proto.sk8l.TerminationReason>} */ (
-    jspb.Message.getRepeatedWrapperField(this, proto.sk8l.TerminationReason, 7));
+    jspb.Message.getRepeatedWrapperField(this, proto.sk8l.TerminationReason, 8));
 };
 
 
@@ -2960,7 +2990,7 @@ proto.sk8l.PodResponse.prototype.getTerminationreasonsList = function() {
  * @return {!proto.sk8l.PodResponse} returns this
 */
 proto.sk8l.PodResponse.prototype.setTerminationreasonsList = function(value) {
-  return jspb.Message.setRepeatedWrapperField(this, 7, value);
+  return jspb.Message.setRepeatedWrapperField(this, 8, value);
 };
 
 
@@ -2970,7 +3000,7 @@ proto.sk8l.PodResponse.prototype.setTerminationreasonsList = function(value) {
  * @return {!proto.sk8l.TerminationReason}
  */
 proto.sk8l.PodResponse.prototype.addTerminationreasons = function(opt_value, opt_index) {
-  return jspb.Message.addToRepeatedWrapperField(this, 7, opt_value, proto.sk8l.TerminationReason, opt_index);
+  return jspb.Message.addToRepeatedWrapperField(this, 8, opt_value, proto.sk8l.TerminationReason, opt_index);
 };
 
 

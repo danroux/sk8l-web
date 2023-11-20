@@ -91,7 +91,7 @@
                   <Octicon :name="specIcon" class="mr-1" /> Completions {{ cronJob.spec.jobtemplate.spec.completions }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
-                  <Octicon :name="specIcon" class="mr-1" /> Parallelism {{ cronJob.spec.jobtemplate.spec.parallelism }}
+                  <Octicon :name="specIcon" class="mr-1" /> Parallelism {{ cronJob.spec.jobtemplate.spec.parallelism || "1" }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
                   <Octicon :name="specIcon" class="mr-1" /> concurrencyPolicy {{ cronJob.spec.concurrencypolicy }}

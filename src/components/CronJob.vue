@@ -141,16 +141,15 @@ import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {
   name: 'CronJob',
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      // access to component public instance via `vm`
-      vm.cronJobIntervalId = setInterval(vm.getData, 5000);
-    });
-  },
+  // beforeRouteEnter(to, from, next) {
+  //   next((vm) => {
+  //     vm.getData(vm);
+  //     // vm.cronJobIntervalId = setInterval(vm.getData, 10000);
+  //   });
+  // },
   beforeRouteLeave(to, from) {
     // called when the route that renders this component is about to be navigated away from.
-    // As with `beforeRouteUpdate`, it has access to `this` component instance.
-    clearInterval(this.cronJobIntervalId);
+    this.stream.cancel();
   },
   data() {
     return {
@@ -177,25 +176,6 @@ export default {
     },
   },
   methods: {
-    getData() {
-      // const axios = require('axios/dist/browser/axios.cjs'); // browser
-      const app = this;
-
-      // simple unary call
-      var request = new CronjobRequest();
-      request.setCronjobname(this.name);
-      request.setCronjobnamespace(this.namespace);
-
-      Sk8lCronjobClient.getCronjob(request, {}, (err, response) => {
-        if (err) {
-          console.log(`Unexpected error for getCronjob: code = ${err.code}` +
-          `, message = "${err.message}"`);
-        } else {
-          // need to reset because of setInterval
-          app.cronJob = response.toObject();
-        }
-      });
-    },
     lux1(t) {
       return DateTime.fromISO(t).toRelative();
     },
@@ -205,7 +185,24 @@ export default {
   },
 
   mounted() {
-    this.getData();
+    var request = new CronjobRequest();
+    request.setCronjobname(this.name);
+    request.setCronjobnamespace(this.namespace);
+    const app = this;
+
+    app.stream = Sk8lCronjobClient.getCronjob(request, {});
+
+    app.stream.on('data', function(response) {
+      app.cronJob = response.toObject();
+    });
+    app.stream.on('status', function(status) {
+      console.log(status.code);
+      console.log(status.details);
+      console.log(status.metadata);
+    });
+    app.stream.on('end', function(end) {
+      // stream end signal
+    });
   },
   components: {
     Chart,

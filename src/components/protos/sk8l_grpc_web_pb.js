@@ -90,7 +90,7 @@ proto.sk8l.CronjobPromiseClient =
  */
 const methodDescriptor_Cronjob_GetCronjobs = new grpc.web.MethodDescriptor(
   '/sk8l.Cronjob/GetCronjobs',
-  grpc.web.MethodType.UNARY,
+  grpc.web.MethodType.SERVER_STREAMING,
   proto.sk8l.CronjobsRequest,
   proto.sk8l.CronjobsResponse,
   /**
@@ -105,37 +105,32 @@ const methodDescriptor_Cronjob_GetCronjobs = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.sk8l.CronjobsRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {!proto.sk8l.CronjobsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.sk8l.CronjobsResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobsResponse>}
  *     The XHR Node Readable Stream
  */
 proto.sk8l.CronjobClient.prototype.getCronjobs =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
       '/sk8l.Cronjob/GetCronjobs',
       request,
       metadata || {},
-      methodDescriptor_Cronjob_GetCronjobs,
-      callback);
+      methodDescriptor_Cronjob_GetCronjobs);
 };
 
 
 /**
- * @param {!proto.sk8l.CronjobsRequest} request The
- *     request proto
+ * @param {!proto.sk8l.CronjobsRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.sk8l.CronjobsResponse>}
- *     Promise that resolves to the response
+ * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobsResponse>}
+ *     The XHR Node Readable Stream
  */
 proto.sk8l.CronjobPromiseClient.prototype.getCronjobs =
     function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
+  return this.client_.serverStreaming(this.hostname_ +
       '/sk8l.Cronjob/GetCronjobs',
       request,
       metadata || {},
@@ -151,7 +146,7 @@ proto.sk8l.CronjobPromiseClient.prototype.getCronjobs =
  */
 const methodDescriptor_Cronjob_GetCronjob = new grpc.web.MethodDescriptor(
   '/sk8l.Cronjob/GetCronjob',
-  grpc.web.MethodType.UNARY,
+  grpc.web.MethodType.SERVER_STREAMING,
   proto.sk8l.CronjobRequest,
   proto.sk8l.CronjobResponse,
   /**
@@ -166,37 +161,32 @@ const methodDescriptor_Cronjob_GetCronjob = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.sk8l.CronjobRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {!proto.sk8l.CronjobRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.sk8l.CronjobResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobResponse>}
  *     The XHR Node Readable Stream
  */
 proto.sk8l.CronjobClient.prototype.getCronjob =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
       '/sk8l.Cronjob/GetCronjob',
       request,
       metadata || {},
-      methodDescriptor_Cronjob_GetCronjob,
-      callback);
+      methodDescriptor_Cronjob_GetCronjob);
 };
 
 
 /**
- * @param {!proto.sk8l.CronjobRequest} request The
- *     request proto
+ * @param {!proto.sk8l.CronjobRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.sk8l.CronjobResponse>}
- *     Promise that resolves to the response
+ * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobResponse>}
+ *     The XHR Node Readable Stream
  */
 proto.sk8l.CronjobPromiseClient.prototype.getCronjob =
     function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
+  return this.client_.serverStreaming(this.hostname_ +
       '/sk8l.Cronjob/GetCronjob',
       request,
       metadata || {},
@@ -212,7 +202,7 @@ proto.sk8l.CronjobPromiseClient.prototype.getCronjob =
  */
 const methodDescriptor_Cronjob_GetCronjobPods = new grpc.web.MethodDescriptor(
   '/sk8l.Cronjob/GetCronjobPods',
-  grpc.web.MethodType.UNARY,
+  grpc.web.MethodType.SERVER_STREAMING,
   proto.sk8l.CronjobPodsRequest,
   proto.sk8l.CronjobPodsResponse,
   /**
@@ -227,37 +217,32 @@ const methodDescriptor_Cronjob_GetCronjobPods = new grpc.web.MethodDescriptor(
 
 
 /**
- * @param {!proto.sk8l.CronjobPodsRequest} request The
- *     request proto
- * @param {?Object<string, string>} metadata User defined
+ * @param {!proto.sk8l.CronjobPodsRequest} request The request proto
+ * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @param {function(?grpc.web.RpcError, ?proto.sk8l.CronjobPodsResponse)}
- *     callback The callback function(error, response)
- * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobPodsResponse>|undefined}
+ * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobPodsResponse>}
  *     The XHR Node Readable Stream
  */
 proto.sk8l.CronjobClient.prototype.getCronjobPods =
-    function(request, metadata, callback) {
-  return this.client_.rpcCall(this.hostname_ +
+    function(request, metadata) {
+  return this.client_.serverStreaming(this.hostname_ +
       '/sk8l.Cronjob/GetCronjobPods',
       request,
       metadata || {},
-      methodDescriptor_Cronjob_GetCronjobPods,
-      callback);
+      methodDescriptor_Cronjob_GetCronjobPods);
 };
 
 
 /**
- * @param {!proto.sk8l.CronjobPodsRequest} request The
- *     request proto
+ * @param {!proto.sk8l.CronjobPodsRequest} request The request proto
  * @param {?Object<string, string>=} metadata User defined
  *     call metadata
- * @return {!Promise<!proto.sk8l.CronjobPodsResponse>}
- *     Promise that resolves to the response
+ * @return {!grpc.web.ClientReadableStream<!proto.sk8l.CronjobPodsResponse>}
+ *     The XHR Node Readable Stream
  */
 proto.sk8l.CronjobPromiseClient.prototype.getCronjobPods =
     function(request, metadata) {
-  return this.client_.unaryCall(this.hostname_ +
+  return this.client_.serverStreaming(this.hostname_ +
       '/sk8l.Cronjob/GetCronjobPods',
       request,
       metadata || {},

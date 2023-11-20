@@ -27,19 +27,17 @@ export default {
   name: 'JobPodListView',
   props: ['namespace', 'cronjobName'],
   // eslint-disable-next-line
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      // access to component public instance via `vm`
-      // need to cancel this when navigating to other pages
-      // eslint-disable-next-line
-      vm.rootIntervalId = setInterval(vm.getData, 15000, vm);
-    });
-  },
+  // beforeRouteEnter(to, from, next) {
+  //   next((vm) => {
+  //     // need to cancel this when navigating to other pages
+  //     vm.rootIntervalId = setInterval(vm.getData, 10000, vm);
+  //   });
+  // },
   // eslint-disable-next-line
   beforeRouteLeave(to, from) {
     // called when the route that renders this component is about to be navigated away from.
     // As with `beforeRouteUpdate`, it has access to `this` component instance.
-    clearInterval(this.rootIntervalId);
+    this.stream.cancel();
   },
   data() {
     return {
@@ -49,25 +47,6 @@ export default {
     };
   },
   methods: {
-    getData(app) {
-      var request = new CronjobPodsRequest();
-      request.setCronjobname(this.cronjobName);
-      request.setCronjobnamespace(this.namespace);
-
-      Sk8lCronjobClient.getCronjobPods(request, {}, (err, response) => {
-        if (err) {
-          console.log(`Unexpected error for getCronjob: code = ${err.code}` +
-          `, message = "${err.message}"`);
-        } else {
-          // need to reset because of setInterval
-          let obj = response.toObject();
-          app.pods = obj.podsList.reverse();
-          app.cronjob = obj.cronjob;
-          // eslint-disable-next-line
-          app.componentKey += 1;
-        }
-      });
-    },
     responseJobPods() {
       // return this.response && this.response['cronjobs'] && this.response['cronjobs'].length > 0;
       return this.pods && this.pods.length > 0;
@@ -75,7 +54,26 @@ export default {
   },
   mounted() {
     const app = this;
-    app.getData(app);
+
+    var request = new CronjobPodsRequest();
+    request.setCronjobname(this.cronjobName);
+    request.setCronjobnamespace(this.namespace);
+
+    app.stream = Sk8lCronjobClient.getCronjobPods(request, {});
+
+    app.stream.on('data', function(response) {
+      let obj = response.toObject();
+      app.pods = obj.podsList.reverse();
+      app.cronjob = obj.cronjob;
+    });
+    app.stream.on('status', function(status) {
+      console.log(status.code);
+      console.log(status.details);
+      console.log(status.metadata);
+    });
+    app.stream.on('end', function(end) {
+      // stream end signal
+    });
   },
   components: {
     LogoHeader,

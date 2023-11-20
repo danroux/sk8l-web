@@ -23,19 +23,20 @@ import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 export default {
   name: 'HomeView',
   // eslint-disable-next-line
-  beforeRouteEnter(to, from, next) {
-    next((vm) => {
-      // access to component public instance via `vm`
-      // need to cancel this when navigating to other pages
-      // eslint-disable-next-line
-      vm.rootIntervalId = setInterval(vm.getData, 15000, vm);
-    });
-  },
+  // beforeRouteEnter(to, from, next) {
+  //   next((vm) => {
+  //     // access to component public instance via `vm`
+  //     // need to cancel this when navigating to other pages
+  //     // eslint-disable-next-line
+  //     vm.getData(vm);
+  //     vm.rootIntervalId = setInterval(vm.getData, 10000, vm);
+  //   });
+  // },
   // eslint-disable-next-line
   beforeRouteLeave(to, from) {
     // called when the route that renders this component is about to be navigated away from.
     // As with `beforeRouteUpdate`, it has access to `this` component instance.
-    clearInterval(this.rootIntervalId);
+    this.stream.cancel()
   },
   data() {
     return {
@@ -45,28 +46,28 @@ export default {
     };
   },
   methods: {
-    getData(app) {
-      var request = new CronjobsRequest();
-
-      Sk8lCronjobClient.getCronjobs(request, {}, (err, response) => {
-        if (err) {
-          console.log(`Unexpected error for getCronjobs: code = ${err.code}` +
-          `, message = "${err.message}"`);
-        } else {
-          // need to reset because of setInterval
-          let resp = response.toObject();
-          app.cronjobs = resp.cronjobsList;
-        }
-      });
-    },
     responseCronJobs() {
       // return this.response && this.response['cronjobs'] && this.response['cronjobs'].length > 0;
       return this.cronjobs && this.cronjobs.length > 0;
     },
   },
   mounted() {
+    var request = new CronjobsRequest();
     const app = this;
-    app.getData(app);
+
+    app.stream = Sk8lCronjobClient.getCronjobs(request, {});
+
+    app.stream.on('data', function(response) {
+      app.cronjobs = response.toObject().cronjobsList;
+    });
+    app.stream.on('status', function(status) {
+      console.log(status.code);
+      console.log(status.details);
+      console.log(status.metadata);
+    });
+    app.stream.on('end', function(end) {
+      // stream end signal
+    });
   },
   components: {
     CronjobList,

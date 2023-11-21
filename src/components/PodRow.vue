@@ -20,6 +20,7 @@
       <StatusProp :propText="status" />
 
       <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(pod.startTime) }}</span>
+      <span class="mr-2" v-if="pod.finishedAt"><Octicon name="goal" /> {{ luxs(pod.finishedAt.seconds) }}</span>
       <span class="mr-2"><Octicon name="apps" /> Node: {{ pod.nodeName }}</span>
       <span class="mr-2"><Octicon name="server" /> Host: {{ pod.hostIP }}</span>
       <span class="mr-2"><Octicon name="globe" /> Pod Ips: {{ pod.podIPs.join((x) => `${x}, `) }}</span>

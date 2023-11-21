@@ -2629,7 +2629,8 @@ proto.sk8l.PodResponse.toObject = function(includeInstance, msg) {
     failedcontainers: (f = msg.getFailedcontainers()) && proto.sk8l.TerminatedContainers.toObject(includeInstance, f),
     failed: jspb.Message.getBooleanFieldWithDefault(msg, 7, false),
     terminationreasonsList: jspb.Message.toObjectList(msg.getTerminationreasonsList(),
-    proto.sk8l.TerminationReason.toObject, includeInstance)
+    proto.sk8l.TerminationReason.toObject, includeInstance),
+    finishedat: (f = msg.getFinishedat()) && k8s_io_apimachinery_pkg_apis_meta_v1_generated_pb.Time.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -2703,6 +2704,11 @@ proto.sk8l.PodResponse.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.sk8l.TerminationReason;
       reader.readMessage(value,proto.sk8l.TerminationReason.deserializeBinaryFromReader);
       msg.addTerminationreasons(value);
+      break;
+    case 9:
+      var value = new k8s_io_apimachinery_pkg_apis_meta_v1_generated_pb.Time;
+      reader.readMessage(value,k8s_io_apimachinery_pkg_apis_meta_v1_generated_pb.Time.deserializeBinaryFromReader);
+      msg.setFinishedat(value);
       break;
     default:
       reader.skipField();
@@ -2793,6 +2799,14 @@ proto.sk8l.PodResponse.serializeBinaryToWriter = function(message, writer) {
       8,
       f,
       proto.sk8l.TerminationReason.serializeBinaryToWriter
+    );
+  }
+  f = message.getFinishedat();
+  if (f != null) {
+    writer.writeMessage(
+      9,
+      f,
+      k8s_io_apimachinery_pkg_apis_meta_v1_generated_pb.Time.serializeBinaryToWriter
     );
   }
 };
@@ -3054,6 +3068,43 @@ proto.sk8l.PodResponse.prototype.addTerminationreasons = function(opt_value, opt
  */
 proto.sk8l.PodResponse.prototype.clearTerminationreasonsList = function() {
   return this.setTerminationreasonsList([]);
+};
+
+
+/**
+ * optional k8s.io.apimachinery.pkg.apis.meta.v1.Time FinishedAt = 9;
+ * @return {?proto.k8s.io.apimachinery.pkg.apis.meta.v1.Time}
+ */
+proto.sk8l.PodResponse.prototype.getFinishedat = function() {
+  return /** @type{?proto.k8s.io.apimachinery.pkg.apis.meta.v1.Time} */ (
+    jspb.Message.getWrapperField(this, k8s_io_apimachinery_pkg_apis_meta_v1_generated_pb.Time, 9));
+};
+
+
+/**
+ * @param {?proto.k8s.io.apimachinery.pkg.apis.meta.v1.Time|undefined} value
+ * @return {!proto.sk8l.PodResponse} returns this
+*/
+proto.sk8l.PodResponse.prototype.setFinishedat = function(value) {
+  return jspb.Message.setWrapperField(this, 9, value);
+};
+
+
+/**
+ * Clears the message field making it undefined.
+ * @return {!proto.sk8l.PodResponse} returns this
+ */
+proto.sk8l.PodResponse.prototype.clearFinishedat = function() {
+  return this.setFinishedat(undefined);
+};
+
+
+/**
+ * Returns whether this field is set.
+ * @return {boolean}
+ */
+proto.sk8l.PodResponse.prototype.hasFinishedat = function() {
+  return jspb.Message.getField(this, 9) != null;
 };
 
 

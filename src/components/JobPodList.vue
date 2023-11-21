@@ -1,11 +1,4 @@
 <template>
-  <pre>
-    Ready: {{ jobsPods.readyPods.map((pod) => pod.jobName).join(", ") }}
-    Readyx: {{ jobsPods.readyPods.map((pod) => pod.Name).join(", ") }}
-    Failing: {{ jobsPods.failingPods.map((pod) => pod.jobName).join(", ") }}
-    FailingX: {{ jobsPods.failingPods.map((pod) => pod.Name).join(", ") }}
-  </pre>
-
   <div class="Box">
     <div class="Box-header">
       <div class="d-table col-12" style="padding: 0px;">

@@ -16,6 +16,7 @@ const PodsGenerator = {
       pod.jobName = Object.fromEntries(jobPod.metadata.labelsMap)['job-name'];
       pod.uid = jobPod.metadata.uid;
       pod.startTime = jobPod.status.starttime.seconds;
+      pod.finishedAt = jobPod.finishedat;
       pod.podIPs = jobPod.status.podipsList.map((ip) => ip.ip);
       pod.podIP = jobPod.status.podip;
       pod.hostIP = jobPod.status.hostip;

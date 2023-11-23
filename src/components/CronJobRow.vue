@@ -33,10 +33,10 @@
           <Octicon name="north-star" /> {{ cronJob.namespace }}
         </span>
         <span class="mr-2">
-          <Octicon name="stack" />{{ cronJob.spec.jobtemplate.spec.completions }}
+          <Octicon name="stack" />{{ cronJob.spec.jobtemplate.spec.completions || "1" }}
         </span>
         <span class="mr-2">
-          <Octicon name="versions" /> {{ cronJob.spec.jobtemplate.spec.parallelism | "1" }}
+          <Octicon name="versions" /> {{ cronJob.spec.jobtemplate.spec.parallelism || "1" }}
         </span>
         <span class="mr-2">
           <Octicon name="sun" /> {{ cronJob.creationtimestamp }}

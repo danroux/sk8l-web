@@ -12,7 +12,7 @@
     </div>
 
     <div class="Box-body" v-if="jobs.length == 0">
-      We found love in a hopeless place
+      No Job info available yet
     </div>
 
     <ul>

@@ -5,8 +5,7 @@
     <WiderHeader :cronjob="cronjob" :pods="pods" />
 
     <div class="container-xl clearfix mb-4">
-      <JobPodList :job-pods="pods" :cronjob="cronjob" v-if="responseJobPods()" />
-      <RootBlankSlate v-else />
+      <JobPodList :job-pods="pods" :cronjob="cronjob" />
     </div>
   </div>
 </template>

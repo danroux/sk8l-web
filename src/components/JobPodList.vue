@@ -13,7 +13,7 @@
     </div>
 
     <div class="Box-body" v-if="jobPods.length == 0">
-      We found love in a hopeless place
+      No Pod info available yet
     </div>
 
     <ul>

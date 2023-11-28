@@ -9,7 +9,7 @@
   display: flex;
   transition: opacity 0.3s ease;
   overflow: scroll;
-  padding: 100px 0px;
+  padding: 80px 0px;
 }
 
 .modal-container {
@@ -21,6 +21,13 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
   transition: all 0.3s ease;
   overflow: scroll;
+
+  padding: unset;
+  border-radius: unset;
+  background-color: unset;
+  box-shadow: unset;
+  overflow: unset;
+  min-width: 80%;
 }
 
 .modal-header h3 {
@@ -29,7 +36,7 @@
 }
 
 .modal-body {
-  margin: 20px 0;
+  margin: 10px 0px;
 }
 
 .modal-default-button {

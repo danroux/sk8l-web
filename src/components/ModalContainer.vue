@@ -9,7 +9,7 @@
     <!-- use the modal component, pass in the prop -->
     <Modal :show="showModal" @close="$emit('closeModal')">
         <template #header>
-          <h3>{{ modalHeader }}</h3>
+          <span>{{ modalHeader }}</span>
         </template>
 
     </Modal>

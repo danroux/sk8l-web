@@ -98,7 +98,7 @@
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2">
                 <span class="d-block h4 color-fg-default">
-                  <Octicon name="check" customClass="color-fg-success" v-if="cronJob.last_successful_time" />
+                  <Octicon name="check" customClass="color-fg-success" v-if="cronJob.lastsuccessfultime" />
                   <Octicon name="question" v-else />
                   {{ lux1(cronJob.lastsuccessfultime) }}
                 </span>

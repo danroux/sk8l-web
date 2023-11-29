@@ -24,7 +24,7 @@
       <span class="mr-2"><Octicon name="versions" /> {{ job.spec.parallelism }}</span>
       <span class="mr-2"><Octicon name="strikethrough" /> {{ job.spec.suspend }}</span>
       <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(job.status.starttime.seconds) }}</span>
-      <span class="mr-2"><Octicon name="stopwatch" /> Duration {{ job.duration }}</span>
+      <span class="mr-2"><Octicon name="stopwatch" /> {{ duration(job.durationins) }}</span>
       <span class="mr-2" v-if="job.failed">
         <Octicon name="x-circle-fill" /> {{ lux1(lastFailureTime) }}
       </span>
@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import { DateTime } from 'luxon';
+import { DateTime, Duration } from 'luxon';
 
 import JobModal from '@/components/JobModal.vue';
 import Octicon from '@/components/Octicon.vue';
@@ -112,6 +112,9 @@ export default {
     },
     lux1(t) {
       return DateTime.fromISO(t).toRelative();
+    },
+    duration(t) {
+      return Duration.fromObject({ seconds: t }).rescale().toHuman({ unitDisplay: 'short' });
     },
   },
   components: {

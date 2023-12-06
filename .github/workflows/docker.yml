@@ -8,9 +8,8 @@ jobs:
   production-image:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout - set env
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
+      - name: Checkout - set env
         run: echo "IMAGE_TAG=$(make version)" >> $GITHUB_ENV
       -
         name: Set up QEMU

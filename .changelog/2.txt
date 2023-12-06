@@ -1,0 +1,15 @@
+```release-note:enhancement
+Set up CHANGELOG && .changelog
+```
+
+```release-note:enhancement
+Set up release-notes generation on CI
+```
+
+```release-note:enhancement
+Tag docker image on docker GHA
+```
+
+```release-note:enhancement
+Add Makefile
+```

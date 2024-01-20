@@ -48,12 +48,18 @@ EXPOSE $APP_PORT
 ENV PORT $APP_PORT
 ENV HOST 0.0.0.0
 
-COPY --from=build-stage /usr/app/dist /app
+COPY --from=build-stage /usr/app/dist /app_tmp
 # COPY nginx.conf /etc/nginx/nginx.conf
 
-COPY ./run_app.sh .
+COPY ./run_app.sh /app_tmp
+COPY ./replace-env-vars.sh /app_tmp
 
 # STOPSIGNAL SIGQUIT
+# RUN addgroup -g 1000 node \
+#     && adduser -u 1000 -G node -s /bin/sh -D node
+# nginx
+RUN chown -R 101:101 /app /app_tmp
+USER 101
 
 # https://cli.vuejs.org/guide/deployment.html#docker-nginx
 # CMD ["./run_app.sh", "&&", "npx", "serve", "-s", "dist"]

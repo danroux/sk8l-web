@@ -25,7 +25,7 @@ LAST_RELEASE?=$$(git describe --tags $$(git rev-list --tags --max-count=1))
 THIS_RELEASE?=$$(git rev-parse --abbrev-ref HEAD)
 
 # expected to be invoked by make changelog LAST_RELEASE=gitref THIS_RELEASE=gitref
-changelog:
+changelog: ## generate changelog
 	@echo "Generating changelog for $(THIS_RELEASE) from $(LAST_RELEASE)..."
 	@echo
 	@changelog-build -last-release $(LAST_RELEASE) \
@@ -34,7 +34,7 @@ changelog:
 		-note-template .changelog/note.tmpl \
 		-this-release $(THIS_RELEASE)
 
-changelog-entry:
+changelog-entry: ## changelog-entry
 	@changelog-entry -dir .changelog/
 
 .PHONY: version changelog changelog-entry

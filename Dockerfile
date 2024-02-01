@@ -22,13 +22,14 @@ COPY package*.json yarn.lock .yarnrc.yml .
 # # RUN npm ci --omit=dev
 # # RUN npm ci
 
-RUN corepack enable \
+RUN mkdir -p /usr/app/node_modules/.cache \
+    && corepack enable \
     && yarn install \
     && yarn config set --home enableTelemetry 0
 # # COPY package.json yarn.lock ./
 # # RUN yarn install --production
 
-FROM alpine:3.18.3 AS release
+FROM alpine:3.19 AS release
 ENV npm_config_cache=/usr/app/node_modules/.cache
 ENV V 20.5.1
 ENV FILE node-v$V-linux-x64-musl.tar.xz
@@ -58,10 +59,20 @@ RUN corepack enable \
 # RUN mkdir -p /usr/app/.npm
 # RUN npm config set cache /usr/app/.node_modules_cache --global
 
+# not actually needed locally, but to keep initContainer command working
+RUN mkdir -p /app_tmp
+COPY ./run_app.sh /app_tmp
+COPY ./replace-env-vars.sh /app_tmp
+
 COPY . .
 EXPOSE 8001
 ENV HOST 0.0.0.0
 ENV PORT 8001
+
+RUN addgroup -g 101 nginx \
+    && adduser -u 101 -G nginx -s /bin/sh -D nginx
+RUN chown -R 101:101 /app_tmp
+USER 101
 
 CMD [ "npx", "yarn", "serve" ]
 # CMD [ "npx", "serve", "-s", "dist", "--ssl-key", "/etc/sk8l-certs/server-key.pem", "--ssl-cert", "/etc/sk8l-certs/server-cert.pem" ]

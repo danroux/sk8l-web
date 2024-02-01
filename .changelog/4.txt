@@ -1,0 +1,12 @@
+```release-note:improvement
+Set USER on Dockerfiles to make it possible to run the container as non root(securityContext).
+```
+
+```release-note:improvement
+Split the process of replacing env vars to another step: Take it out of 'run_app.sh' and move it to `
+replace-env-vars.sh`.
+```
+
+```release-note:improvement
+ Update Docker base image.
+ ```

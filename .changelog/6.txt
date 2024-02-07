@@ -1,0 +1,3 @@
+```release-note:improvement
+Display pods with containers waiting when errored. Use cronjob/job.failed && update labels, counters, status components
+```

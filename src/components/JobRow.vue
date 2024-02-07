@@ -8,7 +8,9 @@
         </p>
 
         <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationreasonsList">
-          Container {{ tl.containername }} Error: {{ tl.terminationdetails.reason }} - {{ tl.terminationdetails.exitcode }}
+          Error: {{ tl.terminationdetails.reason }} - {{ tl.terminationdetails.exitcode }}<br/>
+          Message: {{ tl.terminationdetails.message }}<br/>
+          Container: {{ tl.containername }}
         </p>
       </div>
 

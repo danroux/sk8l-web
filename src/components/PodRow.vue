@@ -8,15 +8,17 @@
           Uuid: {{ pod.uid }}
         </p>
 
-        <p class="color-fg-muted mb-0 wb-break-word" v-for="(tl, index) in pod.terminationreasonsList">
-          Container {{ tl.containername }} Error: {{ tl.terminationdetails.reason }} - {{ tl.terminationdetails.exitcode }}
+        <p class="color-fg-muted mb-0 wb-break-word" v-for="(tr, index) in pod.terminationreasonsList">
+          Error: {{ tr.terminationdetails.reason }} - {{ tr.terminationdetails.exitcode }}<br/>
+          Message: {{ tr.terminationdetails.message }}<br/>
+          Container: {{ tr.terminationdetails.containername }}
         </p>
       </div>
 
       <PodModal :pod="pod" />
     </div>
 
-    <div class="color-fg-muted f6  mt-2">
+    <div class="color-fg-muted f6 mt-2">
       <StatusProp :propText="status" />
 
       <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(pod.startTime) }}</span>
@@ -43,12 +45,16 @@ export default {
       const statusKey = statusState[0];
 
       if (statusKey === 'running' || statusKey == 'waiting') {
+        if (reason && reason.toLowerCase().includes('error')) {
+          return 'Failing';
+        }
+
         return 'Active';
       }
-      if (reason === 'Error') {
+      if (reason && reason.toLowerCase().includes('error')) {
         return 'Failed';
       }
-      if (reason == 'Completed') {
+      if (reason && reason == 'Completed') {
         return 'Succeeded';
       }
     },

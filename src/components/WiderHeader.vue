@@ -5,7 +5,7 @@
       <div class="d-flex flex-wrap flex-justify-end mb-3  px-3 px-md-4 px-lg-5" style="gap: 1rem;">
         <div class="flex-auto min-width-0 width-fit mr-3">
           <div class=" d-flex flex-wrap flex-items-center wb-break-word f3 text-normal">
-            <Octicon name="repo" />
+            <Octicon name="repo" class="mr-2" />
             <span class="author flex-self-stretch" itemprop="author">
 
               <router-link :to="{ name: 'home' }">

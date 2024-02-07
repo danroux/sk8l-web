@@ -43,10 +43,10 @@ export default {
       this.cronJob.jobsList.forEach((job) => {
         if (job.succeeded) {
           container.success += 100;
+        } else if (job.status.failed > 0 || job.failed) {
+          container.failed += 100;
         } else if (job.status.active > 0) {
           container.active += 100;
-        } else if (job.status.failed > 0) {
-          container.failed += 100;
         }
       });
 

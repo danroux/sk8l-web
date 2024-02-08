@@ -1,21 +1,21 @@
 <style scoped>
 .BorderGrid {
-    display: table;
-    width: 100%;
-    margin-top: -16px;
-    margin-bottom: -16px;
-    table-layout: fixed;
-    border-collapse: collapse;
-    border-style: hidden;
+  display: table;
+  width: 100%;
+  margin-top: -16px;
+  margin-bottom: -16px;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border-style: hidden;
 }
 
 .BorderGrid-row {
-    display: table-row;
+  display: table-row;
 }
 
 .BorderGrid-cell {
-    display: table-cell;
-    border: 1px solid rgb(214,207,222);
+  display: table-cell;
+  border: 1px solid rgb(214,207,222);
 }
 
 .BorderGrid--spacious {
@@ -24,8 +24,8 @@
 }
 
 .BorderGrid--spacious .BorderGrid-cell {
-    padding-top: 24px;
-    padding-bottom: 24px;
+  padding-top: 24px;
+  padding-bottom: 24px;
 }
 </style>
 

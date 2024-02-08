@@ -51,7 +51,7 @@ export default {
 
         return 'Active';
       }
-      if (reason && reason.toLowerCase().includes('error')) {
+      if (reason && reason.toLowerCase().includes('error') || this.pod.failed) {
         return 'Failed';
       }
       if (reason && reason == 'Completed') {
@@ -65,7 +65,7 @@ export default {
       if (statusKey === 'running') {
         return 'Box-row--active';
       }
-      if (reason === 'Error') {
+      if (reason && reason.toLowerCase().includes('error') || this.pod.failed) {
         return 'Box-row--danger';
       }
       if (reason == 'Completed') {

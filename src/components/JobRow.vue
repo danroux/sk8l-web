@@ -22,7 +22,7 @@
     <div class="color-fg-muted f6 mt-2">
       <StatusProp :propText="status" />
 
-      <span class="mr-2"><Octicon name="stack" />{{ job.spec.completions }}</span>
+      <span class="mr-2"><Octicon name="stack" /> {{ job.spec.completions }}</span>
       <span class="mr-2"><Octicon name="versions" /> {{ job.spec.parallelism }}</span>
       <span class="mr-2"><Octicon name="strikethrough" /> {{ job.spec.suspend }}</span>
       <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(job.status.starttime.seconds) }}</span>

@@ -28,16 +28,28 @@ const PodsGenerator = {
       pod.failed = jobPod.failed;
       pod.terminationreasonsList = jobPod.terminationreasonsList;
 
-      let failingC = pod.containerStatuses.filter((status) => status.reason === 'Error');
-      let failingI = pod.initContainerStatuses.filter((status) => status.reason === 'Error');
-      let failingE = pod.ephemeralContainerStatuses.filter((status) => status.reason === 'Error');
+      let waitingC = pod.containerStatuses.filter((status) => {
+        return status.state && status.state[0] === "waiting";
+      });
+      let waitingI = pod.initContainerStatuses.filter((status) => {
+        return status.state && status.state[0] === "waiting";
+      });
+      let waitingE = pod.ephemeralContainerStatuses.filter((status) => {
+        return status.state && status.state[0] === "waiting";
+      });
+
+      pod.waiting = [].concat(waitingC, waitingI, waitingE);
+
+      let failingC = pod.containerStatuses.filter(this.errorReason);
+      let failingI = pod.initContainerStatuses.filter(this.errorReason);
+      let failingE = pod.ephemeralContainerStatuses.filter(this.errorReason);
 
       pod.failing = [].concat(failingC, failingI, failingE);
 
       // NOTE! Use this somewhere
-      let startedC = pod.containerStatuses.filter((status) => status.state === 'running');
-      let startedI = pod.initContainerStatuses.filter((status) => status.state === 'running');
-      let startedE = pod.ephemeralContainerStatuses.filter((status) => status.state === 'running');
+      let startedC = pod.containerStatuses.filter(this.runningState);
+      let startedI = pod.initContainerStatuses.filter(this.runningState);
+      let startedE = pod.ephemeralContainerStatuses.filter(this.runningState);
 
       pod.started = [].concat(startedC, startedI, startedE);
       pods.push(pod);
@@ -45,15 +57,26 @@ const PodsGenerator = {
 
     pods.failingPods = this.failingPods(pods);
     pods.readyPods = this.readyPods(pods);
+    pods.waitingPods = this.waitingPods(pods);
 
     return pods;
+  },
+  runningState(status) {
+    return status.state === 'running';
+  },
+  errorReason(status) {
+    return status.reason === 'Error' || status.reason === "CreateContainerConfigError";
   },
   failingPods(pods) {
     const failingPods = pods.filter((pod) => pod.failing.length > 0);
     return failingPods;
   },
+  waitingPods(pods) {
+    const waitingPods = pods.filter((pod) => pod.waiting.length > 0);
+    return waitingPods;
+  },
   readyPods(pods) {
-    const readyPods = pods.filter((pod) => pod.failing.length === 0);
+    const readyPods = pods.filter((pod) => pod.failing.length === 0 && pod.waiting.length == 0);
     return readyPods;
   },
   containerStatuses(containerStatuses) {

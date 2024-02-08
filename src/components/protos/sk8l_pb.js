@@ -4114,7 +4114,8 @@ proto.sk8l.CronjobResponse.toObject = function(includeInstance, msg) {
     proto.sk8l.PodResponse.toObject, includeInstance),
     lastduration: jspb.Message.getFieldWithDefault(msg, 15, 0),
     currentduration: jspb.Message.getFieldWithDefault(msg, 16, 0),
-    spec: (f = msg.getSpec()) && k8s_io_api_batch_v1_generated_pb.CronJobSpec.toObject(includeInstance, f)
+    spec: (f = msg.getSpec()) && k8s_io_api_batch_v1_generated_pb.CronJobSpec.toObject(includeInstance, f),
+    failed: jspb.Message.getBooleanFieldWithDefault(msg, 18, false)
   };
 
   if (includeInstance) {
@@ -4221,6 +4222,10 @@ proto.sk8l.CronjobResponse.deserializeBinaryFromReader = function(msg, reader) {
       var value = new k8s_io_api_batch_v1_generated_pb.CronJobSpec;
       reader.readMessage(value,k8s_io_api_batch_v1_generated_pb.CronJobSpec.deserializeBinaryFromReader);
       msg.setSpec(value);
+      break;
+    case 18:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setFailed(value);
       break;
     default:
       reader.skipField();
@@ -4363,6 +4368,13 @@ proto.sk8l.CronjobResponse.serializeBinaryToWriter = function(message, writer) {
       17,
       f,
       k8s_io_api_batch_v1_generated_pb.CronJobSpec.serializeBinaryToWriter
+    );
+  }
+  f = message.getFailed();
+  if (f) {
+    writer.writeBool(
+      18,
+      f
     );
   }
 };
@@ -4757,6 +4769,24 @@ proto.sk8l.CronjobResponse.prototype.clearSpec = function() {
  */
 proto.sk8l.CronjobResponse.prototype.hasSpec = function() {
   return jspb.Message.getField(this, 17) != null;
+};
+
+
+/**
+ * optional bool failed = 18;
+ * @return {boolean}
+ */
+proto.sk8l.CronjobResponse.prototype.getFailed = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 18, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.sk8l.CronjobResponse} returns this
+ */
+proto.sk8l.CronjobResponse.prototype.setFailed = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 18, value);
 };
 
 

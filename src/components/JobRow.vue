@@ -8,7 +8,9 @@
         </p>
 
         <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationreasonsList">
-          Container {{ tl.containername }} Error: {{ tl.terminationdetails.reason }} - {{ tl.terminationdetails.exitcode }}
+          Error: {{ tl.terminationdetails.reason }} - {{ tl.terminationdetails.exitcode }}<br/>
+          Message: {{ tl.terminationdetails.message }}<br/>
+          Container: {{ tl.containername }}
         </p>
       </div>
 
@@ -20,7 +22,7 @@
     <div class="color-fg-muted f6 mt-2">
       <StatusProp :propText="status" />
 
-      <span class="mr-2"><Octicon name="stack" />{{ job.spec.completions }}</span>
+      <span class="mr-2"><Octicon name="stack" /> {{ job.spec.completions }}</span>
       <span class="mr-2"><Octicon name="versions" /> {{ job.spec.parallelism }}</span>
       <span class="mr-2"><Octicon name="strikethrough" /> {{ job.spec.suspend }}</span>
       <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(job.status.starttime.seconds) }}</span>

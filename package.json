@@ -10,7 +10,7 @@
     "serveprod": "pm2 serve --no-daemon dist 1337"
   },
   "dependencies": {
-    "@grpc/grpc-js": "^1.9.4",
+    "@grpc/grpc-js": "^1.10.0",
     "@primer/octicons": "^19.7.0",
     "@vue/cli": "^5.0.8",
     "@vue/cli-service-global": "^4.5.19",
@@ -18,12 +18,13 @@
     "core-js": "^3.8.3",
     "cronstrue": "^2.32.0",
     "google-protobuf": "^3.21.2",
-    "grpc-web": "^1.4.2",
+    "grpc-web": "^1.5.0",
     "luxon": "^3.4.3",
     "simple-statistics": "^7.8.3",
     "uplot": "^1.6.25",
-    "vue": "^3.2.13",
-    "vue-router": "^4.2.4"
+    "vue": "^3.4.18",
+    "vue-router": "^4.2.5",
+    "@achrinza/node-ipc": "^10.1.10"
   },
   "devDependencies": {
     "@babel/core": "^7.23.2",
@@ -42,8 +43,8 @@
     "eslint-plugin-vue": "^8.0.3",
     "eslint-plugin-vuejs-accessibility": "^1.1.0",
     "jest": "^27.0.5",
-    "sass": "^1.32.7",
-    "sass-loader": "^12.0.0"
+    "sass": "^1.70.0",
+    "sass-loader": "^14.1.0"
   },
   "eslintConfig": {
     "root": true,

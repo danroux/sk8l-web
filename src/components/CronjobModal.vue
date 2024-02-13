@@ -26,7 +26,7 @@ import Octicon from '@/components/Octicon.vue';
 import ModalContainer from '@/components/ModalContainer.vue';
 
 const {CronjobRequest,
-       CronjobYAMLResponse} = require('./protos/sk8l_pb.js');
+       CronjobYAMLResponse} = import('./protoz/sk8l_pb.ts');
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {

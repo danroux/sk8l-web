@@ -17,8 +17,9 @@ import LogoHeader from '@/components/LogoHeader.vue';
 import RootBlankSlate from '@/views/RootBlankSlate.vue';
 
 const {CronjobsRequest,
-       CronjobsResponse} = require('../components/protos/sk8l_pb.js');
+       CronjobsResponse} = require('../components/protoz/sk8l_pb.ts');
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
+import {ConnectError} from "@connectrpc/connect";
 
 export default {
   name: 'HomeView',
@@ -41,7 +42,7 @@ export default {
   data() {
     return {
       componentKey: 20,
-      namespace: process.env.VUE_APP_SK8L_K8_NAMESPACE,
+      namespace: import.meta.env.VITE_SK8L_K8_NAMESPACE,
       cronjobs: [],
     };
   },
@@ -50,24 +51,41 @@ export default {
       // return this.response && this.response['cronjobs'] && this.response['cronjobs'].length > 0;
       return this.cronjobs && this.cronjobs.length > 0;
     },
+    async meh(app, request) {
+      console.log("memex");
+      for await (const response of Sk8lCronjobClient.getCronjobs(request)) {
+          console.log(response);
+          app.cronjobs = response.toObject().cronjobsList;
+      }
+    }
   },
-  mounted() {
+  async mounted() {
     var request = new CronjobsRequest();
     const app = this;
 
-    app.stream = Sk8lCronjobClient.getCronjobs(request, {});
+      // Sk8lCronjobClient.getCronjobs(request, (response) => {
+      //     console.log(response);
+      //     app.cronjobs = response.toObject().cronjobsList;
+      // }, (err?: ConnectError) => {
+      //     if (err) {
+      //         console.error(err);
+      //     }
+      // });
 
-    app.stream.on('data', function(response) {
-      app.cronjobs = response.toObject().cronjobsList;
-    });
-    app.stream.on('status', function(status) {
-      console.log(status.code);
-      console.log(status.details);
-      console.log(status.metadata);
-    });
-    app.stream.on('end', function(end) {
-      // stream end signal
-    });
+      await this.meh(app, request);
+    // app.stream = Sk8lCronjobClient.getCronjobs(request, {});
+
+    // app.stream.on('data', function(response) {
+    //   app.cronjobs = response.toObject().cronjobsList;
+    // });
+    // app.stream.on('status', function(status) {
+    //   console.log(status.code);
+    //   console.log(status.details);
+    //   console.log(status.metadata);
+    // });
+    // app.stream.on('end', function(end) {
+    //   // stream end signal
+    // });
   },
   components: {
     CronjobList,

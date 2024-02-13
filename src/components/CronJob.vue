@@ -133,7 +133,7 @@ import WiderHeader from '@/components/WiderHeader.vue';
 import cronstrue from 'cronstrue';
 
 const {CronjobRequest,
-       CronjobResponse} = require('./protos/sk8l_pb.js');
+       CronjobResponse} = import('./protoz/sk8l_pb.ts');
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {

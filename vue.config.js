@@ -12,7 +12,7 @@ const getRuntimeEnvData = () => {
     // });
 
     // return JSON.stringify(newEnv.parsed);
-    // sed -i  "s|https://sk8l:9080|$VUE_APP_SK8L_API_URL|g" app.*.js
+    // sed -i  "s|https://sk8l:9080|$VITE_SK8L_API_URL|g" app.*.js
     return `https://sk8l:9080`;
 };
 
@@ -54,8 +54,8 @@ module.exports = defineConfig({
         config.plugin("define").tap(args => {
             let _base = args[0]["process.env"];
 
-            args[0]["process.env.VUE_APP_SK8L_K8_NAMESPACE"] = JSON.stringify("VUE_APP_SK8L_K8_NAMESPACE");
-            args[0]["process.env.VUE_APP_SK8L_API_URL"] = JSON.stringify("VUE_APP_SK8L_API_URL");
+            args[0]["process.env.VITE_SK8L_K8_NAMESPACE"] = JSON.stringify("VITE_SK8L_K8_NAMESPACE");
+            args[0]["process.env.VITE_SK8L_API_URL"] = JSON.stringify("VITE_SK8L_API_URL");
                 // xx.DefinePlugin.runtimeValue(getRuntimeEnvData, {
                 //     fileDependencies: [JSON.stringify(fileDep)],
                 // });
@@ -70,13 +70,13 @@ module.exports = defineConfig({
         //       // mutate for development...
         //     }
         plugins: [
-            // new xx.EnvironmentPlugin(['NODE_ENV', 'BASE_URL', "VUE_APP_SK8L_API_URL"]),
+            // new xx.EnvironmentPlugin(['NODE_ENV', 'BASE_URL', "VITE_SK8L_API_URL"]),
             // new xx.DefinePlugin({
-            //     'process.env.VUE_APP_SK8L_API_URL': xx.DefinePlugin.runtimeValue(getRuntimeEnvData, true),
+            //     'process.env.VITE_SK8L_API_URL': xx.DefinePlugin.runtimeValue(getRuntimeEnvData, true),
             // }),
 
             // new xx.DefinePlugin({
-            //     'process.env.VUE_APP_SK8L_API_URL': xx.DefinePlugin.runtimeValue(getRuntimeEnvData, {
+            //     'process.env.VITE_SK8L_API_URL': xx.DefinePlugin.runtimeValue(getRuntimeEnvData, {
             //         fileDependencies: [fileDep],
             //     }),
             // }),

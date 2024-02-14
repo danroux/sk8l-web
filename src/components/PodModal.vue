@@ -26,7 +26,7 @@ import ModalContainer from '@/components/ModalContainer.vue';
 import Octicon from '@/components/Octicon.vue';
 
 const {PodRequest,
-       PodYAMLResponse} = import('./protoz/sk8l_pb.ts');
+       PodYAMLResponse} = require('../components/protos/sk8l_pb.ts');
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {

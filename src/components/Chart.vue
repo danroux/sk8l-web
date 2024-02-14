@@ -129,12 +129,12 @@ export default {
     },
     totals() {
       const totals = [];
-      for (let i = 0; i < this.cronJob.jobsList.length; i += 1) {
-        const job = this.cronJob.jobsList[i];
+      for (let i = 0; i < this.cronJob.jobs.length; i += 1) {
+        const job = this.cronJob.jobs[i];
         const result = {
-          startTime: job.status.starttimeins,
-          completionTimeInS: job.status.completiontimeins,
-          durationTimeInS: job.durationins,
+          startTime: job.status.startTimeInS,
+          completionTimeInS: job.status.completionTimeInS,
+          durationTimeInS: job.durationInS,
           name: job.name,
           succeeded: job.succeeded,
         };
@@ -241,42 +241,42 @@ export default {
     },
     // improve this
     durationTimes() {
-      if (this.cronJob === null || this.cronJob.jobsList === null) {
+      if (this.cronJob === null || this.cronJob.jobs === null) {
         return [];
       }
 
-      const datesx = this.cronJob.jobsList.flatMap(
-        (job) => job.durationins,
+      const datesx = this.cronJob.jobs.flatMap(
+        (job) => job.durationInS,
       );
       return datesx;
     },
     names() {
-      if (this.cronJob === null || this.cronJob.jobsList === null) {
+      if (this.cronJob === null || this.cronJob.jobs === null) {
         return [];
       }
 
-      const datesx = this.cronJob.jobsList.flatMap(
+      const datesx = this.cronJob.jobs.flatMap(
         (job) => job.name,
       );
       return datesx;
     },
     startTimes() {
-      if (this.cronJob === null || this.cronJob.jobsList === null) {
+      if (this.cronJob === null || this.cronJob.jobs === null) {
         return [];
       }
 
-      const datesx = this.cronJob.jobsList.flatMap(
-        (job) => job.status.starttimeins,
+      const datesx = this.cronJob.jobs.flatMap(
+        (job) => job.status.startTimeInS,
       );
       return datesx;
     },
     completionTimes: () => {
-      if (this.cronJob === null || this.cronJob.jobsList === null) {
+      if (this.cronJob === null || this.cronJob.jobs === null) {
         return [];
       }
 
-      const datesx = this.cronJob.jobsList.flatMap(
-        (job) => job.status.completiontimeins,
+      const datesx = this.cronJob.jobs.flatMap(
+        (job) => job.status.completionTimeInS,
       );
       return datesx;
     },

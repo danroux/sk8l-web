@@ -34,7 +34,7 @@
   <LogoHeader />
 
   <div v-if="cronJob">
-    <WiderHeader :cronjob="cronJob" :pods="cronJob.jobspodsList" />
+    <WiderHeader :cronjob="cronJob" :pods="cronJob.jobsPods" />
 
     <div class="container-xl clearfix px-md-4 px-lg-5 px-3 mt-4">
       <Overview class="pb-1" :cronJob="cronJob" />
@@ -42,7 +42,7 @@
       <div class="gutter-condensed gutter-lg width-full flex-column flex-md-row d-flex mb-5">
         <div class="flex-shrink-0 col-12 col-md-9 mb-4 mb-md-0">
           <div class="container-xl clearfix py-3" v-if="cronJob">
-            <Jobs :jobs="cronJob.jobsList" />
+            <Jobs :jobs="cronJob.jobs" />
           </div>
         </div>
 
@@ -88,13 +88,13 @@
               <div class="BorderGrid-cell">
                 <h2 class="f4 mb-2">Spec</h2>
                 <div class="text-small color-fg-muted">
-                  <Octicon :name="specIcon" class="mr-1" /> Completions {{ cronJob.spec.jobtemplate.spec.completions || "1" }}
+                  <Octicon :name="specIcon" class="mr-1" /> Completions {{ cronJob.spec.jobTemplate.spec.completions || "1" }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
-                  <Octicon :name="specIcon" class="mr-1" /> Parallelism {{ cronJob.spec.jobtemplate.spec.parallelism || "1" }}
+                  <Octicon :name="specIcon" class="mr-1" /> Parallelism {{ cronJob.spec.jobTemplate.spec.parallelism || "1" }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
-                  <Octicon :name="specIcon" class="mr-1" /> concurrencyPolicy {{ cronJob.spec.concurrencypolicy }}
+                  <Octicon :name="specIcon" class="mr-1" /> concurrencyPolicy {{ cronJob.spec.concurrencyPolicy }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
                   <Octicon :name="specIcon" class="mr-1" /> startingDeadlineSeconds {{ cronJob.spec.startingdeadlineseconds }}
@@ -133,7 +133,7 @@ import WiderHeader from '@/components/WiderHeader.vue';
 import cronstrue from 'cronstrue';
 
 const {CronjobRequest,
-       CronjobResponse} = import('./protoz/sk8l_pb.ts');
+       CronjobResponse} = require('./protos/sk8l_pb.ts');
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {
@@ -146,7 +146,7 @@ export default {
   // },
   beforeRouteLeave(to, from) {
     // called when the route that renders this component is about to be navigated away from.
-    this.stream.cancel();
+    this.stream();
   },
   data() {
     return {
@@ -157,16 +157,16 @@ export default {
   props: ['namespace', 'name'],
   computed: {
     commands(vm) {
-      return Object.fromEntries(vm.cronJob.containercommandsMap);
+      return vm.cronJob.containerCommands;
     },
     initContainerCommands(vm) {
-      return vm.commands["InitContainers"].commandsList;
+      return vm.commands["InitContainers"].commands;
     },
     containerCommands(vm) {
-      return vm.commands["Containers"].commandsList;
+      return vm.commands["Containers"].commands;
     },
     ephemeralCommands(vm) {
-      return vm.commands["EphemeralContainers"].commandsList;
+      return vm.commands["EphemeralContainers"].commands;
     },
     specIcon(_vm) {
         return "chevron-right";
@@ -179,27 +179,38 @@ export default {
     schedule() {
       return cronstrue.toString(this.cronJob.definition);
     },
-  },
+    getCronjob(app, request) {
+      let str = Sk8lCronjobClient.getCronjob(
+        request,
+        (response, err) => {
+          if (!err) {
+            app.cronJob = response;
+          } else {
+            console.log("requestErr: ", err, response);
+          }
+        },
+        (err) => {
+          if (err) {
+            console.log("onError: ", err);
+          }
+        }
+      );
 
+      return str;
+    },
+    leaving(event) {
+      // window.addEventListener('beforeunload', this.handler)
+      // https://laracasts.com/discuss/channels/vue/detect-page-refreshchange-in-vue
+      // window.onblur = this.leaving;
+      this.stream();
+    }
+  },
   mounted() {
-    var request = new CronjobRequest();
-    request.setCronjobname(this.name);
-    request.setCronjobnamespace(this.namespace);
+    window.onbeforeunload = this.leaving;
+    var request = new CronjobRequest({ cronjobName: this.name, cronjobNamespace: this.namespace});
     const app = this;
 
-    app.stream = Sk8lCronjobClient.getCronjob(request, {});
-
-    app.stream.on('data', function(response) {
-      app.cronJob = response.toObject();
-    });
-    app.stream.on('status', function(status) {
-      console.log(status.code);
-      console.log(status.details);
-      console.log(status.metadata);
-    });
-    app.stream.on('end', function(end) {
-      // stream end signal
-    });
+    app.stream = this.getCronjob(app, request);
   },
   components: {
     // Chart,

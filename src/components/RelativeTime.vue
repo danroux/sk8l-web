@@ -21,14 +21,14 @@ export default {
       Duration.fromObject({ seconds: x.durationTimeInS }).rescale().toHuman({ unitDisplay: 'short' });
     },
     relativeFromSeconds(t) {
-      return DateTime.fromSeconds(t).toRelative();
+      return DateTime.fromSeconds(Number(t)).toRelative();
     },
     narrow(t) {
       return DateTime.fromISO(t).toRelative({ style: 'narrow' });
     },
     duration(t) {
       // Duration.fromObject({ milliseconds: 90000 }).rescale().toObject() //=> { minutes: 1, seconds: 30 }
-      return Duration.fromObject({ seconds: t }).rescale().toHuman({ unitDisplay: 'short' });
+      return Duration.fromObject({ seconds: Number(t) }).rescale().toHuman({ unitDisplay: 'short' });
     },
   },
   components: {},

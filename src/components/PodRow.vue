@@ -8,10 +8,10 @@
           Uuid: {{ pod.uid }}
         </p>
 
-        <p class="color-fg-muted mb-0 wb-break-word" v-for="(tr, index) in pod.terminationreasonsList">
-          Error: {{ tr.terminationdetails.reason }} - {{ tr.terminationdetails.exitcode }}<br/>
-          Message: {{ tr.terminationdetails.message }}<br/>
-          Container: {{ tr.terminationdetails.containername }}
+        <p class="color-fg-muted mb-0 wb-break-word" v-for="(tr, index) in pod.terminationReasons">
+          Error: {{ tr.terminationDetails.reason }} - {{ tr.terminationDetails.exitCode }}<br/>
+          Message: {{ tr.terminationDetails.message }}<br/>
+          Container: {{ tr.terminationDetails.containerName }}
         </p>
       </div>
 
@@ -22,7 +22,7 @@
       <StatusProp :propText="status" />
 
       <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(pod.startTime) }}</span>
-      <span class="mr-2" v-if="pod.finishedAt"><Octicon name="goal" /> {{ luxs(pod.finishedAt.seconds) }}</span>
+      <span class="mr-2" v-if="pod.finishedAt"><Octicon name="goal" /> {{ luxs(Number(pod.finishedAt.seconds)) }}</span>
       <span class="mr-2"><Octicon name="apps" /> Node: {{ pod.nodeName }}</span>
       <span class="mr-2"><Octicon name="server" /> Host: {{ pod.hostIP }}</span>
       <span class="mr-2"><Octicon name="globe" /> Pod Ips: {{ pod.podIPs.join((x) => `${x}, `) }}</span>

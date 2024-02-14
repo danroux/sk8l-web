@@ -6,6 +6,7 @@ import { viteCommonjs } from '@originjs/vite-plugin-commonjs'
 
 // https://vitejs.dev/config/
 const path = require("path");
+const fs = require('fs');
 export default defineConfig({
   plugins: [
     vue(),
@@ -19,7 +20,11 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0",
-    port: 5173,
+    port: 8001,
+    https: {
+      key: fs.readFileSync('/etc/sk8l-certs/server-key.pem'),
+      cert: fs.readFileSync('/etc/sk8l-certs/server-cert.pem'),
+    }
   },
   resolve: {
     alias: {

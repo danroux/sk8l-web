@@ -9,8 +9,8 @@
       </div>
 
       <div class="TimelineItem-body mt-n1">
-        <div class="text-small color-fg-muted dashboard-changelog-timestamp" v-if="job.job.status.completiontime">
-          <RelativeTime :target="job.job.status.completiontimeins" />
+        <div class="text-small color-fg-muted dashboard-changelog-timestamp" v-if="job.job.status.completionTime">
+          <RelativeTime :target="job.job.status.completionTimeInS" />
         </div>
         <span>{{ job.cronjob.name }}</span>
       </div>
@@ -26,28 +26,28 @@ import RelativeTime from '@/components/RelativeTime.vue';
 export default {
   name: 'CronjobsTimeline',
   props: ['cronjobs'],
-    computed: {
-      jobs(_vm) {
-        let jobs = [];
+  computed: {
+    jobs(_vm) {
+      let jobs = [];
 
-        this.cronjobs.forEach((cronjob) => {
-          cronjob.jobsList.forEach((job) => {
-            if(job.status.completiontime) {
-                let jobCollector = {
-                    cronjob: cronjob,
-                    job: job,
-                };
-                jobs.push(jobCollector);
-            }
-          });
+      this.cronjobs.forEach((cronjob) => {
+        cronjob.jobs.forEach((job) => {
+          if(job.status.completionTime) {
+            let jobCollector = {
+              cronjob: cronjob,
+              job: job,
+            };
+            jobs.push(jobCollector);
+          }
         });
+      });
 
-        return jobs;
-      },
+      return jobs;
+    },
     sortedJobs() {
       return this.jobs.toSorted((a, b) => {
-        if (a.job.status.completiontimeins < b.job.status.completiontimeins) return 1;
-        if (a.job.status.completiontimeins > b.job.status.completiontimeins) return -1;
+        if (a.job.status.completionTimeInS < b.job.status.completionTimeInS) return 1;
+        if (a.job.status.completionTimeInS > b.job.status.completionTimeInS) return -1;
         return 0;
       }).slice(0, 20);
     },

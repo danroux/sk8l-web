@@ -32,7 +32,7 @@ export default {
   methods: {
     totals() {
       const totals = [];
-      const jobs = this.cronJob.jobsList;
+      const jobs = this.cronJob.jobs;
       for (let i = 0; i < jobs.length; i++) {
         const job = jobs[i];
         const result = {

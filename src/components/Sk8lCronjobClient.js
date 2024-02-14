@@ -1,4 +1,4 @@
-import { Cronjob } from './protoz/sk8l_connect.ts';
+import { Cronjob } from './protos/sk8l_connect.ts';
 import { createCallbackClient } from "@connectrpc/connect";
 import { createGrpcWebTransport } from "@connectrpc/connect-web";
 

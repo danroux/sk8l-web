@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import Octicon from '@/components/Octicon.vue';
 import ModalContainer from '@/components/ModalContainer.vue';
+import Octicon from '@/components/Octicon.vue';
 
 const {JobRequest,
-       JobYAMLResponse} = import('./protoz/sk8l_pb.ts');
+       JobYAMLResponse} = require('../components/protos/sk8l_pb.ts');
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {

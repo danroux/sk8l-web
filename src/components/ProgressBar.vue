@@ -40,7 +40,7 @@ export default {
         active: 0,
       };
 
-      this.cronJob.jobsList.forEach((job) => {
+      this.cronJob.jobs.forEach((job) => {
         if (job.succeeded) {
           container.success += 100;
         } else if (job.status.failed > 0 || job.failed) {
@@ -50,7 +50,7 @@ export default {
         }
       });
 
-      const jobsLength = this.cronJob.jobsList.length;
+      const jobsLength = this.cronJob.jobs.length;
       container.success = Math.round(container.success / jobsLength) || 0;
       container.active = Math.round(container.active / jobsLength) || 0;
       container.failed = Math.round(container.failed / jobsLength) || 0;
@@ -67,7 +67,7 @@ export default {
       return { width: `${this.pctgs.failed}%` };
     },
     show(_vm) {
-      return this.cronJob.jobsList.length > 0;
+      return this.cronJob.jobs.length > 0;
     },
   },
   components: {

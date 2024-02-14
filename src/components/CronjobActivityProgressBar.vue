@@ -24,13 +24,13 @@ export default {
 
       vm.cronjobs.forEach((cronjob) => {
         if(container[cronjob.name]) {
-          container[cronjob.name] += cronjob.jobsList.length;
+          container[cronjob.name] += cronjob.jobs.length;
         } else {
-          container[cronjob.name] = cronjob.jobsList.length;
+          container[cronjob.name] = cronjob.jobs.length;
         }
       });
 
-      const jobsLength = vm.cronjobs.reduce((sum, cronjob) => cronjob.jobsList.length+sum, 0);
+      const jobsLength = vm.cronjobs.reduce((sum, cronjob) => cronjob.jobs.length+sum, 0);
       vm.cronjobs.forEach((cronjob) => {
         let val = container[cronjob.name];
         container[cronjob.name] = (((val / jobsLength) || 0) * 100).toFixed(2);

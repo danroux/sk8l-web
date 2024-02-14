@@ -1,0 +1,3 @@
+```release-note:improvement
+security: Upgrade vulnerable dependencies, migrate to vite, connectrpc
+```

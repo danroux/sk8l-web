@@ -1,6 +1,11 @@
-## v0.5.0 (February 01, 2024)
-Generating changelog for release-v0.5.0 from v0.4.0...
+## v0.6.0 (February 16, 2024)
 
+IMPROVEMENTS:
+
+* Display pods with containers waiting when errored. Use cronjob/job.failed && update labels, counters, status components [[GH-6](https://github.com/danroux/sk8l-ui/issues/6)]
+* security: Upgrade vulnerable dependencies, migrate to vite, connectrpc [[GH-7](https://github.com/danroux/sk8l-ui/issues/7)]
+
+## v0.5.0 (February 01, 2024)
 
 IMPROVEMENTS:
 

@@ -25,8 +25,8 @@
 import Octicon from '@/components/Octicon.vue';
 import ModalContainer from '@/components/ModalContainer.vue';
 
-const {CronjobRequest,
-       CronjobYAMLResponse} = import('./protos/sk8l_pb.ts');
+import {CronjobRequest,
+       CronjobYAMLResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {
@@ -42,20 +42,21 @@ export default {
   methods: {
     getCronjobYAML: async function(namespace, name) {
       // simple unary call
-      var request = new CronjobRequest();
+      var request = new CronjobRequest({ cronjobName: name, cronjobNamespace: namespace });
       const that = this;
-      request.setCronjobnamespace(namespace);
-      request.setCronjobname(name);
 
-      await Sk8lCronjobClient.getCronjobYAML(request, {}, (err, response) => {
-        if (err) {
-          console.log(`Unexpected error for getPodYAML: code = ${err.code}` +
-          `, message = "${err.message}"`);
-        } else {
-          that.modalBody = response.toObject().cronjob;
-          that.modalHeader = `Cronjob: ${name}`;
+      await Sk8lCronjobClient.getCronjobYAML(
+        request,
+        (err, response) => {
+          if (!err) {
+            that.modalBody = response.cronjob;
+            that.modalHeader = `Cronjob: ${name}`;
+          } else {
+            console.log(`Unexpected error for getPodYAML: code = ${err.code}` +
+                        `, message = "${err.message}"`);
+          }
         }
-      });
+      );
       this.showCronjobModal = true;
     },
     closeCronjobModal() {

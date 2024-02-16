@@ -132,8 +132,8 @@ import Octicon from '@/components/Octicon.vue';
 import WiderHeader from '@/components/WiderHeader.vue';
 import cronstrue from 'cronstrue';
 
-const {CronjobRequest,
-       CronjobResponse} = require('./protos/sk8l_pb.ts');
+import {CronjobRequest,
+       CronjobResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {

@@ -18,8 +18,8 @@ import RootBlankSlate from '@/views/RootBlankSlate.vue';
 import WiderHeader from '@/components/WiderHeader.vue';
 // import axios, { isCancel, AxiosError } from 'axios';
 
-const {CronjobPodsRequest,
-       CronjobPodsResponse} = require('../components/protoz/sk8l_pb.ts');
+import {CronjobPodsRequest,
+       CronjobPodsResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {

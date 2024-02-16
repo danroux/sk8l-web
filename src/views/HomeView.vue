@@ -16,8 +16,8 @@ import CronjobListHeader from '@/components/CronjobListHeader.vue';
 import LogoHeader from '@/components/LogoHeader.vue';
 import RootBlankSlate from '@/views/RootBlankSlate.vue';
 
-const {CronjobsRequest,
-       CronjobsResponse} = require('../components/protoz/sk8l_pb.ts');
+import {CronjobsRequest,
+       CronjobsResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 import {ConnectError} from "@connectrpc/connect";
 

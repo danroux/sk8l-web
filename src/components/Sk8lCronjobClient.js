@@ -1,7 +1,14 @@
-const {CronjobClient} = require('./protos/sk8l_grpc_web_pb.js');
+import { Cronjob } from './protos/sk8l_connect.ts';
+import { createCallbackClient } from "@connectrpc/connect";
+import { createGrpcWebTransport } from "@connectrpc/connect-web";
 
-let sk8lApiURL = process.env.VUE_APP_SK8L_API_URL;
+let sk8lApiURL = import.meta.env.VITE_SK8L_API_URL;
 
-const Sk8lCronjobClient = new CronjobClient(sk8lApiURL, null, null);
+// A transport for clients using the Connect protocol with fetch()
+const transport = createGrpcWebTransport({
+  baseUrl: sk8lApiURL,
+});
+
+const Sk8lCronjobClient = createCallbackClient(Cronjob, transport);
 
 export { Sk8lCronjobClient as default };

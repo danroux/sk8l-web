@@ -33,26 +33,26 @@
           <Octicon name="north-star" /> {{ cronJob.namespace }}
         </span>
         <span class="mr-2">
-          <Octicon name="stack" />{{ cronJob.spec.jobtemplate.spec.completions || "1" }}
+          <Octicon name="stack" />{{ cronJob.spec.jobTemplate.spec.completions || "1" }}
         </span>
         <span class="mr-2">
-          <Octicon name="versions" /> {{ cronJob.spec.jobtemplate.spec.parallelism || "1" }}
+          <Octicon name="versions" /> {{ cronJob.spec.jobTemplate.spec.parallelism || "1" }}
         </span>
         <span class="mr-2">
-          <Octicon name="sun" /> {{ cronJob.creationtimestamp }}
+          <Octicon name="sun" /> {{ cronJob.creationTimestamp }}
         </span>
         <template v-if="all.length > 0">
           <span class="mr-2">
-            <Octicon name="stopwatch" /> {{ duration(cronJob.lastduration) }}
+            <Octicon name="stopwatch" /> {{ duration(cronJob.lastDuration) }}
           </span>
           <span class="mr-2" v-if="lastFailed && showLastFailure">
             <Octicon name="x-circle-fill" /> {{ lux1(lastFailureTime) }}
           </span>
 
           <template v-if="lastSucceeded">
-            <span class="mr-2"><Octicon name="calendar" /> {{ lux1(cronJob.lastsuccessfultime) }}</span>
+            <span class="mr-2"><Octicon name="calendar" /> {{ lux1(cronJob.lastSuccessfulTime) }}</span>
             <span class="mr-2">
-              <Octicon name="goal" /> {{ luxs(lastSucceeded.status.completiontime.seconds) }}
+              <Octicon name="goal" /> {{ luxs(Number(lastSucceeded.status.completionTime.seconds)) }}
             </span>
           </template>
         </template>
@@ -100,7 +100,7 @@ export default {
         all: [],
       };
 
-      this.cronJob.jobsList.forEach((job) => {
+      this.cronJob.jobs.forEach((job) => {
         if (job.succeeded && job.failed !== true) {
           m.succeeded.push(job);
         } else if (job.failed) {
@@ -138,7 +138,8 @@ export default {
         return lastTransitionTime = this.lastFailed.failure_condition.lastTransitionTime;
       }
 
-      const dt = DateTime.fromSeconds(possible.terminationreasonsList.find((first) => first).terminationdetails.finishedat.seconds);
+        const l = Number(possible.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds.toString());
+      const dt = DateTime.fromSeconds(l);
       return dt;
     },
     lastFailed() {
@@ -165,7 +166,7 @@ export default {
           if (this.lastFailed.failure_condition) {
             lastTransitionTime = this.lastFailed.failure_condition.lastTransitionTime;
           } else {
-            const target = possible.terminationreasonsList.find((first) => first).terminationdetails.finishedat.seconds;
+            const target = possible.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds.toString();
 
             lastTransitionTime = DateTime.fromSeconds(target);
           }

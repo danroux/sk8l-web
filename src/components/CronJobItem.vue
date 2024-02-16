@@ -20,7 +20,7 @@
     <td>{{ cronJob.last_duration }}</td>
     <td>{{ cronJob.current_duration }}</td>
     <td>
-      <JobPodList :cronjob="cronJob" :job-pods="cronJob.jobspodsList" />
+      <JobPodList :cronjob="cronJob" :job-pods="cronJob.jobsPod" />
     </td>
     <td>
     </td>
@@ -55,18 +55,18 @@ export default {
     jobsPods(vm) {
       const pods = [];
       const that = this;
-      vm.cronJob.jobspodsList.forEach((jobPod) => {
+      vm.cronJob.jobsPods.forEach((jobPod) => {
         const pod = {};
         pod.namespace = jobPod.metadata.namespace;
         pod.name = jobPod.metadata.name;
         pod.jobName = Object.fromEntries(jobPod.metadata.labelsMap)['job-name'];
         pod.uid = jobPod.metadata.uid;
         pod.startTime = jobPod.status.starttime.seconds;
-        pod.podIPs = jobPod.status.podipsList.map((ip) => ip.ip);
+        pod.podIPs = jobPod.status.podIps.map((ip) => ip.ip);
         pod.podIP = jobPod.status.podip;
         pod.hostIP = jobPod.status.hostip;
         pod.nodeName = jobPod.spec.nodename;
-        pod.containerStatuses = that.containerStatuses(vm, jobPod.status.containerstatusesList);
+        pod.containerStatuses = that.containerStatuses(vm, jobPod.status.containerStatuses);
         pod.started = pod.containerStatuses.filter((status) => status.state === 'running');
         pod.failing = pod.containerStatuses.filter((status) => status.reason === 'Error');
         pods.push(pod);
@@ -82,8 +82,8 @@ export default {
       const readyPods = vm.jobsPods.filter((pod) => pod.failing.length === 0);
       return readyPods;
     },
-    containerStatuses(vm, containerStatusesList) {
-      const status = containerStatusesList.flatMap((containerStatus) => {
+    containerStatuses(vm, containerStatuses) {
+      const status = containerStatuses.flatMap((containerStatus) => {
         return this.processStatus(containerStatus);
       });
       return status;

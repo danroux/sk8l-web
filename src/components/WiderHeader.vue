@@ -45,7 +45,7 @@
                 <Octicon name="table" custom-class="UnderlineNav-octicon" />
                 Jobs
                 <span title="Not available" data-view-component="true" class="Counter js-profile-project-count">
-                  {{ cronjob.jobsList.length }}
+                  {{ cronjob.jobs.length }}
                 </span>
               </li>
 

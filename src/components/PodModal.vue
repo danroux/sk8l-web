@@ -25,8 +25,8 @@
 import ModalContainer from '@/components/ModalContainer.vue';
 import Octicon from '@/components/Octicon.vue';
 
-const {PodRequest,
-       PodYAMLResponse} = require('./protos/sk8l_pb.js');
+import {PodRequest,
+       PodYAMLResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {
@@ -42,20 +42,21 @@ export default {
   methods: {
     getPodYAML: async function(podNamespace, podName) {
       // simple unary call
-      var request = new PodRequest();
+      var request = new PodRequest({ podNamespace: podNamespace, podName: podName });
       const that = this;
-      request.setPodnamespace(podNamespace);
-      request.setPodname(podName);
 
-      await Sk8lCronjobClient.getPodYAML(request, {}, (err, response) => {
-        if (err) {
-          console.log(`Unexpected error for getPodYAML: code = ${err.code}` +
-          `, message = "${err.message}"`);
-        } else {
-          that.modalBody = response.toObject().pod;
-          that.modalHeader = `Pod: ${podName}`;
+      await Sk8lCronjobClient.getPodYAML(
+        request,
+        (err, response) => {
+          if (!err) {
+            that.modalBody = response.pod;
+            that.modalHeader = `Pod: ${podName}`;
+          } else {
+            console.log(`Unexpected error for getPodYAML: code = ${err.code}` +
+            `, message = "${err.message}"`);
+          }
         }
-      });
+      );
       this.showPodModal = true;
     },
     closePodModal() {

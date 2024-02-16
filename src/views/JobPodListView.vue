@@ -18,8 +18,8 @@ import RootBlankSlate from '@/views/RootBlankSlate.vue';
 import WiderHeader from '@/components/WiderHeader.vue';
 // import axios, { isCancel, AxiosError } from 'axios';
 
-const {CronjobPodsRequest,
-       CronjobPodsResponse} = require('../components/protos/sk8l_pb.js');
+import {CronjobPodsRequest,
+       CronjobPodsResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {
@@ -36,7 +36,7 @@ export default {
   beforeRouteLeave(to, from) {
     // called when the route that renders this component is about to be navigated away from.
     // As with `beforeRouteUpdate`, it has access to `this` component instance.
-    this.stream.cancel();
+    this.stream();
   },
   data() {
     return {
@@ -50,29 +50,39 @@ export default {
       // return this.response && this.response['cronjobs'] && this.response['cronjobs'].length > 0;
       return this.pods && this.pods.length > 0;
     },
+    getCronjobPods(app, request) {
+      let str = Sk8lCronjobClient.getCronjobPods(
+        request,
+        (response, err) => {
+          if (!err) {
+            app.pods = response.pods.reverse();
+            app.cronjob = response.cronjob;
+          } else {
+            console.log("requestErr: ", err, response);
+          }
+        },
+        (err) => {
+          if (err) {
+            console.log("onError: ", err);
+          }
+        }
+      );
+
+      return str;
+    },
+    leaving(event) {
+      // window.addEventListener('beforeunload', this.handler)
+      // https://laracasts.com/discuss/channels/vue/detect-page-refreshchange-in-vue
+      // window.onblur = this.leaving;
+      this.stream();
+    }
   },
   mounted() {
+    window.onbeforeunload = this.leaving;
+    var request = new CronjobPodsRequest({ cronjobName: this.cronjobName, cronjobNamespace: this.namespace });
     const app = this;
 
-    var request = new CronjobPodsRequest();
-    request.setCronjobname(this.cronjobName);
-    request.setCronjobnamespace(this.namespace);
-
-    app.stream = Sk8lCronjobClient.getCronjobPods(request, {});
-
-    app.stream.on('data', function(response) {
-      let obj = response.toObject();
-      app.pods = obj.podsList.reverse();
-      app.cronjob = obj.cronjob;
-    });
-    app.stream.on('status', function(status) {
-      console.log(status.code);
-      console.log(status.details);
-      console.log(status.metadata);
-    });
-    app.stream.on('end', function(end) {
-      // stream end signal
-    });
+    app.stream = this.getCronjobPods(app, request);
   },
   components: {
     LogoHeader,

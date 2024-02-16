@@ -20,8 +20,8 @@ RUN apk add --no-cache libstdc++ \
 COPY package*.json yarn.lock .yarnrc.yml .
 
 RUN corepack enable \
-    && yarn install \
-    && yarn config set --home enableTelemetry 0
+    && yarn config set --home enableTelemetry 0 \
+    && yarn install
 # USER 1000:3000
 # Error: EACCES: permission denied, mkdir '/usr/app/node_modules/.cache'
 # RUN mkdir -p /usr/app/node_modules/.cache \

@@ -48,7 +48,7 @@
 <script>
 import CronjobsTimeline from '@/components/CronjobsTimeline.vue';
 import CronJobRow from '@/components/CronJobRow.vue';
-import CronjobActivityProgressBar from '@/components/CronjobActivityProgressBar';
+import CronjobActivityProgressBar from '@/components/CronjobActivityProgressBar.vue';
 
 export default {
   name: 'CronjobList',

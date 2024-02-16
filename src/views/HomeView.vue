@@ -16,9 +16,10 @@ import CronjobListHeader from '@/components/CronjobListHeader.vue';
 import LogoHeader from '@/components/LogoHeader.vue';
 import RootBlankSlate from '@/views/RootBlankSlate.vue';
 
-const {CronjobsRequest,
-       CronjobsResponse} = require('../components/protos/sk8l_pb.js');
+import {CronjobsRequest,
+       CronjobsResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
+import {ConnectError} from "@connectrpc/connect";
 
 export default {
   name: 'HomeView',
@@ -36,12 +37,13 @@ export default {
   beforeRouteLeave(to, from) {
     // called when the route that renders this component is about to be navigated away from.
     // As with `beforeRouteUpdate`, it has access to `this` component instance.
-    this.stream.cancel()
+    // this.stream.cancel();
+    this.stream();
   },
   data() {
     return {
       componentKey: 20,
-      namespace: process.env.VUE_APP_SK8L_K8_NAMESPACE,
+      namespace: import.meta.env.VITE_SK8L_K8_NAMESPACE,
       cronjobs: [],
     };
   },
@@ -50,24 +52,38 @@ export default {
       // return this.response && this.response['cronjobs'] && this.response['cronjobs'].length > 0;
       return this.cronjobs && this.cronjobs.length > 0;
     },
+    async getCronjobs(app, request) {
+      let str = Sk8lCronjobClient.getCronjobs(
+        request,
+        (response, err) => {
+          if (!err) {
+            app.cronjobs = response.cronjobs;
+          } else {
+            console.log("requestErr: ", err, response);
+          }
+        },
+        (err) => {
+          if (err) {
+            console.log("onError: ", err);
+          }
+        }
+      );
+
+      return str;
+    },
+    leaving(event) {
+      // window.addEventListener('beforeunload', this.handler)
+      // https://laracasts.com/discuss/channels/vue/detect-page-refreshchange-in-vue
+      // window.onblur = this.leaving;
+      this.stream();
+    }
   },
-  mounted() {
+  async mounted() {
+    window.onbeforeunload = this.leaving;
     var request = new CronjobsRequest();
     const app = this;
 
-    app.stream = Sk8lCronjobClient.getCronjobs(request, {});
-
-    app.stream.on('data', function(response) {
-      app.cronjobs = response.toObject().cronjobsList;
-    });
-    app.stream.on('status', function(status) {
-      console.log(status.code);
-      console.log(status.details);
-      console.log(status.metadata);
-    });
-    app.stream.on('end', function(end) {
-      // stream end signal
-    });
+    app.stream = await this.getCronjobs(app, request);
   },
   components: {
     CronjobList,

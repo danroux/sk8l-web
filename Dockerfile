@@ -12,7 +12,12 @@
 # https://github.com/primer/octicons/blob/main/package.json
 FROM node:20.5.1-bookworm-slim AS deps
 
-WORKDIR /srv
+RUN groupadd --system --gid 101 nginx \
+    && useradd --system --gid nginx --create-home --home /home/nginx --comment "nginx user" --shell /bin/bash --uid 101 nginx \
+    && chown -R 101:101 /home/nginx
+
+WORKDIR /home/nginx
+ENV npm_config_cache=/home/nginx/node_modules/.cache
 COPY package*.json yarn.lock .yarnrc.yml .
 # # COPY node_modules .
 # # USER 1000:3000
@@ -22,10 +27,16 @@ COPY package*.json yarn.lock .yarnrc.yml .
 # # RUN npm ci --omit=dev
 # # RUN npm ci
 
-RUN mkdir -p /usr/app/node_modules/.cache \
+# USER 101
+
+# $(pwd)/bin
+# corepack enable --install-directory ~/bin \
+
+RUN mkdir -p $(pwd)/node_modules/.cache  \
     && corepack enable \
-    && yarn install \
-    && yarn config set --home enableTelemetry 0
+    && yarn config set --home enableTelemetry 0 \
+    && yarn install
+
 # # COPY package.json yarn.lock ./
 # # RUN yarn install --production
 
@@ -42,39 +53,38 @@ RUN apk add --no-cache libstdc++ \
   # ATTENTION!! --- maybe i want to remove this after all or add npm as a dep or sth. like that
   # && rm -f $FILE /usr/local/bin/npm /usr/local/bin/npx \
   # && rm -rf /usr/local/lib/node_modules \
-  && apk del .deps
-# RUN npm install -g npm@10.2.2
-
-COPY --from=deps /srv/node_modules ./node_modules
-COPY --from=deps /srv/package*.json /srv/yarn.lock /srv/.yarnrc.yml .
-
-RUN corepack enable \
-    && yarn install \
-    && yarn config set --home enableTelemetry 0
-# USER 1000:3000
-# Error: EACCES: permission denied, mkdir '/usr/app/node_modules/.cache'
-# RUN mkdir -p /usr/app/node_modules/.cache \
-#     /usr/app/node_modules/.cache/babel-loader \
-#     /usr/app/node_modules/.cache/eslint
-# RUN mkdir -p /usr/app/.npm
-# RUN npm config set cache /usr/app/.node_modules_cache --global
+  && apk del .deps \
+  && rm $FILE
+# RUN npm install -g npm@10.4.0
 
 # not actually needed locally, but to keep initContainer command working
-RUN mkdir -p /app_tmp
-COPY ./run_app.sh /app_tmp
-COPY ./replace-env-vars.sh /app_tmp
-
-COPY . .
-EXPOSE 8001
-ENV HOST 0.0.0.0
-ENV PORT 8001
+RUN mkdir -p /app_tmp/ \
+    && echo "#!/bin/sh" > /app_tmp/replace-env-vars.sh \
+    && chmod +x /app_tmp/replace-env-vars.sh
 
 RUN addgroup -g 101 nginx \
     && adduser -u 101 -G nginx -s /bin/sh -D nginx
-RUN chown -R 101:101 /app_tmp
+
+RUN chown -R 101:101 $(pwd)
+
+COPY --chown=101:101 --from=deps /home/nginx/node_modules/ ./node_modules
+COPY --chown=101:101 --from=deps /home/nginx/package*.json /home/nginx/yarn.lock /home/nginx/.yarnrc.yml .
+
+RUN corepack enable \
+    && yarn config set --home enableTelemetry 0 \
+    && yarn install
+# RUN npm config set cache /usr/app/.node_modules_cache --global
+
+RUN chown -R 101:101 $(pwd)/.yarn
+
+COPY --chown=101:101 . .
+
+EXPOSE 8001
+ENV HOST 0.0.0.0
+ENV PORT 8001
 USER 101
 
-CMD [ "npx", "yarn", "serve" ]
+CMD [ "npx", "yarn", "dev" ]
 # CMD [ "npx", "serve", "-s", "dist", "--ssl-key", "/etc/sk8l-certs/server-key.pem", "--ssl-cert", "/etc/sk8l-certs/server-cert.pem" ]
 
 # https://cli.vuejs.org/guide/deployment.html#docker-nginx

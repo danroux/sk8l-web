@@ -40,67 +40,67 @@
           <li class="Box-row p-0">
             <ul class="list-style-none text-center d-flex flex-wrap">
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-sm-right border-md-bottom-0 color-border-muted">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="issue-opened" customClass="color-fg-done" />
-                  {{ cronJob.jobsList.length }}
+                  {{ cronJob.jobs.length }}
                 </span>
                 <span class="color-fg-muted">Total jobs</span>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-md-bottom-0 border-md-right color-border-muted">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="issue-closed" customClass="color-fg-success" />
                   {{ succeeded }}
                 </span>
                 <span class="color-fg-muted">Successful Jobs</span>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-sm-bottom-0 border-sm-right color-border-muted">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="issue-draft" customClass="color-fg-accent" />
                   {{ active }}
                 </span>
                 <span class="color-fg-muted">Active Jobs</span>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-sm-bottom-0 border-sm-right color-border-muted">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="x-circle" customClass="color-fg-danger" />
                   {{ failed }}
                 </span>
                 <span class="color-fg-muted">Failed Jobs</span>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-sm-bottom-0 border-sm-right color-border-muted">
-                <div v-if="cronJob.runningjobsList.length > 0">
-                  <span class="d-block h4 color-fg-default">
+                <div v-if="cronJob.runningJobs.length > 0">
+                  <span class="d-block h5 color-fg-default">
                     <Octicon name="stopwatch" customClass="color-fg-accent" />
-                    {{ duration(cronJob.currentduration) }}
+                    {{ duration(cronJob.currentDuration) }}
                   </span>
                   <span class="color-fg-muted">Current Duration</span>
                 </div>
                 <div v-else>
-                  <span class="d-block h4 color-fg-default">
+                  <span class="d-block h5 color-fg-default">
                     <Octicon name="horizontal-rule" customClass="color-fg-done" />
                   </span>
                   <span class="color-fg-muted">Current Duration</span>
                 </div>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-sm-right border-md-bottom-0 color-border-muted">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="history" customClass="color-fg-done" />
-                    {{ duration(cronJob.lastduration) }}
+                    {{ duration(cronJob.lastDuration) }}
                 </span>
                 <span class="color-fg-muted">Last Duration</span>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2 border-bottom border-md-bottom-0 border-md-right color-border-muted">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="sparkle-fill" customClass="color-fg-attention" />
                   {{ meanDurationTimes }}
                 </span>
                 <span class="color-fg-muted">Avg. Duration</span>
               </li>
               <li class="p-3 col-12 col-sm-12 col-md-mine-2">
-                <span class="d-block h4 color-fg-default">
+                <span class="d-block h5 color-fg-default">
                   <Octicon name="check" customClass="color-fg-success" v-if="cronJob.lastsuccessfultime" />
                   <Octicon name="question" v-else />
-                  {{ lux1(cronJob.lastsuccessfultime) }}
+                  {{ lux1(cronJob.lastSuccessfulTime) }}
                 </span>
                 <span class="color-fg-muted">Last Successful</span>
               </li>
@@ -132,7 +132,7 @@ export default {
       };
 
       // NOTE: Update and improve this... logic from PodsGenerator
-      this.cronJob.jobsList.forEach((job) => {
+      this.cronJob.jobs.forEach((job) => {
         if (job.succeeded) {
           m.succeeded += 1;
         } else if (job.status.failed > 0 || job.failed) {
@@ -157,12 +157,12 @@ export default {
       return cronstrue.toString(this.cronJob.definition);
     },
     durationTimes() {
-      if (this.cronJob == null || this.cronJob.jobsList == null) {
+      if (this.cronJob == null || this.cronJob.jobs == null) {
         return [];
       }
 
-      const datesx = this.cronJob.jobsList.flatMap(
-        (job) => job.durationins
+      const datesx = this.cronJob.jobs.flatMap(
+        (job) => Number(job.durationInS)
       );
       return datesx;
     },

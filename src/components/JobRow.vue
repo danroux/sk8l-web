@@ -4,13 +4,13 @@
       <div class="flex-auto">
         <strong>{{ job.name }}</strong> <RowLabels :job="job" /><br/>
         <p class="color-fg-muted mb-0 wb-break-word">
-          Uuid:  {{ job.uuid }}
+          Uuid:  {{ job.Uuid }}
         </p>
 
-        <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationreasonsList">
-          Error: {{ tl.terminationdetails.reason }} - {{ tl.terminationdetails.exitcode }}<br/>
-          Message: {{ tl.terminationdetails.message }}<br/>
-          Container: {{ tl.containername }}
+        <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationReasons">
+          Error: {{ tl.terminationDetails.reason }} - {{ tl.terminationDetails.exitCode }}<br/>
+          Message: {{ tl.terminationDetails.message }}<br/>
+          Container: {{ tl.containerName }}
         </p>
       </div>
 
@@ -25,13 +25,13 @@
       <span class="mr-2"><Octicon name="stack" /> {{ job.spec.completions }}</span>
       <span class="mr-2"><Octicon name="versions" /> {{ job.spec.parallelism }}</span>
       <span class="mr-2"><Octicon name="strikethrough" /> {{ job.spec.suspend }}</span>
-      <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(job.status.starttime.seconds) }}</span>
-      <span class="mr-2"><Octicon name="stopwatch" /> {{ duration(job.durationins) }}</span>
+      <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(job.status.startTime.seconds) }}</span>
+      <span class="mr-2"><Octicon name="stopwatch" /> {{ duration(job.durationInS) }}</span>
       <span class="mr-2" v-if="job.failed">
         <Octicon name="x-circle-fill" /> {{ lux1(lastFailureTime) }}
       </span>
       <span class="mr-2" v-if="job.status.succeeded && job.status.completiontime">
-        <Octicon name="goal" /> Completed {{ luxs(job.status.completiontime.seconds) }}
+        <Octicon name="goal" /> Completed {{ luxs(job.status.completionTime.seconds) }}
       </span>
     </div>
   </li>
@@ -101,22 +101,23 @@ export default {
         return lastTransitionTime = this.job.lastFailed.failure_condition.lastTransitionTime;
       }
 
-      const dt = DateTime.fromSeconds(this.job.terminationreasonsList.find((first) => first).terminationdetails.finishedat.seconds);
+      const l = Number(this.job.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds);
+      const dt = DateTime.fromSeconds(l);
       return dt;
     },
     pods(vm) {
-      return PodsGenerator.pods(vm.job.podsList);
+      return PodsGenerator.pods(vm.job.pods);
     },
   },
   methods: {
     luxs(t) {
-      return DateTime.fromSeconds(t).toRelative();
+      return DateTime.fromSeconds(Number(t)).toRelative();
     },
     lux1(t) {
-      return DateTime.fromISO(t).toRelative();
+      return DateTime.fromISO(Number(t)).toRelative();
     },
     duration(t) {
-      return Duration.fromObject({ seconds: t }).rescale().toHuman({ unitDisplay: 'short' });
+      return Duration.fromObject({ seconds: Number(t) }).rescale().toHuman({ unitDisplay: 'short' });
     },
   },
   components: {

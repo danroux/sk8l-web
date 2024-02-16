@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import Octicon from '@/components/Octicon.vue';
 import ModalContainer from '@/components/ModalContainer.vue';
+import Octicon from '@/components/Octicon.vue';
 
-const {JobRequest,
-       JobYAMLResponse} = require('./protos/sk8l_pb.js');
+import {JobRequest,
+       JobYAMLResponse} from '@/components/protos/sk8l_pb.ts';
 import Sk8lCronjobClient from '@/components/Sk8lCronjobClient.js';
 
 export default {
@@ -42,20 +42,21 @@ export default {
   methods: {
     getJobYAML: async function(jobNamespace, jobName) {
       // simple unary call
-      var request = new JobRequest();
+      var request = new JobRequest({ jobNamespace: jobNamespace, jobName: jobName });
       const that = this;
-      request.setJobnamespace(jobNamespace);
-      request.setJobname(jobName);
 
-      await Sk8lCronjobClient.getJobYAML(request, {}, (err, response) => {
-        if (err) {
-          console.log(`Unexpected error for getJobYaml: code = ${err.code}` +
-          `, message = "${err.message}"`);
-        } else {
-          that.modalBody = response.toObject().job;
-          that.modalHeader = `Job: ${jobName}`;
+      await Sk8lCronjobClient.getJobYAML(
+        request,
+        (err, response) => {
+          if (!err) {
+            that.modalBody = response.job;
+            that.modalHeader = `Job: ${jobName}`;
+          } else {
+            console.log(`Unexpected error for getJobYaml: code = ${err.code}` +
+            `, message = "${err.message}"`);
+          }
         }
-      });
+      );
       this.showJobModal = true;
     },
     closeJobModal() {

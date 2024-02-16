@@ -19,7 +19,7 @@
 
 <script>
 // npm install @primer/octicons
-const octicons = require('@primer/octicons');
+import * as octicons from '@primer/octicons';
 
 export default {
   // Component name "Octicon" should always be multi-word  vue/multi-word-component-names

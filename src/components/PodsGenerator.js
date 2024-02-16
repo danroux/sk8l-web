@@ -13,20 +13,20 @@ const PodsGenerator = {
       const pod = {};
       pod.namespace = jobPod.metadata.namespace;
       pod.name = jobPod.metadata.name;
-      pod.jobName = Object.fromEntries(jobPod.metadata.labelsMap)['job-name'];
+      pod.jobName = jobPod.metadata.labels['job-name'];
       pod.uid = jobPod.metadata.uid;
-      pod.startTime = jobPod.status.starttime.seconds;
+      pod.startTime = Number(jobPod.status.startTime.seconds);
       pod.finishedAt = jobPod.finishedat;
-      pod.podIPs = jobPod.status.podipsList.map((ip) => ip.ip);
-      pod.podIP = jobPod.status.podip;
-      pod.hostIP = jobPod.status.hostip;
+      pod.podIPs = jobPod.status.podIPs.map((ip) => ip.ip);
+      pod.podIP = jobPod.status.podIP;
+      pod.hostIP = jobPod.status.hostIP;
       pod.nodeName = jobPod.spec.nodename;
-      pod.containerStatuses = this.containerStatuses(jobPod.status.containerstatusesList);
-      pod.initContainerStatuses = this.containerStatuses(jobPod.status.initcontainerstatusesList);
-      pod.ephemeralContainerStatuses = this.containerStatuses(jobPod.status.ephemeralcontainerstatusesList);
+      pod.containerStatuses = this.containerStatuses(jobPod.status.containerStatuses);
+      pod.initContainerStatuses = this.containerStatuses(jobPod.status.initContainerStatuses);
+      pod.ephemeralContainerStatuses = this.containerStatuses(jobPod.status.ephemeralContainerStatuses);
 
       pod.failed = jobPod.failed;
-      pod.terminationreasonsList = jobPod.terminationreasonsList;
+      pod.terminationReasons = jobPod.terminationReasons;
 
       let waitingC = pod.containerStatuses.filter((status) => {
         return status.state && status.state[0] === "waiting";

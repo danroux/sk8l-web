@@ -1,3 +1,9 @@
+## v0.7.0 (February 17, 2024)
+
+NOTES:
+
+* dependencies: Remove vue/cli related dependencies && use different octicons [[GH-9](https://github.com/danroux/sk8l-ui/issues/9)]
+
 ## v0.6.0 (February 16, 2024)
 
 IMPROVEMENTS:

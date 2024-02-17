@@ -1,0 +1,3 @@
+```release-note:note
+dependencies: Remove vue/cli related dependencies && use different octicons
+```

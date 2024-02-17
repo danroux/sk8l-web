@@ -5,7 +5,7 @@
       <div class="d-flex flex-wrap flex-justify-end mb-3  px-3 px-md-4 px-lg-5" style="gap: 1rem;">
         <div class="flex-auto min-width-0 width-fit mr-3">
           <div class=" d-flex flex-wrap flex-items-center wb-break-word f3 text-normal">
-            <Octicon name="repo" class="mr-2" />
+            <Octicon name="apps" class="mr-2" />
             <span class="author flex-self-stretch" itemprop="author">
 
               <router-link :to="{ name: 'home' }">
@@ -42,7 +42,7 @@
               </li>
 
               <li data-tab-item="org-header-projects-tab" class="d-flex js-responsive-underlinenav-item">
-                <Octicon name="table" custom-class="UnderlineNav-octicon" />
+                <Octicon name="server" custom-class="UnderlineNav-octicon" />
                 Jobs
                 <span title="Not available" data-view-component="true" class="Counter js-profile-project-count">
                   {{ cronjob.jobs.length }}
@@ -51,7 +51,7 @@
 
               <li data-tab-item="org-header-repositories-tab" class="d-flex js-responsive-underlinenav-item">
                 <router-link :to="{ name: 'jobPodList', params: { namespace: cronjob.namespace, cronjobName: cronjob.name }}" class="UnderlineNav-item ">
-                  <Octicon name="repo" class="UnderlineNav-octicon" />
+                  <Octicon name="container" class="UnderlineNav-octicon" />
                     Pods
                   <span title="Not available" data-view-component="true" class="Counter js-profile-repository-count">{{ pods.length }}</span>
                 </router-link>

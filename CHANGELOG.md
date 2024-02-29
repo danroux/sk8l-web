@@ -1,3 +1,8 @@
+## v0.8.0 (February 29, 2024)
+ENHANCEMENTS:
+
+* grafana: Display json file that can be imported into Grafana to create a base Dashboard. [[GH-11](https://github.com/danroux/sk8l-ui/issues/11)]
+
 ## v0.7.0 (February 17, 2024)
 
 NOTES:

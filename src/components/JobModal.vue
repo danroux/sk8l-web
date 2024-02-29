@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     getJobYAML: async function(jobNamespace, jobName) {
-      // simple unary call
       var request = new JobRequest({ jobNamespace: jobNamespace, jobName: jobName });
       const that = this;
 

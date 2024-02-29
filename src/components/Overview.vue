@@ -20,12 +20,6 @@
 
             <div class="col-12 col-md-1 float-left">
               <CronjobModal :cronjob="cronJob" />
-
-              <div class="float-right px-2">
-                <a href="#graph" class="color-fg-muted">
-                  <Octicon name="graph" />
-                </a>
-              </div>
             </div>
           </div>
         </div>

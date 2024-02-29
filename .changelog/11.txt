@@ -1,0 +1,3 @@
+```release-note:enhancement
+grafana: Display json file that can be imported into Grafana to create a base Dashboard.
+```

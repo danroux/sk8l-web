@@ -27,7 +27,7 @@
         <div class="width-full d-flex position-relative container-xl">
           <ul class="list-style-none UnderlineNav-body width-full p-responsive overflow-hidden">
             <li data-tab-item="org-header-overview-tab" class="d-flex js-responsive-underlinenav-item">
-              <a class="UnderlineNav-item selected" href="/primer">
+              <a class="UnderlineNav-item selected" href="#">
                 <Octicon name="home" class="UnderlineNav-octicon" />
                 Overview
               </a>
@@ -38,6 +38,10 @@
               Cronjobs
               <span title="Not available" data-view-component="true" class="Counter js-profile-repository-count">{{ cronjobsLength }}</span>
             </li>
+
+            <li data-tab-item="org-header-repositories-tab" class="d-flex js-responsive-underlinenav-item">
+              <DashboardAnnotationsModal text="Dashboard" />
+            </li>
           </ul>
         </div>
       </nav>
@@ -47,6 +51,7 @@
 
 <script>
 import Octicon from '@/components/Octicon.vue';
+import DashboardAnnotationsModal from '@/components/DashboardAnnotationsModal.vue';
 
 export default {
   name: 'CronjobListHeader',
@@ -62,6 +67,7 @@ export default {
   },
   components: {
     Octicon,
+    DashboardAnnotationsModal,
   },
 };
 </script>

@@ -6,12 +6,13 @@
   </slot>
 
   <Teleport to="body">
-    <!-- use the modal component, pass in the prop -->
     <Modal :show="showModal" @close="$emit('closeModal')">
-        <template #header>
-          <span>{{ modalHeader }}</span>
-        </template>
-
+      <template #header>
+        <span>{{ modalHeader }}</span>
+      </template>
+      <template #headerActionContent>
+        <slot name="headerActionContent"></slot>
+      </template>
     </Modal>
   </Teleport>
 </template>
@@ -24,7 +25,7 @@ import Octicon from '@/components/Octicon.vue';
 export default {
   name: 'ModalContainer',
   emits: ['closeModal'],
-  props: ['showModal', 'body', 'modalHeader'],
+  props: ['showModal', 'body', 'modalHeader', 'headerActionContent'],
   provide() {
     return {
       body: computed(() => this.body),

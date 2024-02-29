@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     getPodYAML: async function(podNamespace, podName) {
-      // simple unary call
       var request = new PodRequest({ podNamespace: podNamespace, podName: podName });
       const that = this;
 

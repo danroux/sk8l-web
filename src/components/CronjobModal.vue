@@ -41,7 +41,6 @@ export default {
   },
   methods: {
     getCronjobYAML: async function(namespace, name) {
-      // simple unary call
       var request = new CronjobRequest({ cronjobName: name, cronjobNamespace: namespace });
       const that = this;
 

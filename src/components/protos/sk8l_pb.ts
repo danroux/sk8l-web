@@ -228,6 +228,74 @@ export class PodRequest extends Message<PodRequest> {
 }
 
 /**
+ * @generated from message sk8l.DashboardAnnotationsRequest
+ */
+export class DashboardAnnotationsRequest extends Message<DashboardAnnotationsRequest> {
+  constructor(data?: PartialMessage<DashboardAnnotationsRequest>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "sk8l.DashboardAnnotationsRequest";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DashboardAnnotationsRequest {
+    return new DashboardAnnotationsRequest().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DashboardAnnotationsRequest {
+    return new DashboardAnnotationsRequest().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DashboardAnnotationsRequest {
+    return new DashboardAnnotationsRequest().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DashboardAnnotationsRequest | PlainMessage<DashboardAnnotationsRequest> | undefined, b: DashboardAnnotationsRequest | PlainMessage<DashboardAnnotationsRequest> | undefined): boolean {
+    return proto3.util.equals(DashboardAnnotationsRequest, a, b);
+  }
+}
+
+/**
+ * @generated from message sk8l.DashboardAnnotationsResponse
+ */
+export class DashboardAnnotationsResponse extends Message<DashboardAnnotationsResponse> {
+  /**
+   * @generated from field: string annotations = 1;
+   */
+  annotations = "";
+
+  constructor(data?: PartialMessage<DashboardAnnotationsResponse>) {
+    super();
+    proto3.util.initPartial(data, this);
+  }
+
+  static readonly runtime: typeof proto3 = proto3;
+  static readonly typeName = "sk8l.DashboardAnnotationsResponse";
+  static readonly fields: FieldList = proto3.util.newFieldList(() => [
+    { no: 1, name: "annotations", kind: "scalar", T: 9 /* ScalarType.STRING */ },
+  ]);
+
+  static fromBinary(bytes: Uint8Array, options?: Partial<BinaryReadOptions>): DashboardAnnotationsResponse {
+    return new DashboardAnnotationsResponse().fromBinary(bytes, options);
+  }
+
+  static fromJson(jsonValue: JsonValue, options?: Partial<JsonReadOptions>): DashboardAnnotationsResponse {
+    return new DashboardAnnotationsResponse().fromJson(jsonValue, options);
+  }
+
+  static fromJsonString(jsonString: string, options?: Partial<JsonReadOptions>): DashboardAnnotationsResponse {
+    return new DashboardAnnotationsResponse().fromJsonString(jsonString, options);
+  }
+
+  static equals(a: DashboardAnnotationsResponse | PlainMessage<DashboardAnnotationsResponse> | undefined, b: DashboardAnnotationsResponse | PlainMessage<DashboardAnnotationsResponse> | undefined): boolean {
+    return proto3.util.equals(DashboardAnnotationsResponse, a, b);
+  }
+}
+
+/**
  * @generated from message sk8l.CronjobsResponse
  */
 export class CronjobsResponse extends Message<CronjobsResponse> {

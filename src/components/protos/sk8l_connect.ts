@@ -17,7 +17,7 @@
 /* eslint-disable */
 // @ts-nocheck
 
-import { CronjobPodsRequest, CronjobPodsResponse, CronjobRequest, CronjobResponse, CronjobsRequest, CronjobsResponse, CronjobYAMLResponse, JobRequest, JobYAMLResponse, PodRequest, PodYAMLResponse } from "./sk8l_pb.ts";
+import { CronjobPodsRequest, CronjobPodsResponse, CronjobRequest, CronjobResponse, CronjobsRequest, CronjobsResponse, CronjobYAMLResponse, DashboardAnnotationsRequest, DashboardAnnotationsResponse, JobRequest, JobYAMLResponse, PodRequest, PodYAMLResponse } from "./sk8l_pb.ts";
 import { MethodKind } from "@bufbuild/protobuf";
 
 /**
@@ -78,6 +78,15 @@ export const Cronjob = {
       name: "GetPodYAML",
       I: PodRequest,
       O: PodYAMLResponse,
+      kind: MethodKind.Unary,
+    },
+    /**
+     * @generated from rpc sk8l.Cronjob.GetDashboardAnnotations
+     */
+    getDashboardAnnotations: {
+      name: "GetDashboardAnnotations",
+      I: DashboardAnnotationsRequest,
+      O: DashboardAnnotationsResponse,
       kind: MethodKind.Unary,
     },
   }

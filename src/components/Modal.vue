@@ -71,6 +71,7 @@
 
               <div class="col-1 d-table-cell">
                 <div slot="top-right" style="text-align: right;">
+                  <slot name="headerActionContent"></slot>
                   <button @click="$emit('close')">
                     <Octicon name="x" />
                   </button>

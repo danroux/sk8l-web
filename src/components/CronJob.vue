@@ -120,7 +120,6 @@
 <script>
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
-// import axios, { isCancel, AxiosError } from 'axios';
 // npm install --save luxon
 import { DateTime } from 'luxon';
 import Overview from '@/components/Overview.vue';

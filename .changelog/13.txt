@@ -5,3 +5,7 @@ Fix CronjobRow component that broke when `terminationDetails` needed to be displ
 ```release-note:bug
 Fix PolyLine component that broke because `#totals()` collected fields with outdated names.
 ```
+
+```release-note:dependency
+Remove `axios`
+```

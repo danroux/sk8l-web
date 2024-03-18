@@ -50,7 +50,9 @@
           </span>
 
           <template v-if="lastSucceeded">
-            <span class="mr-2"><Octicon name="calendar" /> {{ lux1(cronJob.lastSuccessfulTime) }}</span>
+            <span class="mr-2">
+              <Octicon name="calendar" /> {{ lux1(cronJob.lastSuccessfulTime) }}
+            </span>
             <span class="mr-2">
               <Octicon name="goal" /> {{ luxs(Number(lastSucceeded.status.completionTime.seconds)) }}
             </span>
@@ -138,8 +140,9 @@ export default {
         return lastTransitionTime = this.lastFailed.failure_condition.lastTransitionTime;
       }
 
-        const l = Number(possible.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds.toString());
-      const dt = DateTime.fromSeconds(l);
+      let finishedAt = possible.terminationReasons.find((first) => first).terminationDetails.finishedAt;
+      finishedAt = Number(finishedAt.seconds);
+      const dt = DateTime.fromSeconds(finishedAt);
       return dt;
     },
     lastFailed() {
@@ -166,9 +169,9 @@ export default {
           if (this.lastFailed.failure_condition) {
             lastTransitionTime = this.lastFailed.failure_condition.lastTransitionTime;
           } else {
-            const target = possible.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds.toString();
-
-            lastTransitionTime = DateTime.fromSeconds(target);
+            let finishedAt = possible.terminationReasons.find((first) => first).terminationDetails.finishedAt;
+            finishedAt = Number(finishedAt.seconds);
+            lastTransitionTime = DateTime.fromSeconds(finishedAt);
           }
         const completionTime = this.lastSucceeded.status.completion_time;
 

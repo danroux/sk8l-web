@@ -1,4 +1,17 @@
+## v0.9.0 (March 19, 2024)
+
+BUG FIXES:
+
+* Fix CronjobRow component that broke when `terminationDetails` needed to be displayed but it wasn't cast to Number. [[GH-13](https://github.com/danroux/sk8l-ui/issues/13)]
+* Fix PolyLine component that broke because `#totals()` collected fields with outdated names. [[GH-13](https://github.com/danroux/sk8l-ui/issues/13)]
+* Fix diverse capitalization issues in CronJob component [[GH-13](https://github.com/danroux/sk8l-ui/issues/13)]
+
+DEPENDENCIES:
+
+* Remove `axios` [[GH-13](https://github.com/danroux/sk8l-ui/issues/13)]
+
 ## v0.8.0 (February 29, 2024)
+
 ENHANCEMENTS:
 
 * grafana: Display json file that can be imported into Grafana to create a base Dashboard. [[GH-11](https://github.com/danroux/sk8l-ui/issues/11)]

@@ -2,22 +2,27 @@
   <li class="Box-row Box-row--hover-gray" :class="jobStatusClass">
     <div class="d-flex flex-items-center">
       <div class="flex-auto">
-        <strong>{{ job.name }}</strong> <RowLabels :job="job" /><br/>
-        <p class="color-fg-muted mb-0 wb-break-word">
-          Uuid:  {{ job.Uuid }}
-        </p>
+        <div>
+          <JobModal :job="job" />
 
-        <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationReasons">
-          Error: {{ tl.terminationDetails.reason }} - {{ tl.terminationDetails.exitCode }}<br/>
-          Message: {{ tl.terminationDetails.message }}<br/>
-          Container: {{ tl.containerName }}
-        </p>
+          <PodModal v-for="(pod, index) in pods"
+                    :pod="pod" />
+        </div>
+        <div>
+          <strong>{{ job.name }}</strong> <RowLabels :job="job" /><br/>
+          <p class="color-fg-muted mb-0 wb-break-word">
+            Uuid:  {{ job.Uuid }}
+          </p>
+
+          <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationReasons">
+            Error: {{ tl.terminationDetails.reason }} - {{ tl.terminationDetails.exitCode }}<br/>
+            <span v-if="tl.terminationDetails.message">
+              Message: {{ tl.terminationDetails.message }}<br/>
+            </span>
+            Container: {{ tl.containerName }}
+          </p>
+        </div>
       </div>
-
-      <JobModal :job="job" />
-
-      <PodModal v-for="(pod, index) in pods"
-                :pod="pod" />
     </div>
     <div class="color-fg-muted f6 mt-2">
       <StatusProp :propText="status" />

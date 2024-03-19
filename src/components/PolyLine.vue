@@ -27,7 +27,7 @@
 /* eslint-disable */
 
 export default {
-  name: 'CronJobLi',
+  name: 'PolyLine',
   props: ['cronJob'],
   methods: {
     totals() {
@@ -36,9 +36,9 @@ export default {
       for (let i = 0; i < jobs.length; i++) {
         const job = jobs[i];
         const result = {
-          startTime: job.status.starttimeins,
-          completionTimeInS: job.status.completiontimeins,
-          durationTimeInS: job.durationins,
+          startTime: Number(job.status.startTimeInS),
+          completionTimeInS: Number(job.status.completionTimeInS),
+          durationTimeInS: Number(job.durationInS),
           name: job.name,
           succeeded: job.succeeded,
         };

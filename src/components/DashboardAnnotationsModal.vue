@@ -56,7 +56,6 @@ export default {
         request,
         (err, response) => {
           if (!err) {
-            console.log("dali");
             navigator.clipboard.writeText(response.annotations);
           } else {
             console.log(`Unexpected error for getDashboardAnnotations: code = ${err.code}` +

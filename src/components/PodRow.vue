@@ -2,20 +2,25 @@
   <li class="Box-row Box-row--hover-gray" :class="jobStatusClass">
     <div class="d-flex flex-items-center">
       <div class="flex-auto">
-        <strong>{{ pod.name }}</strong> <br/>
-        <p class="color-fg-muted mb-0 wb-break-word">
-          Job: {{ pod.jobName }}<br/>
-          Uuid: {{ pod.uid }}
-        </p>
+        <div>
+          <PodModal :pod="pod" />
+        </div>
+        <div>
+          <strong>{{ pod.name }}</strong> <br/>
+          <p class="color-fg-muted mb-0 wb-break-word">
+            Job: {{ pod.jobName }}<br/>
+            Uuid: {{ pod.uid }}
+          </p>
 
-        <p class="color-fg-muted mb-0 wb-break-word" v-for="(tr, index) in pod.terminationReasons">
-          Error: {{ tr.terminationDetails.reason }} - {{ tr.terminationDetails.exitCode }}<br/>
-          Message: {{ tr.terminationDetails.message }}<br/>
-          Container: {{ tr.terminationDetails.containerName }}
-        </p>
+          <p class="color-fg-muted mb-0 wb-break-word" v-for="(tr, index) in pod.terminationReasons">
+            Error: {{ tr.terminationDetails.reason }} - {{ tr.terminationDetails.exitCode }}<br/>
+            <span v-if="tr.terminationDetails.message">
+              Message: {{ tr.terminationDetails.message }}<br/>
+            </span>
+            Container: {{ tr.terminationDetails.containerName }}
+          </p>
+        </div>
       </div>
-
-      <PodModal :pod="pod" />
     </div>
 
     <div class="color-fg-muted f6 mt-2">

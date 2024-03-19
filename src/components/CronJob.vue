@@ -97,16 +97,16 @@
                   <Octicon :name="specIcon" class="mr-1" /> concurrencyPolicy {{ cronJob.spec.concurrencyPolicy }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
-                  <Octicon :name="specIcon" class="mr-1" /> startingDeadlineSeconds {{ cronJob.spec.startingdeadlineseconds }}
+                  <Octicon :name="specIcon" class="mr-1" /> startingDeadlineSeconds {{ cronJob.spec.startingDeadlineSeconds }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
                   <Octicon :name="specIcon" class="mr-1" /> suspend {{ cronJob.spec.suspend }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
-                  <Octicon :name="specIcon" class="mr-1" /> successfulJobsHistoryLimit {{ cronJob.spec.successfuljobshistorylimit }}
+                  <Octicon :name="specIcon" class="mr-1" /> successfulJobsHistoryLimit {{ cronJob.spec.successfulJobsHistoryLimit }}
                 </div>
                 <div class="text-small color-fg-muted mt-2">
-                  <Octicon :name="specIcon" class="mr-1" /> failedJobsHistoryLimit {{ cronJob.spec.failedjobshistorylimit }}
+                  <Octicon :name="specIcon" class="mr-1" /> failedJobsHistoryLimit {{ cronJob.spec.failedJobsHistoryLimit }}
                 </div>
               </div>
             </div>
@@ -120,7 +120,6 @@
 <script>
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
-// import axios, { isCancel, AxiosError } from 'axios';
 // npm install --save luxon
 import { DateTime } from 'luxon';
 import Overview from '@/components/Overview.vue';

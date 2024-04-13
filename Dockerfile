@@ -41,6 +41,10 @@ RUN mkdir -p $(pwd)/node_modules/.cache  \
 # # RUN yarn install --production
 
 FROM alpine:3.19 AS release
+LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
+LABEL org.opencontainers.image.description="sk8l-ui dev image"
+LABEL org.opencontainers.image.licenses=MIT
+
 ENV npm_config_cache=/usr/app/node_modules/.cache
 ENV V 20.5.1
 ENV FILE node-v$V-linux-x64-musl.tar.xz

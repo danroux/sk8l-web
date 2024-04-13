@@ -1,0 +1,12 @@
+FROM ghcr.io/danroux/sk8l-ui:dev AS release
+
+FROM cypress/included:13.7.3
+LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
+LABEL org.opencontainers.image.description="sk8l-ui ui-test image"
+LABEL org.opencontainers.image.licenses=MIT
+
+# USER 1001
+
+# RUN chown -R 1001:1001 /var/cache
+# COPY --chown=1001:1001 --from=release /usr/app ./e2e
+COPY --from=release /usr/app ./e2e

@@ -41,8 +41,8 @@ jobs:
           file: production.dockerfile
           push: true
           tags: |
-            ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:latestx
-            ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:x-${{ env.IMAGE_TAG }}
+            ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:latest
+            ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
   sk8l-ui-dev-img:
     runs-on: ubuntu-latest
     steps:
@@ -73,7 +73,6 @@ jobs:
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ github.event.pull_request.head.ref }}
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ github.event.pull_request.number }}
   sk8l-ui-pre-img:
     runs-on: ubuntu-latest
@@ -105,7 +104,6 @@ jobs:
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ github.event.pull_request.head.ref }}
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ github.event.pull_request.number }}
   sk8l-ui-test-img:
     runs-on: ubuntu-latest
@@ -139,5 +137,4 @@ jobs:
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test-${{ github.event.pull_request.head.ref }}
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test-${{ github.event.pull_request.number }}

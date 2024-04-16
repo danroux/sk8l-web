@@ -1,4 +1,4 @@
-FROM node:21.6.0-bookworm-slim AS deps
+FROM node:21.7.3-bookworm-slim AS deps
 
 WORKDIR /usr/app/src
 

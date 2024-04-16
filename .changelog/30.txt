@@ -1,0 +1,3 @@
+```release-note:bug
+gha/docker: Remove branch name from .docker workflow for now
+```

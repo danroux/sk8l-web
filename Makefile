@@ -38,3 +38,35 @@ changelog-entry: ## changelog-entry
 	@changelog-entry -dir .changelog/
 
 .PHONY: version changelog changelog-entry
+setup-certs: # setup-certs
+	helm repo add jetstack https://charts.jetstack.io --force-update
+	kubectl apply -f https://github.com/cert-manager/cert-manager/releases/download/v1.14.4/cert-manager.crds.yaml
+	helm upgrade --install \
+	  cert-manager jetstack/cert-manager \
+	  --namespace cert-manager \
+	  --create-namespace=true \
+	  --version v1.14.4 \
+	  --set prometheus.enabled=false \
+	  --set extraArgs={--feature-gates=AdditionalCertificateOutputFormats=true} \
+	  --set webhook.extraArgs={--feature-gates=AdditionalCertificateOutputFormats=true} \
+	  --set webhook.timeoutSeconds=4
+	kubectl apply -f https://raw.githubusercontent.com/danroux/sk8l-api/main/testdata/sk8l-cert-manager.yml
+	helm upgrade --install trust-manager jetstack/trust-manager \
+	  --install \
+	  --namespace cert-manager \
+	  --set app.trust.namespace=sk8l \
+	  --wait
+	kubectl apply -f https://raw.githubusercontent.com/danroux/sk8l-api/main/testdata/sk8l-trust.yml
+
+install-chart-ci: # install-chart-ci
+	helm repo add sk8l https://sk8l.io/charts
+	set +e; \
+	helm uninstall sk8l -n sk8l; \
+	kubectl get ns sk8l --ignore-not-found -o name | xargs -r kubectl wait --for=delete namespace/sk8l  --timeout=120s; \
+	set -e
+	helm upgrade --install sk8l sk8l/sk8l \
+	  -f testdata/sk8l-values.yml \
+	  --namespace sk8l \
+	  --create-namespace=false \
+	  --set namespace.create=false \
+	  --set namespace.name=sk8l

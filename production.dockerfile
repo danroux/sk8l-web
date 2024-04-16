@@ -41,6 +41,10 @@ RUN yarn build
 # RUN yarn add serve
 
 FROM nginx:1.25.3-alpine3.18-slim as production-stage
+LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
+LABEL org.opencontainers.image.description="sk8l-ui image"
+LABEL org.opencontainers.image.licenses=MIT
+
 WORKDIR /app
 
 ENV APP_PORT 8001

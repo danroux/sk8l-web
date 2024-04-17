@@ -6176,7 +6176,7 @@ __metadata:
     uplot: "npm:^1.6.25"
     vite: "npm:^5.2.9"
     vue: "npm:^3.4.18"
-    vue-router: "npm:^4.3.0"
+    vue-router: "npm:^4.3.1"
   languageName: unknown
   linkType: soft
 
@@ -6860,14 +6860,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-router@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "vue-router@npm:4.3.0"
+"vue-router@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "vue-router@npm:4.3.1"
   dependencies:
     "@vue/devtools-api": "npm:^6.5.1"
   peerDependencies:
     vue: ^3.2.0
-  checksum: 72865ad2e5e17035f1d38311caaec77759f9813f3a627553994c05c43d04ceeaf1f9325260be4c060411c49ed176035579bf4815a4c084b908688c0cc6b3cf72
+  checksum: f8c148f365c7298511fe2b0273bb62b07fe87620d44a037f41ca0be5e84ef87015b13e1a614ad000b22e304ac527b5b04e03e7d317c09a59e74e3fa90f2fc64e
   languageName: node
   linkType: hard
 

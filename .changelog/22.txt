@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps-dev): bump babel-jest from 27.5.1 to 29.7.0
+
+go deps:(deps-dev): bump babel-jest from 27.5.1 to 29.7.0
+
+Bumps [babel-jest](https://github.com/jestjs/jest/tree/HEAD/packages/babel-jest) from 27.5.1 to 29.7.0.
+- [Release notes](https://github.com/jestjs/jest/releases)
+- [Changelog](https://github.com/jestjs/jest/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/jestjs/jest/commits/v29.7.0/packages/babel-jest)
+
+---
+updated-dependencies:
+- dependency-name: babel-jest
+  dependency-type: direct:development
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

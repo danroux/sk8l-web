@@ -45,6 +45,21 @@ jobs:
       - name: Setup certs
         run: |
           make setup-certs > /dev/null
+      - name: Update config files with dev docker image tag
+        if:
+        run: |
+          pr_image_tag=pre-${{ inputs.image_tag }}
+          cp testdata/sk8l-values.yml testdata/sk8l-values.yml.bak
+          yq e -i ".sk8lUi.imageTag = \"$pr_image_tag\"" testdata/sk8l-values.yml
+          set +e
+          echo "after"
+          diff -C3 testdata/sk8l-values.yml.bak testdata/sk8l-values.yml
+          diff_status=$?
+          set -e
+          if [ $diff_status -eq 0 ]; then
+            echo "No differences found between the files."
+            exit 1
+          fi
       - name: Install Chart
         run: |
           make install-chart-ci > /dev/null

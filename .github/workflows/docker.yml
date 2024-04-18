@@ -5,7 +5,16 @@ on:
   workflow_dispatch:
   workflow_call:
     inputs:
+      pull_request_number:
+        required: true
+        type: number
       image_tag:
+        required: true
+        type: string
+      k8s_version:
+        required: true
+        type: string
+      k8s_image:
         required: true
         type: string
   # push:
@@ -45,6 +54,7 @@ jobs:
             ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
   sk8l-ui-dev-img:
     runs-on: ubuntu-latest
+    name: sk8l-ui:dev-${{ inputs.image_tag }}
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
@@ -73,9 +83,12 @@ jobs:
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ github.event.pull_request.number }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ github.sha }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.image_tag }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.pull_request_number }}
   sk8l-ui-pre-img:
     runs-on: ubuntu-latest
+    name: sk8l-ui:pre-${{ inputs.image_tag }}
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
@@ -104,10 +117,12 @@ jobs:
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ github.event.pull_request.number }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ github.sha }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.image_tag }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.pull_request_number }}
   sk8l-ui-test-img:
     runs-on: ubuntu-latest
-    name: sk8l-ui:ui-test-${{ github.event.pull_request.number }}
+    name: sk8l-ui:ui-test-${{ inputs.image_tag }}
     needs: [sk8l-ui-pre-img]
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
@@ -137,4 +152,6 @@ jobs:
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test-${{ github.event.pull_request.number }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test-${{ github.sha }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test-${{ inputs.image_tag }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test-${{ inputs.pull_request_number }}

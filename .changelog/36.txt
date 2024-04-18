@@ -1,0 +1,3 @@
+```release-note:improvement
+k8s: Update protobuf files for k8s v1.29.2
+```

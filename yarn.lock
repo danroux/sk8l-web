@@ -2379,12 +2379,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cronstrue@npm:^2.32.0":
-  version: 2.48.0
-  resolution: "cronstrue@npm:2.48.0"
+"cronstrue@npm:^2.49.0":
+  version: 2.49.0
+  resolution: "cronstrue@npm:2.49.0"
   bin:
     cronstrue: bin/cli.js
-  checksum: 70bd0bc059ab10bf7af9cd1fa100fa21ab359ad34ae64250bee93d617f7f00cff1e132c7e2b175d2a72d48a702ff6be4f0f72fb199f7bad7d34dc8f1014ecd91
+  checksum: bdbcbe745b12b51b5ff123b561d9b95d624963b1d0d43717a70adf20872f58e87ad74c62d255133f9b0e8adcc682cb7e5ea405c4da36ba7ec5146af1f0d75017
   languageName: node
   linkType: hard
 
@@ -6161,7 +6161,7 @@ __metadata:
     "@vue/test-utils": "npm:^2.0.0-0"
     "@vue/vue3-jest": "npm:^27.0.0-alpha.1"
     babel-jest: "npm:^27.0.6"
-    cronstrue: "npm:^2.32.0"
+    cronstrue: "npm:^2.49.0"
     eslint: "npm:^8.49.0"
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-plugin-import: "npm:^2.25.3"

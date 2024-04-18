@@ -1,0 +1,16 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps): bump ip from 2.0.0 to 2.0.1
+
+npm deps:(deps): bump ip from 2.0.0 to 2.0.1
+
+Bumps [ip](https://github.com/indutny/node-ip) from 2.0.0 to 2.0.1.
+- [Commits](https://github.com/indutny/node-ip/compare/v2.0.0...v2.0.1)
+
+---
+updated-dependencies:
+- dependency-name: ip
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

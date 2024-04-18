@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps-dev): bump @babel/core from 7.23.9 to 7.24.4
+
+go deps:(deps-dev): bump @babel/core from 7.23.9 to 7.24.4
+
+Bumps [@babel/core](https://github.com/babel/babel/tree/HEAD/packages/babel-core) from 7.23.9 to 7.24.4.
+- [Release notes](https://github.com/babel/babel/releases)
+- [Changelog](https://github.com/babel/babel/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/babel/babel/commits/v7.24.4/packages/babel-core)
+
+---
+updated-dependencies:
+- dependency-name: "@babel/core"
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

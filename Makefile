@@ -10,7 +10,7 @@ help: ## This help.
 
 # Bump these on release
 VERSION_MAJOR ?= 0
-VERSION_MINOR ?= 9
+VERSION_MINOR ?= 10
 VERSION_PATCH ?= 0
 
 WITHOUT ?= $(VERSION_MAJOR).$(VERSION_MINOR).$(VERSION_PATCH)

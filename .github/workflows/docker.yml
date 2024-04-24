@@ -17,16 +17,111 @@ on:
       k8s_image:
         required: true
         type: string
-  # push:
-  #   branches:
-  #     - 'main'
+  push:
+    branches:
+      - 'main'
+    tags:
+      - '*'
 
 permissions:
   packages: write
 
 jobs:
+  sk8l-ui-dev-img:
+    runs-on: ubuntu-latest
+    name: sk8l-ui:dev-${{ inputs.image_tag }}
+    if: ${{ github.event_name == 'workflow_call' && inputs.image_tag || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
+      - name: Login to ghcr.io
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push dev version
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        with:
+          context: .
+          file: Dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: |
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ github.sha }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.image_tag }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.pull_request_number }}
+  sk8l-ui-pre-main-img:
+    runs-on: ubuntu-latest
+    name: sk8l-ui:pre-main@${{ github.sha }}
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
+      - name: Login to ghcr.io
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push pre-main
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        with:
+          context: .
+          file: production.dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: |
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ github.sha }}
+  sk8l-ui-pre-pr-img:
+    runs-on: ubuntu-latest
+    name: sk8l-ui:pre-${{ inputs.image_tag }}
+    if: ${{ github.event_name == 'workflow_call' && inputs.image_tag || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
+    steps:
+      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
+        with:
+          fetch-depth: 0
+          submodules: recursive
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
+      - name: Login to ghcr.io
+        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
+        with:
+          registry: ghcr.io
+          username: ${{ github.repository_owner }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build and push pre-pr version
+        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
+        with:
+          context: .
+          file: production.dockerfile
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          push: true
+          tags: |
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.image_tag }}
+            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.pull_request_number }}
   sk8l-ui-production-img:
     runs-on: ubuntu-latest
+    if: startsWith(github.ref, 'refs/tags/')
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
@@ -44,7 +139,6 @@ jobs:
           password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and push release version
         uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
-        if: ${{ github.event_name != 'pull_request' && github.event_name != 'workflow_call' && github.event_name != 'workflow_dispatch' }}
         with:
           context: .
           file: production.dockerfile
@@ -52,78 +146,11 @@ jobs:
           tags: |
             ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:latest
             ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:${{ env.IMAGE_TAG }}
-  sk8l-ui-dev-img:
-    runs-on: ubuntu-latest
-    name: sk8l-ui:dev-${{ inputs.image_tag }}
-    steps:
-      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-        with:
-          fetch-depth: 0
-          submodules: recursive
-      - name: Checkout - set env
-        run: echo "IMAGE_TAG=$(make version)" >> $GITHUB_ENV
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
-      - name: Login to Docker Hub
-        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push dev version
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
-        if: ${{ github.event_name == 'workflow_call' && inputs.image_tag || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
-        with:
-          context: .
-          file: Dockerfile
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          push: true
-          tags: |
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ github.sha }}
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.image_tag }}
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.pull_request_number }}
-  sk8l-ui-pre-img:
-    runs-on: ubuntu-latest
-    name: sk8l-ui:pre-${{ inputs.image_tag }}
-    steps:
-      - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
-        with:
-          fetch-depth: 0
-          submodules: recursive
-      - name: Checkout - set env
-        run: echo "IMAGE_TAG=$(make version)" >> $GITHUB_ENV
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@d70bba72b1f3fd22344832f00baa16ece964efeb # v3.3.0
-      - name: Login to Docker Hub
-        uses: docker/login-action@e92390c5fb421da1463c202d546fed0ec5c39f20 # v3.1.0
-        with:
-          registry: ghcr.io
-          username: ${{ github.repository_owner }}
-          password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build and push dev version
-        uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
-        if: ${{ github.event_name == 'workflow_call' && inputs.image_tag || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
-        with:
-          context: .
-          file: production.dockerfile
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
-          push: true
-          tags: |
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ github.sha }}
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.image_tag }}
-            ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.pull_request_number }}
   sk8l-ui-test-img:
     runs-on: ubuntu-latest
     name: sk8l-ui:ui-test-${{ inputs.image_tag }}
-    needs: [sk8l-ui-pre-img]
+    needs: [sk8l-ui-pre-pr-img]
+    if: ${{ github.event_name == 'workflow_call' && inputs.image_tag || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
     steps:
       - uses: actions/checkout@9bb56186c3b09b4f86b1c65136769dd318469633 # v4.1.2
         with:
@@ -143,7 +170,6 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build and push test version
         uses: docker/build-push-action@2cdde995de11925a030ce8070c3d77a52ffcf1c0 # v5.3.0
-        if: ${{ github.event_name == 'workflow_call' && inputs.image_tag || github.event_name == 'workflow_dispatch' || github.event_name == 'pull_request' }}
         with:
           context: .
           file: Dockerfile.test

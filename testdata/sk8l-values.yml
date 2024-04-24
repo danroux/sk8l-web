@@ -32,6 +32,10 @@ uiService:
       protocol: TCP
       port: 9901
       nodePort: 30965
+sk8lApi:
+  image: "ghcr.io/danroux/sk8l-api"
+  imageTag: "pre"
+  imagePullPolicy: "Always"
 sk8lUi:
   image: "ghcr.io/danroux/sk8l-ui"
   imageTag: "pre"

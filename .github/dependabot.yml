@@ -13,7 +13,7 @@ updates:
       prefix: "npm deps:"
       include: "scope"
     open-pull-requests-limit: 10
-    assignees:
+    reviewers:
       - "danroux"
   - package-ecosystem: "github-actions"
     directory: "/"
@@ -28,7 +28,7 @@ updates:
       prefix: "gha deps:"
       include: "scope"
     open-pull-requests-limit: 10
-    assignees:
+    reviewers:
       - "danroux"
   - package-ecosystem: "docker"
     directory: "/"
@@ -43,5 +43,5 @@ updates:
       prefix: "docker deps:"
       include: "scope"
     open-pull-requests-limit: 10
-    assignees:
+    reviewers:
       - "danroux"

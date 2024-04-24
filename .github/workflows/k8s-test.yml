@@ -66,7 +66,7 @@ jobs:
       - name: ui smoke tests
         id: ui_smoke_tests
         run: |
-          ./ci/ui_smoke_tests.sh
+          ./ci/ui_smoke_tests.sh ghcr.io/danroux/sk8l-ui:ui-test-${{ inputs.image_tag }}
       - name: ui smoke tests error output
         if: ${{ failure() && steps.ui_smoke_tests.conclusion == 'failure' }}
         run: |

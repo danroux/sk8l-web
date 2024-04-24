@@ -1,0 +1,16 @@
+```release-note:enhancement
+ci/dependabot: docker deps:(deps): bump cypress/included from 13.7.3 to 13.8.1
+
+docker deps:(deps): bump cypress/included from 13.7.3 to 13.8.1
+
+Bumps cypress/included from 13.7.3 to 13.8.1.
+
+---
+updated-dependencies:
+- dependency-name: cypress/included
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

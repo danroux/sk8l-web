@@ -1,6 +1,6 @@
 FROM ghcr.io/danroux/sk8l-ui:dev AS release
 
-FROM cypress/included:13.7.3
+FROM cypress/included:13.8.1
 LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
 LABEL org.opencontainers.image.description="sk8l-ui ui-test image"
 LABEL org.opencontainers.image.licenses=MIT

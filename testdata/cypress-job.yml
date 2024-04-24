@@ -6,37 +6,29 @@ spec:
   template:
     spec:
       containers:
-      - name: cypress
-        image: ghcr.io/danroux/sk8l-ui:ui-test
-        imagePullPolicy: Always
-        command: [
-          "cypress"
-        ]
-        args: [
-          "run",
-          "--browser",
-          "firefox:stable",
-          "--headless",
-          "--config-file=cypress.config.ts"
-        ]
-        # command: ["/bin/sh"]
-        # args: ["-c", "while true; do echo hello; sleep 120;done"]
-        workingDir: /e2e
-        volumeMounts:
-          - name: tls-certs
-            mountPath: /e2e/testdata/sk8l-certs
-            readOnly: true
-          - name: xapp
-            mountPath: /e2e/cypress/screenshots
-          - name: ca-certificate-only
-            mountPath: /usr/lib/mozilla/certificates
-            readOnly: true
-          - name: ca-certificate-only
-            mountPath: /usr/lib64/mozilla/certificates
-            readOnly: true
-          - name: ca-certificate-only
-            mountPath: ~/.mozilla/certificates
-            readOnly: true
+        - name: cypress
+          image: ghcr.io/danroux/sk8l-ui:ui-test
+          imagePullPolicy: Always
+          command: ["cypress"]
+          args: ["run", "--browser", "firefox:stable", "--headless", "--config-file=cypress.config.ts"]
+          # command: ["/bin/sh"]
+          # args: ["-c", "while true; do echo hello; sleep 120;done"]
+          workingDir: /e2e
+          volumeMounts:
+            - name: tls-certs
+              mountPath: /e2e/testdata/sk8l-certs
+              readOnly: true
+            - name: xapp
+              mountPath: /e2e/cypress/screenshots
+            - name: ca-certificate-only
+              mountPath: /usr/lib/mozilla/certificates
+              readOnly: true
+            - name: ca-certificate-only
+              mountPath: /usr/lib64/mozilla/certificates
+              readOnly: true
+            - name: ca-certificate-only
+              mountPath: ~/.mozilla/certificates
+              readOnly: true
       restartPolicy: Never
       volumes:
         - name: xapp
@@ -46,26 +38,26 @@ spec:
         - name: tls-certs
           projected:
             sources:
-            - secret:
-                name: sk8l-tls-server-cert
-                items:
-                  - key: tls.crt
-                    path: server-cert.pem
-                  - key: tls.key
-                    path: server-key.pem
-                  - key: ca.crt
-                    path: ca-cert.pem
-            - configMap:
-                name: sk8l
-                items:
-                  - key: trust-bundle.crt
-                    path: ca-certificates.crt
+              - secret:
+                  name: sk8l-server-cert-secret
+                  items:
+                    - key: tls.crt
+                      path: server-cert.pem
+                    - key: tls.key
+                      path: server-key.pem
+                    - key: ca.crt
+                      path: ca-cert.pem
+              - configMap:
+                  name: sk8l-ca-cert-cm
+                  items:
+                    - key: trust-bundle.crt
+                      path: ca-certificates.crt
         - name: ca-certificate-only
           projected:
             sources:
-            - configMap:
-                name: sk8l
-                items:
-                  - key: trust-bundle.crt
-                    path: ca-certificates.crt
+              - configMap:
+                  name: sk8l-ca-cert-cm
+                  items:
+                    - key: trust-bundle.crt
+                      path: ca-certificates.crt
   backoffLimit: 1

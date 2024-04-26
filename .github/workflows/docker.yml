@@ -202,6 +202,8 @@ jobs:
           file: Dockerfile.test
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          build-args: |
+            UI_TEST_IMAGE_TAG=dev-${{ inputs.image_tag }}
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:ui-test

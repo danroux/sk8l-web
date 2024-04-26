@@ -1,5 +1,6 @@
 <template>
-  <li class="Box-row Box-row--hover-gray" :class="jobStatusClass">
+  <li class="Box-row Box-row--hover-gray job-row"
+      :class="jobStatusClass" :id="`job-${job.name}`">
     <div class="d-flex flex-items-center">
       <div class="flex-auto">
         <div>
@@ -9,12 +10,13 @@
                     :pod="pod" />
         </div>
         <div>
-          <strong>{{ job.name }}</strong> <RowLabels :job="job" /><br/>
-          <p class="color-fg-muted mb-0 wb-break-word">
+          <strong class="job-name">{{ job.name }}</strong> <RowLabels :job="job" /><br/>
+          <p class="color-fg-muted mb-0 wb-break-word job-uuid">
             Uuid:  {{ job.Uuid }}
           </p>
 
-          <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed" v-for="(tl, index) in job.terminationReasons">
+          <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failed"
+             v-for="(tl, index) in job.terminationReasons">
             Error: {{ tl.terminationDetails.reason }} - {{ tl.terminationDetails.exitCode }}<br/>
             <span v-if="tl.terminationDetails.message">
               Message: {{ tl.terminationDetails.message }}<br/>

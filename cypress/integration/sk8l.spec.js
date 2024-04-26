@@ -55,4 +55,33 @@ describe('Home Test', () => {
         cy.contains('Host:')
         cy.contains('Pod Ips:')
     })
+
+    describe('/jobs/:namespace', () => {
+        it("visits /jobs/:namespace ", () => {
+            cy.visit('https://sk8l-ui:8001/jobs/sk8l/')
+            cy.get('#jobs-timeline').should('exist')
+            cy.contains('Job activity')
+            cy.get('.job-row').should('have.length', 2)
+            cy.get('.completed-job').should('have.length.gt', 0)
+
+            cy.get('.completed-job')
+                .should('have.length.gt', 0)
+                .its('length')
+                .then((count) => {
+                    expect(count).to.be.greaterThan(0)
+                    cy.log(`Found ${count} elements with class '.completed-job'`)
+                })
+
+            cy.get('#job-cypress-job.job-row')
+                .find('strong.job-name')
+                .should('exist')
+                .and('have.text', 'cypress-job');
+
+            cy.get('#job-sk8l-demo-job.job-row').within(() => {
+                cy.get('strong.job-name')
+                    .should('exist')
+                    .and('have.text', 'sk8l-demo-job');
+            });
+        })
+    })
 })

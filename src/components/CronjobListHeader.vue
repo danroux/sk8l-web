@@ -27,16 +27,21 @@
         <div class="width-full d-flex position-relative container-xl">
           <ul class="list-style-none UnderlineNav-body width-full p-responsive overflow-hidden">
             <li data-tab-item="org-header-overview-tab" class="d-flex js-responsive-underlinenav-item">
-              <a class="UnderlineNav-item selected" href="#">
+              <router-link :to="{ name: 'home' }"
+                           class="UnderlineNav-item mr-1">
                 <Octicon name="home" class="UnderlineNav-octicon" />
-                Overview
-              </a>
+                Cronjobs
+              </router-link>
+              <span title="Not available" data-view-component="true" class="Counter js-profile-repository-count">{{  }}</span>
             </li>
 
             <li data-tab-item="org-header-repositories-tab" class="d-flex js-responsive-underlinenav-item">
-              <Octicon name="apps" class="UnderlineNav-octicon" />
-              Cronjobs
-              <span title="Not available" data-view-component="true" class="Counter js-profile-repository-count">{{ cronjobsLength }}</span>
+              <router-link :to="{ name: 'jobList', params: { namespace: namespace }}"
+                           class="UnderlineNav-item mr-1">
+                <Octicon name="server" class="UnderlineNav-octicon" />
+                Jobs
+                <span title="Not available" data-view-component="true" class="Counter js-profile-repository-count">{{  }}</span>
+              </router-link>
             </li>
 
             <li data-tab-item="org-header-repositories-tab" class="d-flex js-responsive-underlinenav-item">

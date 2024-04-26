@@ -60,4 +60,13 @@ spec:
                   items:
                     - key: trust-bundle.crt
                       path: ca-certificates.crt
-  backoffLimit: 1
+  backoffLimit: 0
+  podFailurePolicy:
+    rules:
+      - action: FailJob
+        onExitCodes:
+          containerName: cypress
+          operator: NotIn
+          values: [0]
+          # operator: In
+          # values: [1]

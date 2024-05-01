@@ -15,7 +15,7 @@
                   @close-modal="closeJobModal()">
     <template #actionElement>
       <button type="button" class="btn btn-sm" name="button" @click="getJobYAML(job.namespace, job.name)" >
-        <Octicon name="code-square" />
+        <Octicon name="server" />
       </button>
     </template>
   </ModalContainer>

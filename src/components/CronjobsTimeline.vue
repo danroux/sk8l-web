@@ -1,5 +1,7 @@
 <template>
-<div class="mb-3 dashboard-changelog color-bg-default border color-border-muted p-3 rounded-2" v-if="jobs.length > 0">
+<div class="mb-3 dashboard-changelog color-bg-default border color-border-muted p-3 rounded-2"
+     id="cronjobs-timeline"
+     v-if="jobs.length > 0">
   <h2 class="f5 text-bold mb-3">Latest completions</h2>
 
   <ul class="list-style-none">

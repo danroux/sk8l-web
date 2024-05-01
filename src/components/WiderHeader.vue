@@ -50,9 +50,10 @@
               </li>
 
               <li data-tab-item="org-header-repositories-tab" class="d-flex js-responsive-underlinenav-item">
-                <router-link :to="{ name: 'jobPodList', params: { namespace: cronjob.namespace, cronjobName: cronjob.name }}" class="UnderlineNav-item ">
+                <router-link :to="{ name: 'jobPodList', params: { namespace: cronjob.namespace, cronjobName: cronjob.name }}"
+                             class="UnderlineNav-item ">
                   <Octicon name="container" class="UnderlineNav-octicon" />
-                    Pods
+                  Pods
                   <span title="Not available" data-view-component="true" class="Counter js-profile-repository-count">{{ pods.length }}</span>
                 </router-link>
               </li>

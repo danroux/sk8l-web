@@ -4,6 +4,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import JobPodListView from '../views/JobPodListView.vue';
+import JobListView from '../views/JobListView.vue';
 import CronJob from '../components/CronJob.vue';
 
 const routes = [
@@ -12,9 +13,16 @@ const routes = [
     name: 'home',
     component: HomeView,
   },
-  // { path: '/', component: Root },
   {
-    path: '/cronjob/:namespace/:name', component: CronJob, props: true, name: 'cronDetails',
+    path: '/jobs/:namespace',
+    component: JobListView,
+    name: 'jobList',
+  },
+  {
+    path: '/cronjob/:namespace/:name',
+    component: CronJob,
+    props: true,
+    name: 'cronDetails',
   },
   {
     path: '/cronjob/:namespace/:cronjobName/pods/', component: JobPodListView, props: true, name: 'jobPodList',

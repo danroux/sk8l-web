@@ -3,7 +3,7 @@ apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
 - role: control-plane
   extraMounts:
-    - hostPath: /home/runner/work/sk8l-ui/sk8l-ui/cypress/sk8l.js/screenshots
+    - hostPath: /home/runner/work/sk8l-ui/sk8l-ui/cypress/screenshots
       containerPath: /xapp
   extraPortMappings:
   - containerPort: 30950

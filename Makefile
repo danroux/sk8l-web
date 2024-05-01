@@ -60,10 +60,6 @@ setup-certs: # setup-certs
 
 install-chart-ci: # install-chart-ci
 	helm repo add sk8l https://sk8l.io/charts
-	set +e; \
-	helm uninstall sk8l -n sk8l; \
-	kubectl get ns sk8l --ignore-not-found -o name | xargs -r kubectl wait --for=delete namespace/sk8l  --timeout=120s; \
-	set -e
 	helm upgrade --install sk8l sk8l/sk8l \
 	  -f testdata/sk8l-values.yml \
 	  --namespace sk8l \

@@ -82,5 +82,5 @@ jobs:
       - uses: actions/upload-artifact@v4
         if: failure()
         with:
-          name: e2e-job-ss
-          path: cypress/sk8l.js/screenshots/
+          name: e2e-job-ss-${{ github.job }}-${{ github.run_number }}-${{ github.run_id }}
+          path: /home/runner/work/sk8l-ui/sk8l-ui/cypress/

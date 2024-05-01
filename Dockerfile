@@ -10,7 +10,7 @@
 
 # https://hub.docker.com/_/node/tags?page=1&name=bookworm-slim <- look for vulnerabilities
 # https://github.com/primer/octicons/blob/main/package.json
-FROM node:21.7.3-bookworm-slim AS deps
+FROM node:22.0.0-bookworm-slim AS deps
 
 RUN groupadd --system --gid 101 nginx \
     && useradd --system --gid nginx --create-home --home /home/nginx --comment "nginx user" --shell /bin/bash --uid 101 nginx \

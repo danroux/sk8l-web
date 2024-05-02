@@ -1,3 +1,54 @@
+## v0.11.0 (May 02, 2024)
+
+ENHANCEMENTS:
+
+* Add /jobs/:namespace to list jobs in the namespace [[GH-47](https://github.com/danroux/sk8l-ui/issues/47)]
+* ci/dependabot: docker deps:(deps): bump cypress/included from 13.7.3 to 13.8.1
+
+docker deps:(deps): bump cypress/included from 13.7.3 to 13.8.1
+
+Bumps cypress/included from 13.7.3 to 13.8.1.
+
+---
+updated-dependencies:
+- dependency-name: cypress/included
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> [[GH-46](https://github.com/danroux/sk8l-ui/issues/46)]
+* ci/dependabot: docker deps:(deps): bump node from 21.7.3-bookworm-slim to 22.0.0-bookworm-slim
+
+docker deps:(deps): bump node
+
+Bumps node from 21.7.3-bookworm-slim to 22.0.0-bookworm-slim.
+
+---
+updated-dependencies:
+- dependency-name: node
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> [[GH-49](https://github.com/danroux/sk8l-ui/issues/49)]
+* ci/dependabot: gha deps:(deps): bump actions/checkout from 4.1.2 to 4.1.4
+
+gha deps:(deps): bump actions/checkout from 4.1.2 to 4.1.4
+
+Bumps [actions/checkout](https://github.com/actions/checkout) from 4.1.2 to 4.1.4.
+- [Release notes](https://github.com/actions/checkout/releases)
+- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/actions/checkout/compare/9bb56186c3b09b4f86b1c65136769dd318469633...0ad4b8fadaa221de15dcec353f45205ec38ea70b)
+
+---
+updated-dependencies:
+- dependency-name: actions/checkout
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> [[GH-45](https://github.com/danroux/sk8l-ui/issues/45)]
+
 ## v0.10.0 (April 24, 2024)
 
 ENHANCEMENTS:

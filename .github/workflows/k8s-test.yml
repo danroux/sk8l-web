@@ -48,7 +48,7 @@ jobs:
       - name: Update config files with dev docker image tag
         if:
         run: |
-          pr_image_tag=pre-${{ inputs.image_tag }}
+          pr_image_tag=pre-${{ inputs.pull_request_number }}-v1.29.2
           cp testdata/sk8l-values.yml testdata/sk8l-values.yml.bak
           yq e -i ".sk8lUi.imageTag = \"$pr_image_tag\"" testdata/sk8l-values.yml
           set +e
@@ -66,7 +66,8 @@ jobs:
       - name: ui smoke tests
         id: ui_smoke_tests
         run: |
-          ./ci/ui_smoke_tests.sh ghcr.io/danroux/sk8l-ui:ui-test-${{ inputs.image_tag }}
+          image_tag=ui-test-${{ inputs.pull_request_number }}-v1.29.2
+          ./ci/ui_smoke_tests.sh ghcr.io/danroux/sk8l-ui:$image_tag
       - name: ui smoke tests error output
         if: ${{ failure() && steps.ui_smoke_tests.conclusion == 'failure' }}
         run: |

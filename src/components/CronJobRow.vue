@@ -6,7 +6,7 @@
 
 <template>
   <!-- eslint-disable -->
-  <li>
+  <li :id="`cronjob-${cronJob.name}`">
     <div class="d-block">
       <div class="d-flex flex-justify-between">
         <div class="mb-0 col-9">
@@ -29,31 +29,31 @@
       <div class="color-fg-muted f6">
         <StatusProp :propText="status" />
 
-        <span class="mr-2">
+        <span class="mr-2 cronjob-namespace">
           <Octicon name="north-star" /> {{ cronJob.namespace }}
         </span>
-        <span class="mr-2">
+        <span class="mr-2 cronjob-completions">
           <Octicon name="stack" />{{ cronJob.spec.jobTemplate.spec.completions || "1" }}
         </span>
-        <span class="mr-2">
+        <span class="mr-2 cronjob-parallelism">
           <Octicon name="versions" /> {{ cronJob.spec.jobTemplate.spec.parallelism || "1" }}
         </span>
-        <span class="mr-2">
+        <span class="mr-2 cronjob-creation-time">
           <Octicon name="sun" /> {{ cronJob.creationTimestamp }}
         </span>
         <template v-if="all.length > 0">
-          <span class="mr-2">
+          <span class="mr-2 cronjob-last-duration">
             <Octicon name="stopwatch" /> {{ duration(cronJob.lastDuration) }}
           </span>
-          <span class="mr-2" v-if="lastFailed && showLastFailure">
+          <span class="mr-2 cronjob-failure-time" v-if="lastFailed && showLastFailure">
             <Octicon name="x-circle-fill" /> {{ lux1(lastFailureTime) }}
           </span>
 
           <template v-if="lastSucceeded">
-            <span class="mr-2">
+            <span class="mr-2 cronjob-successful-time">
               <Octicon name="calendar" /> {{ lux1(cronJob.lastSuccessfulTime) }}
             </span>
-            <span class="mr-2">
+            <span class="mr-2 cronjob-completion-time">
               <Octicon name="goal" /> {{ luxs(Number(lastSucceeded.status.completionTime.seconds)) }}
             </span>
           </template>

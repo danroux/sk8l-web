@@ -17,7 +17,7 @@
             <span v-if="tr.terminationDetails.message">
               Message: {{ tr.terminationDetails.message }}<br/>
             </span>
-            Container: {{ tr.terminationDetails.containerName }}
+            <span class="termination-reason-container">Container: {{ tr.containerName }}</span>
           </p>
         </div>
       </div>

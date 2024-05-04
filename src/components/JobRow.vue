@@ -23,22 +23,38 @@
             </span>
             Container: {{ tl.containerName }}
           </p>
+
+          <p class="color-fg-muted mb-0 wb-break-word" v-if="job.failureCondition">
+            <span class="job-failure-condition" >
+              {{ job.failureCondition.reason }} - {{ job.failureCondition.message }}
+            </span>
+          </p>
         </div>
       </div>
     </div>
-    <div class="color-fg-muted f6 mt-2">
+    <div class="color-fg-muted f6 mt-2 job-row-footer">
       <StatusProp :propText="status" />
 
-      <span class="mr-2"><Octicon name="stack" /> {{ job.spec.completions }}</span>
-      <span class="mr-2"><Octicon name="versions" /> {{ job.spec.parallelism }}</span>
-      <span class="mr-2"><Octicon name="strikethrough" /> {{ job.spec.suspend }}</span>
-      <span class="mr-2"><Octicon name="sparkle-fill" /> {{ luxs(job.status.startTime.seconds) }}</span>
-      <span class="mr-2"><Octicon name="stopwatch" /> {{ duration(job.durationInS) }}</span>
-      <span class="mr-2" v-if="job.failed">
-        <Octicon name="x-circle-fill" /> {{ lux1(lastFailureTime) }}
+      <span class="mr-2 job-completions">
+        <Octicon name="stack" /> {{ job.spec.completions }}
       </span>
-      <span class="mr-2" v-if="job.status.succeeded && job.status.completiontime">
-        <Octicon name="goal" /> Completed {{ luxs(job.status.completionTime.seconds) }}
+      <span class="mr-2 job-parallelism">
+        <Octicon name="versions" /> {{ job.spec.parallelism }}
+      </span>
+      <span class="mr-2 job-suspend">
+        <Octicon name="strikethrough" /> {{ job.spec.suspend }}
+      </span>
+      <span class="mr-2 job-start-time">
+        <Octicon name="sparkle-fill" /> {{ luxs(job.status.startTime.seconds) }}
+      </span>
+      <span class="mr-2 job-duration-time">
+        <Octicon name="stopwatch" /> {{ duration(job.durationInS) }}
+      </span>
+      <span class="mr-2 job-failure-time" v-if="job.failed">
+        <Octicon name="x-circle-fill" /> {{ luxs(lastFailureTime) }}
+      </span>
+      <span class="mr-2 job-completion-time" v-if="job.status.succeeded && job.status.completionTime">
+        <Octicon name="goal" /> {{ luxs(job.status.completionTime.seconds) }}
       </span>
     </div>
   </li>
@@ -104,13 +120,17 @@ export default {
       }
     },
     lastFailureTime() {
-      if (this.job.failure_condition) {
-        return lastTransitionTime = this.job.lastFailed.failure_condition.lastTransitionTime;
+      // when it failed
+      if (this.job.failureCondition) {
+          if (this.job.failed) {
+              let lastTransitionTime = this.job.failureCondition.lastTransitionTime.seconds;
+              return lastTransitionTime;
+          }
       }
 
-      const l = Number(this.job.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds);
-      const dt = DateTime.fromSeconds(l);
-      return dt;
+      // while is failing
+      const finishedAt = this.job.terminationReasons.find((first) => first).terminationDetails.finishedAt.seconds;
+      return finishedAt;
     },
     pods(vm) {
       return PodsGenerator.pods(vm.job.pods);

@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps): bump cronstrue from 2.48.0 to 2.49.0
+
+npm deps:(deps): bump cronstrue from 2.48.0 to 2.49.0
+
+Bumps [cronstrue](https://github.com/bradymholt/cronstrue) from 2.48.0 to 2.49.0.
+- [Release notes](https://github.com/bradymholt/cronstrue/releases)
+- [Changelog](https://github.com/bradymholt/cRonstrue/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/bradymholt/cronstrue/compare/v2.48.0...v2.49.0)
+
+---
+updated-dependencies:
+- dependency-name: cronstrue
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

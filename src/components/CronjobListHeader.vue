@@ -3,7 +3,8 @@
     <div class="container-xl pt-4 pt-lg-0 p-responsive clearfix">
       <div class="d-flex flex-wrap flex-items-start flex-md-items-center my-3">
         <div>
-          <img itemprop="image" class="avatar flex-shrink-0 mb-3 mr-3 mb-md-0 mr-md-4" src="https://www.npmjs.com/npm-avatar/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdmF0YXJVUkwiOiJodHRwczovL3MuZ3JhdmF0YXIuY29tL2F2YXRhci8zNDAyNGQxNGM5OWZhNTEyODRkYzBjOGQ5MTYzYjAzOD9zaXplPTQ5NiZkZWZhdWx0PXJldHJvIn0.03zIr0EjnNyAiquvrP_54MEiP1K9BkSCiuzu7yWQj_8" alt="@primer" width="100" height="100">
+          <img itemprop="image" class="avatar flex-shrink-0 mb-3 mr-3 mb-md-0 mr-md-4"
+               src="https://sk8l.io/charts/logo.png" alt="sk8l.io" width="100" height="100">
         </div>
         <div class="flex-1">
           <h1 class="h2 lh-condensed">

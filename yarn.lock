@@ -480,12 +480,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@connectrpc/connect@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "@connectrpc/connect@npm:1.3.0"
+"@connectrpc/connect@npm:^1.4.0":
+  version: 1.4.0
+  resolution: "@connectrpc/connect@npm:1.4.0"
   peerDependencies:
     "@bufbuild/protobuf": ^1.4.2
-  checksum: 664f4660210a7ac04904b184a5f5b1cd34987b66b7dbfecef7840c72e226090ea193ee3ab1ca21d2385422d46cc133898fd0b87dad80c72e5ddfec82593d023e
+  checksum: 6006e4aef6908a786ffbda6f7c9c92fe0906e031e891c7ce28de9d1b8e3feb9115d924ec6fc38131a5b9936b537594b0a828711e3e0544f760c78e010eda1ea1
   languageName: node
   linkType: hard
 
@@ -6151,7 +6151,7 @@ __metadata:
     "@achrinza/node-ipc": "npm:^10.1.10"
     "@babel/core": "npm:^7.23.2"
     "@bufbuild/protobuf": "npm:^1.7.2"
-    "@connectrpc/connect": "npm:^1.3.0"
+    "@connectrpc/connect": "npm:^1.4.0"
     "@connectrpc/connect-web": "npm:^1.3.0"
     "@connectrpc/protoc-gen-connect-es": "npm:^1.3.0"
     "@grpc/grpc-js": "npm:^1.10.6"

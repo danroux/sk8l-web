@@ -1,3 +1,62 @@
+## v0.12.0 (May 07, 2024)
+
+ENHANCEMENTS:
+
+* Add logo, fix jobRow.finishedAt and test CronJobRow/JobRow elements [[GH-54](https://github.com/danroux/sk8l-ui/issues/54)]
+* ci/dependabot: docker:(deps): bump node from 22.0.0-bookworm-slim to 22.1.0-bookworm-slim
+
+docker:(deps): bump node
+
+Bumps node from 22.0.0-bookworm-slim to 22.1.0-bookworm-slim.
+
+---
+updated-dependencies:
+- dependency-name: node
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> [[GH-53](https://github.com/danroux/sk8l-ui/issues/53)]
+* ci/dependabot: gha:(deps): bump actions/checkout from 4.1.2 to 4.1.4
+
+gha:(deps): bump actions/checkout from 4.1.2 to 4.1.4
+
+Bumps [actions/checkout](https://github.com/actions/checkout) from 4.1.2 to 4.1.4.
+- [Release notes](https://github.com/actions/checkout/releases)
+- [Changelog](https://github.com/actions/checkout/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/actions/checkout/compare/v4.1.2...0ad4b8fadaa221de15dcec353f45205ec38ea70b)
+
+---
+updated-dependencies:
+- dependency-name: actions/checkout
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> [[GH-52](https://github.com/danroux/sk8l-ui/issues/52)]
+* ci/dependabot: npm:(deps): bump cronstrue from 2.48.0 to 2.49.0
+
+npm:(deps): bump cronstrue from 2.48.0 to 2.49.0
+
+Bumps [cronstrue](https://github.com/bradymholt/cronstrue) from 2.48.0 to 2.49.0.
+- [Release notes](https://github.com/bradymholt/cronstrue/releases)
+- [Changelog](https://github.com/bradymholt/cRonstrue/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/bradymholt/cronstrue/compare/v2.48.0...v2.49.0)
+
+---
+updated-dependencies:
+- dependency-name: cronstrue
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com> [[GH-34](https://github.com/danroux/sk8l-ui/issues/34)]
+* ci/dependabot: npm:(deps-dev): bump @connectrpc/connect from 1.3.0 to 1.4.0
+
+npm:(deps-dev): bump @connectrpc/connect from 1.3.0 to 1.4.0
+
+Dependabot couldn't find the original pull request head commit, ecdbd1ba458ef99aca6175c00e1d697b9951ee71. [[GH-41](https://github.com/danroux/sk8l-ui/issues/41)]
+
 ## v0.11.0 (May 02, 2024)
 
 ENHANCEMENTS:

@@ -1919,19 +1919,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vue/test-utils@npm:^2.0.0-0":
-  version: 2.4.4
-  resolution: "@vue/test-utils@npm:2.4.4"
+"@vue/test-utils@npm:^2.4.6":
+  version: 2.4.6
+  resolution: "@vue/test-utils@npm:2.4.6"
   dependencies:
     js-beautify: "npm:^1.14.9"
-    vue-component-type-helpers: "npm:^1.8.21"
-  peerDependencies:
-    "@vue/server-renderer": ^3.0.1
-    vue: ^3.0.1
-  peerDependenciesMeta:
-    "@vue/server-renderer":
-      optional: true
-  checksum: fa213b6733bbc0249f5ab5c98e669d63f77aa57a18985382e146c20380fffda687668c570dd6002f0f969efa24900d67f8ff607f7dfaf41179d75cd24f1b3e53
+    vue-component-type-helpers: "npm:^2.0.0"
+  checksum: 37fa46cb6b98f90affb2faf5aa41422617bbd23ff35bc714d08035334e593ae31d18757d5ae688f778dd8b4c28de431601c0b9b7ca17fc1b55f1401a5577375e
   languageName: node
   linkType: hard
 
@@ -6232,7 +6226,7 @@ __metadata:
     "@originjs/vite-plugin-commonjs": "npm:^1.0.3"
     "@primer/octicons": "npm:^19.7.0"
     "@vitejs/plugin-vue": "npm:^5.0.4"
-    "@vue/test-utils": "npm:^2.0.0-0"
+    "@vue/test-utils": "npm:^2.4.6"
     "@vue/vue3-jest": "npm:^29.2.6"
     babel-jest: "npm:^27.0.6"
     cronstrue: "npm:^2.49.0"
@@ -6807,10 +6801,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vue-component-type-helpers@npm:^1.8.21":
-  version: 1.8.27
-  resolution: "vue-component-type-helpers@npm:1.8.27"
-  checksum: 3403d70951e422162321e810f54f23f11ee5d2642631d2ca2cb1de18e5d35a0b7b05dd1f9bd02a0ae77dfa0b80751d826865d98f928ae6d6fbce9303406c9820
+"vue-component-type-helpers@npm:^2.0.0":
+  version: 2.0.16
+  resolution: "vue-component-type-helpers@npm:2.0.16"
+  checksum: 5f5b100411f356d6e6c88c51e2f1cfe554362c94a6b36bc7a3da5bfb950aae243837e742fbdcc5fb7490d9230cc530f0a975080e0a2e31f9029c8cf2a86cbf34
   languageName: node
   linkType: hard
 

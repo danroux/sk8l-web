@@ -461,7 +461,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@bufbuild/protobuf@npm:1.9.0":
+"@bufbuild/protobuf@npm:1.9.0, @bufbuild/protobuf@npm:^1.9.0":
   version: 1.9.0
   resolution: "@bufbuild/protobuf@npm:1.9.0"
   checksum: 45b0b6789819defcfaf2f7c3a431310f47e246bad23fdb0d184b015c7c1a047d787232cc349d52c204d8757c274b1148e278e01f82288e19f574b0996c5ef0f1
@@ -6152,7 +6152,7 @@ __metadata:
   dependencies:
     "@achrinza/node-ipc": "npm:^10.1.10"
     "@babel/core": "npm:^7.23.2"
-    "@bufbuild/protobuf": "npm:^1.7.2"
+    "@bufbuild/protobuf": "npm:^1.9.0"
     "@connectrpc/connect": "npm:^1.4.0"
     "@connectrpc/connect-web": "npm:^1.3.0"
     "@connectrpc/protoc-gen-connect-es": "npm:^1.4.0"

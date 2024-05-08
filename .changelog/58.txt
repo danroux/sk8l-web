@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: gha:(deps): bump actions/checkout from 4.1.4 to 4.1.5
+
+gha:(deps): bump actions/checkout from 4.1.4 to 4.1.5
+
+Dependabot couldn't find the original pull request head commit, 0a83a7198a48d324198976413d2e2e35dd75dacf.
+```

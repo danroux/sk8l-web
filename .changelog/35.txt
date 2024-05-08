@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps-dev): bump eslint-plugin-vue from 8.7.1 to 9.25.0
+
+npm deps:(deps-dev): bump eslint-plugin-vue from 8.7.1 to 9.25.0
+
+Dependabot couldn't find the original pull request head commit, 453a1e91cc46ad2c66192312e342133b40d08d56.
+```

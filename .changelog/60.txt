@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps): bump vue from 3.4.18 to 3.4.27
+
+npm:(deps): bump vue from 3.4.18 to 3.4.27
+
+Dependabot couldn't find the original pull request head commit, 1f994837a178229e7cda8f4df1cb9207007c2ecf.
+```

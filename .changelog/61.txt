@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps-dev): bump vite from 5.2.9 to 5.2.11
+
+npm:(deps-dev): bump vite from 5.2.9 to 5.2.11
+
+Dependabot couldn't find the original pull request head commit, 99d5745992dd8d00a8b73b87d6249faad850b4a6.
+```

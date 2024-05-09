@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps-dev): bump @vue/test-utils from 2.4.4 to 2.4.6
+
+npm:(deps-dev): bump @vue/test-utils from 2.4.4 to 2.4.6
+
+Dependabot couldn't find the original pull request head commit, 38093dbbb750a6ade223ab9ae0d00fa7d9ff8ed1.
+```

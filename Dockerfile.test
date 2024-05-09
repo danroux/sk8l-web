@@ -11,3 +11,4 @@ LABEL org.opencontainers.image.licenses=MIT
 # RUN chown -R 1001:1001 /var/cache
 # COPY --chown=1001:1001 --from=release /usr/app ./e2e
 COPY --from=release /usr/app ./e2e
+RUN cd e2e && npx yarn add --dev cypress @cypress/vite-dev-server

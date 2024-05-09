@@ -1,0 +1,64 @@
+name: Cypress Component Tests
+# https://github.com/actions/setup-node
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  cypress-component-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@0ad4b8fadaa221de15dcec353f45205ec38ea70b # v4.1.4
+        with:
+          fetch-depth: 1
+      - name: Install Node.js
+        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4.0.2
+        with:
+          node-version: 20
+          # node-version-file: ''
+          # check-latest: false
+          # architecture: ''
+          # token: ''
+          # cache: 'yarn'
+          # cache-dependency-path: ''
+          # registry-url: ''
+          # scope: ''
+          # always-auth: ''
+      - name: enable corepack
+        run: |
+          corepack enable
+          mkdir -p testdata/sk8l-certs/
+          touch testdata/sk8l-certs/ca-cert.pem
+          touch testdata/sk8l-certs/server-cert.pem
+          touch testdata/sk8l-certs/server-key.pem
+          # mkdir -p /etc/sk8l-certs
+          # touch /etc/sk8l-certs/ca-cert.pem
+          # touch /etc/sk8l-certs/server-cert.pem
+          # touch /etc/sk8l-certs/server-key.pem
+      - name: Get Yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "::set-output name=dir::$(yarn config get prefix)"
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Install dependencies
+        run: yarn install --immutable # --immutable-cache
+      - name: Install Cypress
+        run: yarn add --dev cypress
+      # - name: Run lint
+      #   run: yarn lint
+      # - name: Run tests
+      #   run: yarn test
+      # - name: Run build
+      #   run: yarn build
+      - name: Run Cypress Component Tests
+        uses: cypress-io/github-action@v6
+        with:
+          component: true

@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps-dev): bump @babel/core from 7.23.9 to 7.24.5
+
+npm deps:(deps-dev): bump @babel/core from 7.23.9 to 7.24.5
+
+Dependabot couldn't find the original pull request head commit, 2c847838c475e46fb8367d8e77ea95de4192fff7.
+```

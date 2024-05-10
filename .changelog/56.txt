@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps-dev): bump sass from 1.70.0 to 1.77.0
+
+npm:(deps-dev): bump sass from 1.70.0 to 1.77.0
+
+Dependabot couldn't find the original pull request head commit, 8f7308bb1b5ffe96b2f8c31afdf176130b6280c8.
+```

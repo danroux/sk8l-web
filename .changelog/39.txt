@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps-dev): bump eslint-plugin-vuejs-accessibility from 1.2.0 to 2.3.0
+
+npm deps:(deps-dev): bump eslint-plugin-vuejs-accessibility from 1.2.0 to 2.3.0
+
+Dependabot couldn't find the original pull request head commit, c318e872f264361b47dd671a68d04e6d22be794a.
+```

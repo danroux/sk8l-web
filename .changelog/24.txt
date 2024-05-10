@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm deps:(deps): bump @primer/octicons from 19.8.0 to 19.9.0
+
+npm deps:(deps): bump @primer/octicons from 19.8.0 to 19.9.0
+
+Dependabot couldn't find the original pull request head commit, 3479e01ba1651dd878651a9b304cb78a37b90af7.
+```

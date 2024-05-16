@@ -1,3 +1,22 @@
+## v0.13.0 (May 16, 2024)
+
+ENHANCEMENTS:
+
+* ci/dependabot: docker:(deps): bump cypress/included from 13.8.1 to 13.9.0[[GH-67](https://github.com/danroux/sk8l-ui/issues/67)]
+* ci/dependabot: npm deps:(deps-dev): bump @vue/vue3-jest from 27.0.0 to 29.2.6 [[GH-21](https://github.com/danroux/sk8l-ui/issues/21)]
+* ci/dependabot: npm deps:(deps-dev): bump eslint-plugin-vuejs-accessibility from 1.2.0 to 2.3.0 [[GH-39](https://github.com/danroux/sk8l-ui/issues/39)]
+* ci/dependabot: npm:(deps): bump @grpc/grpc-js from 1.10.6 to 1.10.7[[GH-68](https://github.com/danroux/sk8l-ui/issues/68)]
+* ci/dependabot: npm:(deps): bump cronstrue from 2.49.0 to 2.50.0 [[GH-71](https://github.com/danroux/sk8l-ui/issues/71)]
+* ci/dependabot: npm:(deps): bump vue from 3.4.18 to 3.4.27 [[GH-60](https://github.com/danroux/sk8l-ui/issues/60)]
+* ci/dependabot: npm:(deps): bump vue-router from 4.3.1 to 4.3.2 [[GH-70](https://github.com/danroux/sk8l-ui/issues/70)]
+* ci/dependabot: npm:(deps-dev): bump @bufbuild/protobuf from 1.7.2 to 1.9.0 [[GH-64](https://github.com/danroux/sk8l-ui/issues/64)]
+* ci/dependabot: npm:(deps-dev): bump @connectrpc/connect-web from 1.3.0 to 1.4.0 [[GH-69](https://github.com/danroux/sk8l-ui/issues/69)]
+* ci/dependabot: npm:(deps-dev): bump @vue/test-utils from 2.4.4 to 2.4.6 [[GH-55](https://github.com/danroux/sk8l-ui/issues/55)]
+* ci/dependabot: npm:(deps-dev): bump eslint from 8.56.0 to 9.2.0 [[GH-63](https://github.com/danroux/sk8l-ui/issues/63)]
+* ci/dependabot: npm:(deps-dev): bump eslint-plugin-vue from 8.7.1 to 9.26.0 [[GH-65](https://github.com/danroux/sk8l-ui/issues/65)]
+* ci/dependabot: npm:(deps-dev): bump jest from 27.5.1 to 29.7.0 [[GH-62](https://github.com/danroux/sk8l-ui/issues/62)]
+* ci/dependabot: npm:(deps-dev): bump vite from 5.2.9 to 5.2.11 [[GH-61](https://github.com/danroux/sk8l-ui/issues/61)]
+
 ## v0.12.0 (May 07, 2024)
 
 ENHANCEMENTS:

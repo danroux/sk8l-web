@@ -1,7 +1,7 @@
 # https://hub.docker.com/_/node/tags?page=1&name=bookworm-slim <- look for vulnerabilities
 # https://github.com/primer/octicons/blob/main/package.json
 
-FROM alpine:3.19 as build-stage
+FROM alpine:3.20 as build-stage
 ENV npm_config_cache=/usr/app/node_modules/.cache
 ENV V 20.5.1
 ENV FILE node-v$V-linux-x64-musl.tar.xz

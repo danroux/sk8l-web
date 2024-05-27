@@ -1,0 +1,7 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps): bump @grpc/grpc-js from 1.10.7 to 1.10.8
+
+npm:(deps): bump @grpc/grpc-js from 1.10.7 to 1.10.8
+
+Dependabot couldn't find the original pull request head commit, 150971e22fe2aa445885949e7cb92b9fb0cfc35b.
+```

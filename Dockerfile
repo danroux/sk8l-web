@@ -40,7 +40,7 @@ RUN mkdir -p $(pwd)/node_modules/.cache  \
 # # COPY package.json yarn.lock ./
 # # RUN yarn install --production
 
-FROM alpine:3.19 AS release
+FROM alpine:3.20 AS release
 LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
 LABEL org.opencontainers.image.description="sk8l-ui dev image"
 LABEL org.opencontainers.image.licenses=MIT

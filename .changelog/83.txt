@@ -1,0 +1,17 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps): bump @achrinza/node-ipc from 10.1.10 to 10.1.11
+
+npm:(deps): bump @achrinza/node-ipc from 10.1.10 to 10.1.11
+
+Bumps [@achrinza/node-ipc](https://github.com/achrinza/node-ipc) from 10.1.10 to 10.1.11.
+- [Commits](https://github.com/achrinza/node-ipc/compare/v10.1.10...v10.1.11)
+
+---
+updated-dependencies:
+- dependency-name: "@achrinza/node-ipc"
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

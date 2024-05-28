@@ -11,7 +11,7 @@
     "serveprod": "pm2 serve --no-daemon dist 1337"
   },
   "dependencies": {
-    "@achrinza/node-ipc": "^10.1.10",
+    "@achrinza/node-ipc": "^10.1.11",
     "@grpc/grpc-js": "^1.10.8",
     "@primer/octicons": "^19.7.0",
     "cronstrue": "^2.50.0",

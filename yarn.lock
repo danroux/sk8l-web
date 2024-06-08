@@ -6244,7 +6244,7 @@ __metadata:
     sass: "npm:^1.70.0"
     simple-statistics: "npm:^7.8.3"
     uplot: "npm:^1.6.25"
-    vite: "npm:^5.2.11"
+    vite: "npm:^5.2.13"
     vue: "npm:^3.4.27"
     vue-router: "npm:^4.3.2"
   languageName: unknown
@@ -6770,9 +6770,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:^5.2.11":
-  version: 5.2.11
-  resolution: "vite@npm:5.2.11"
+"vite@npm:^5.2.13":
+  version: 5.2.13
+  resolution: "vite@npm:5.2.13"
   dependencies:
     esbuild: "npm:^0.20.1"
     fsevents: "npm:~2.3.3"
@@ -6806,7 +6806,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 664b8d68e4f5152ae16bd2041af1bbaf11c43630ac461835bc31ff7d019913b33e465386e09f66dc1037d7aeefbb06939e0173787c063319bc2bd30c3b9ad8e4
+  checksum: f7a99da71884e69cc581dcfb43d73c8d56d73b9668d6980131603c544d6323c6003a20f376531dc0cfcf36bf5009bc465f89e6c5f8bd9d22868987aba4e4af1b
   languageName: node
   linkType: hard
 

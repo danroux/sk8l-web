@@ -1,0 +1,19 @@
+```release-note:enhancement
+Docker: Build Docker images for multi-platforms: linux/amd64,linux/arm{64,v8}
+```
+
+```release-note:note
+yarn: Set specific resolutions on package.json for rollup/wasm-node && typescript@4.9.5
+
+- https://github.com/rollup/rollup/issues/5194 Failed to run on arm platforms #5194
+```
+
+```release-note:note
+yarn: Set supportedArchitectures to `arm64`, `x64` and os to linux on .yarnrc.yml
+
+- https://nodejs.org/docs/latest-v20.x/api/process.html#processarch
+```
+
+```release-note:dependency
+yarn: Update to version 4.2.2 on package.json#packageManager
+```

@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps-dev): bump @vitejs/plugin-vue from 5.0.4 to 5.0.5
+
+npm:(deps-dev): bump @vitejs/plugin-vue from 5.0.4 to 5.0.5
+
+Bumps [@vitejs/plugin-vue](https://github.com/vitejs/vite-plugin-vue/tree/HEAD/packages/plugin-vue) from 5.0.4 to 5.0.5.
+- [Release notes](https://github.com/vitejs/vite-plugin-vue/releases)
+- [Changelog](https://github.com/vitejs/vite-plugin-vue/blob/main/packages/plugin-vue/CHANGELOG.md)
+- [Commits](https://github.com/vitejs/vite-plugin-vue/commits/plugin-vue@5.0.5/packages/plugin-vue)
+
+---
+updated-dependencies:
+- dependency-name: "@vitejs/plugin-vue"
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

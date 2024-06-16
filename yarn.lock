@@ -12,38 +12,38 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@achrinza/event-pubsub@npm:5.0.9":
-  version: 5.0.9
-  resolution: "@achrinza/event-pubsub@npm:5.0.9"
+"@achrinza/event-pubsub@npm:5.0.11":
+  version: 5.0.11
+  resolution: "@achrinza/event-pubsub@npm:5.0.11"
   dependencies:
-    "@achrinza/strong-type": "npm:0.1.11"
-  checksum: 59a24fd0919b7bcfe92d0c683bf7a48167f2eea8b397bea5446f1b4b0ceb0a8c73de5797d4dd4a5825a5e0110a5a12975ee959255415de12ab1eccc6c796a451
+    "@achrinza/strong-type": "npm:0.1.14"
+  checksum: 37ac87282562810195923ea168b57d3e63a79e0c2ba8409be9e356507a30bc496b30ba520f38bac7cf8f21d58b71554f1b817c9356058e62499ab41ef61ce3ea
   languageName: node
   linkType: hard
 
-"@achrinza/node-ipc@npm:^10.1.10":
-  version: 10.1.10
-  resolution: "@achrinza/node-ipc@npm:10.1.10"
+"@achrinza/node-ipc@npm:^10.1.11":
+  version: 10.1.11
+  resolution: "@achrinza/node-ipc@npm:10.1.11"
   dependencies:
-    "@achrinza/event-pubsub": "npm:5.0.9"
-    "@achrinza/strong-type": "npm:1.1.8"
+    "@achrinza/event-pubsub": "npm:5.0.11"
+    "@achrinza/strong-type": "npm:1.1.20"
     "@node-ipc/js-queue": "npm:2.0.3"
     js-message: "npm:1.0.7"
-  checksum: efa54310260966c538faa2be0996e27f075606eaf84d93875104307c181fb0c40a0cea39816b49c31a14f044612009178220d26129a79dcfd67d6ddb57685d39
+  checksum: b18acc1bef0878abf65433458fa1f9ebe5b41291ff8d6a195dc3536ef4c5bb04e464a01b716d4c557966cc2e575c4b69b4a7e82e71d8d6c51c41591a5fb4942d
   languageName: node
   linkType: hard
 
-"@achrinza/strong-type@npm:0.1.11":
-  version: 0.1.11
-  resolution: "@achrinza/strong-type@npm:0.1.11"
-  checksum: 9b6e9792999b7ab81bf73c5055071d0af8bf30aab12660501b120dc2667686daf2dfd1ca34cbbfac6acb3bc1fdee0fe7251bb8103b68758e38000cce9a465235
+"@achrinza/strong-type@npm:0.1.14":
+  version: 0.1.14
+  resolution: "@achrinza/strong-type@npm:0.1.14"
+  checksum: d1f648373cc76d883ef0d056d388cb3d11f595a8625e4df395f14f3b1a59fa23228bd89e757e3fa349d835ddabdc23a7980493c5425b279e8cfe09ac742dbc1b
   languageName: node
   linkType: hard
 
-"@achrinza/strong-type@npm:1.1.8":
-  version: 1.1.8
-  resolution: "@achrinza/strong-type@npm:1.1.8"
-  checksum: 4fcb5bd8ccf5f5810d5756e10d3db77e0485d8db01ad31eed89c4982ec03ca5ff040fe6d5828bd22f9b1a4ff22ee74ba2a45189e8e8ca3e3af03791a4cc95e97
+"@achrinza/strong-type@npm:1.1.20":
+  version: 1.1.20
+  resolution: "@achrinza/strong-type@npm:1.1.20"
+  checksum: cc2a537fac3ec38e1871f5a7768aa878526bb8b5ee13a93d8fa478ad2ba38d34a9ceba9d16e9fa1fbfe31e387fa91b0e25f38c43415fe0d2560d045a7d643b60
   languageName: node
   linkType: hard
 
@@ -6218,7 +6218,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "sk8l@workspace:."
   dependencies:
-    "@achrinza/node-ipc": "npm:^10.1.10"
+    "@achrinza/node-ipc": "npm:^10.1.11"
     "@babel/core": "npm:^7.23.2"
     "@bufbuild/protobuf": "npm:^1.9.0"
     "@connectrpc/connect": "npm:^1.4.0"

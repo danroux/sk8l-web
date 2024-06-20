@@ -52,6 +52,8 @@ jobs:
           file: Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          # platforms: linux/amd64,linux/arm64,linux/arm/v7
+          platforms: linux/amd64
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev-${{ inputs.image_tag }}
@@ -82,6 +84,7 @@ jobs:
           file: Dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: linux/amd64
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:dev
@@ -112,6 +115,7 @@ jobs:
           file: production.dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: linux/amd64, linux/arm64, linux/arm/v8
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre
@@ -142,6 +146,7 @@ jobs:
           file: production.dockerfile
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: linux/amd64, linux/arm64, linux/arm/v8
           push: true
           tags: |
             ${{ vars.GHCR_SK8L_UI_IMAGE_NAME }}:pre-${{ inputs.image_tag }}
@@ -169,6 +174,7 @@ jobs:
         with:
           context: .
           file: production.dockerfile
+          platforms: linux/amd64, linux/arm64, linux/arm/v8
           push: true
           tags: |
             ${{ vars.DOCKERHUB_SK8L_UI_IMAGE_NAME }}:latest
@@ -202,6 +208,7 @@ jobs:
           file: Dockerfile.test
           cache-from: type=gha
           cache-to: type=gha,mode=max
+          platforms: linux/amd64
           build-args: |
             UI_TEST_IMAGE_TAG=dev-${{ inputs.image_tag }}
           push: true

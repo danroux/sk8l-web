@@ -1,27 +1,20 @@
 # https://hub.docker.com/_/node/tags?page=1&name=bookworm-slim <- look for vulnerabilities
 # https://github.com/primer/octicons/blob/main/package.json
 
-FROM alpine:3.20 as build-stage
+FROM --platform=${TARGETPLATFORM} arm64v8/node:20.14.0-alpine3.20 AS build-stage
+
+ARG TARGETPLATFORM TARGETOS TARGETARCH
 ENV npm_config_cache=/usr/app/node_modules/.cache
-ENV V 20.5.1
-ENV FILE node-v$V-linux-x64-musl.tar.xz
 
 WORKDIR /usr/app
-RUN apk add --no-cache libstdc++ \
-    && apk add --no-cache --virtual .deps curl \
-    && curl -fsSLO --compressed \
-    "https://unofficial-builds.nodejs.org/download/release/v$V/$FILE" \
-    && tar -xJf $FILE -C /usr/local --strip-components=1 \
-    # ATTENTION!! --- maybe i want to remove this after all or add npm as a dep or sth. like that
-    # && rm -f $FILE /usr/local/bin/npm /usr/local/bin/npx \
-    # && rm -rf /usr/local/lib/node_modules \
-    && apk del .deps
 
 COPY package*.json yarn.lock .yarnrc.yml .
 
+RUN node -p "process.arch" \
+    && echo $TARGETPLATFORM && echo $TARGETOS && echo $TARGETARCH
 RUN corepack enable \
     && yarn config set --home enableTelemetry 0 \
-    && yarn install
+    && yarn install --immutable --check-cache
 # USER 1000:3000
 # Error: EACCES: permission denied, mkdir '/usr/app/node_modules/.cache'
 # RUN mkdir -p /usr/app/node_modules/.cache \
@@ -40,17 +33,17 @@ RUN yarn build
 # CMD ["npx", "yarn", "run", "serveprod"]
 # RUN yarn add serve
 
-FROM nginx:1.25.4-alpine3.18-slim as production-stage
+FROM nginx:1.25.4-alpine3.18-slim AS production-stage
 LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
 LABEL org.opencontainers.image.description="sk8l-ui image"
 LABEL org.opencontainers.image.licenses=MIT
 
 WORKDIR /app
 
-ENV APP_PORT 8001
+ENV APP_PORT=8001
 EXPOSE $APP_PORT
-ENV PORT $APP_PORT
-ENV HOST 0.0.0.0
+ENV PORT=$APP_PORT
+ENV HOST=0.0.0.0
 
 COPY --from=build-stage /usr/app/dist /app_tmp
 # COPY nginx.conf /etc/nginx/nginx.conf
@@ -68,15 +61,3 @@ USER 101
 # https://cli.vuejs.org/guide/deployment.html#docker-nginx
 # CMD ["./run_app.sh", "&&", "npx", "serve", "-s", "dist"]
 CMD ["./run_app.sh"]
-
-# =========
-
-# WORKDIR /usr/app
-# RUN apt-get update \
-#     && apt-get install -y git
-# RUN git clone --depth=1 https://github.com/primer/octicons.git
-# RUN npm install dependencies --save-dev
-# RUN npm run build
-
-# # docker cp sass:/usr/app/octicons/lib/build/data.json data.json
-# CMD ["/bin/sh"]

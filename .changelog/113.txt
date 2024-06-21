@@ -1,0 +1,16 @@
+```release-note:enhancement
+ci/dependabot: docker:(deps): bump arm64v8/node from 20.14.0-alpine3.20 to 22.3.0-alpine3.20
+
+docker:(deps): bump arm64v8/node
+
+Bumps arm64v8/node from 20.14.0-alpine3.20 to 22.3.0-alpine3.20.
+
+---
+updated-dependencies:
+- dependency-name: arm64v8/node
+  dependency-type: direct:production
+  update-type: version-update:semver-major
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

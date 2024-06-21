@@ -1,3 +1,42 @@
+## v0.14.0 (June 21, 2024)
+
+ENHANCEMENTS:
+
+* Docker: Build Docker images for multi-platforms: linux/amd64,linux/arm{64,v8} [[GH-93](https://github.com/danroux/sk8l-ui/issues/93)]
+* ci/dependabot: docker:(deps): bump alpine from 3.19 to 3.20 [[GH-80](https://github.com/danroux/sk8l-ui/issues/80)]
+* ci/dependabot: docker:(deps): bump cypress/included from 13.11.0 to 13.12.0 [[GH-106](https://github.com/danroux/sk8l-ui/issues/106)]
+* ci/dependabot: docker:(deps): bump cypress/included from 13.9.0 to 13.11.0 [[GH-91](https://github.com/danroux/sk8l-ui/issues/91)]
+* ci/dependabot: docker:(deps): bump node from 22.1.0-bookworm-slim to 22.2.0-bookworm-slim [[GH-74](https://github.com/danroux/sk8l-ui/issues/74)]
+* ci/dependabot: docker:(deps): bump node from 22.2.0-bookworm-slim to 22.3.0-bookworm-slim [[GH-98](https://github.com/danroux/sk8l-ui/issues/98)]
+* ci/dependabot: gha:(deps): bump actions/checkout from 4.1.4 to 4.1.7 [[GH-99](https://github.com/danroux/sk8l-ui/issues/99)]
+* ci/dependabot: gha:(deps): bump docker/build-push-action from 5.3.0 to 6.0.2 [[GH-109](https://github.com/danroux/sk8l-ui/issues/109)]
+* ci/dependabot: gha:(deps): bump docker/login-action from 3.1.0 to 3.2.0 [[GH-82](https://github.com/danroux/sk8l-ui/issues/82)]
+* ci/dependabot: npm:(deps): bump @achrinza/node-ipc from 10.1.10 to 10.1.11 [[GH-83](https://github.com/danroux/sk8l-ui/issues/83)]
+* ci/dependabot: npm:(deps): bump @grpc/grpc-js from 1.10.7 to 1.10.8 [[GH-75](https://github.com/danroux/sk8l-ui/issues/75)]
+* ci/dependabot: npm:(deps): bump @grpc/grpc-js from 1.10.8 to 1.10.9 [[GH-96](https://github.com/danroux/sk8l-ui/issues/96)]
+* ci/dependabot: npm:(deps): bump @primer/octicons from 19.8.0 to 19.10.0 [[GH-108](https://github.com/danroux/sk8l-ui/issues/108)]
+* ci/dependabot: npm:(deps): bump vue from 3.4.27 to 3.4.29 [[GH-103](https://github.com/danroux/sk8l-ui/issues/103)]
+* ci/dependabot: npm:(deps): bump vue-router from 4.3.2 to 4.3.3 [[GH-95](https://github.com/danroux/sk8l-ui/issues/95)]
+* ci/dependabot: npm:(deps-dev): bump @babel/core from 7.23.9 to 7.24.7 [[GH-90](https://github.com/danroux/sk8l-ui/issues/90)]
+* ci/dependabot: npm:(deps-dev): bump @bufbuild/protobuf from 1.9.0 to 1.10.0 [[GH-86](https://github.com/danroux/sk8l-ui/issues/86)]
+* ci/dependabot: npm:(deps-dev): bump @vitejs/plugin-vue from 5.0.4 to 5.0.5 [[GH-88](https://github.com/danroux/sk8l-ui/issues/88)]
+* ci/dependabot: npm:(deps-dev): bump eslint from 9.2.0 to 9.5.0 [[GH-102](https://github.com/danroux/sk8l-ui/issues/102)]
+* ci/dependabot: npm:(deps-dev): bump sass from 1.70.0 to 1.77.6 [[GH-105](https://github.com/danroux/sk8l-ui/issues/105)]
+* ci/dependabot: npm:(deps-dev): bump vite from 5.2.11 to 5.3.1 [[GH-101](https://github.com/danroux/sk8l-ui/issues/101)]
+
+DEPENDENCIES:
+
+* yarn: Update to version 4.2.2 on package.json#packageManager [[GH-93](https://github.com/danroux/sk8l-ui/issues/93)]
+
+NOTES:
+
+* yarn: Set specific resolutions on package.json for rollup/wasm-node && typescript@4.9.5
+
+- https://github.com/rollup/rollup/issues/5194 Failed to run on arm platforms #5194 [[GH-93](https://github.com/danroux/sk8l-ui/issues/93)]
+* yarn: Set supportedArchitectures to `arm64`, `x64` and os to linux on .yarnrc.yml
+
+- https://nodejs.org/docs/latest-v20.x/api/process.html#processarch [[GH-93](https://github.com/danroux/sk8l-ui/issues/93)]
+
 ## v0.13.0 (May 16, 2024)
 
 ENHANCEMENTS:

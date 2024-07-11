@@ -1,0 +1,18 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps): bump @grpc/grpc-js from 1.10.9 to 1.10.11
+
+npm:(deps): bump @grpc/grpc-js from 1.10.9 to 1.10.11
+
+Bumps [@grpc/grpc-js](https://github.com/grpc/grpc-node) from 1.10.9 to 1.10.11.
+- [Release notes](https://github.com/grpc/grpc-node/releases)
+- [Commits](https://github.com/grpc/grpc-node/compare/@grpc/grpc-js@1.10.9...@grpc/grpc-js@1.10.11)
+
+---
+updated-dependencies:
+- dependency-name: "@grpc/grpc-js"
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

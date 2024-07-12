@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps-dev): bump sass from 1.77.6 to 1.77.8
+
+npm:(deps-dev): bump sass from 1.77.6 to 1.77.8
+
+Bumps [sass](https://github.com/sass/dart-sass) from 1.77.6 to 1.77.8.
+- [Release notes](https://github.com/sass/dart-sass/releases)
+- [Changelog](https://github.com/sass/dart-sass/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/sass/dart-sass/compare/1.77.6...1.77.8)
+
+---
+updated-dependencies:
+- dependency-name: sass
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

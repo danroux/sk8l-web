@@ -1171,13 +1171,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@grpc/grpc-js@npm:^1.10.9":
-  version: 1.10.9
-  resolution: "@grpc/grpc-js@npm:1.10.9"
+"@grpc/grpc-js@npm:^1.11.0":
+  version: 1.11.0
+  resolution: "@grpc/grpc-js@npm:1.11.0"
   dependencies:
     "@grpc/proto-loader": "npm:^0.7.13"
     "@js-sdsl/ordered-map": "npm:^4.4.2"
-  checksum: 10c0/4f161015878057ad55ac84299fdbc4e74798bdb25aa5a078978b87b9ce521d11b4b33baa196d5092385f463020cd2dedbad121de22509e23a0996387001393e5
+  checksum: 10c0/937cd02802e376e4a84b0a912828b50ff6365b075b40f3ee8128d47a78be2a3bda77045bc9066682c59f8f30b03218c729b561bcfdcdbfc9aa4ea9a7dc9dabbc
   languageName: node
   linkType: hard
 
@@ -6301,7 +6301,7 @@ __metadata:
     "@connectrpc/connect": "npm:^1.4.0"
     "@connectrpc/connect-web": "npm:^1.4.0"
     "@connectrpc/protoc-gen-connect-es": "npm:^1.4.0"
-    "@grpc/grpc-js": "npm:^1.10.9"
+    "@grpc/grpc-js": "npm:^1.11.0"
     "@originjs/vite-plugin-commonjs": "npm:^1.0.3"
     "@primer/octicons": "npm:^19.10.0"
     "@vitejs/plugin-vue": "npm:^5.0.5"

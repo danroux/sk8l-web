@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps): bump vue from 3.4.29 to 3.4.32
+
+npm:(deps): bump vue from 3.4.29 to 3.4.32
+
+Bumps [vue](https://github.com/vuejs/core) from 3.4.29 to 3.4.32.
+- [Release notes](https://github.com/vuejs/core/releases)
+- [Changelog](https://github.com/vuejs/core/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/vuejs/core/compare/v3.4.29...v3.4.32)
+
+---
+updated-dependencies:
+- dependency-name: vue
+  dependency-type: direct:production
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```

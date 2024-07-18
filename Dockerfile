@@ -10,7 +10,7 @@
 
 # https://hub.docker.com/_/node/tags?page=1&name=bookworm-slim <- look for vulnerabilities
 # https://github.com/primer/octicons/blob/main/package.json
-FROM node:22.3.0-bookworm-slim AS deps
+FROM node:22.5.0-bookworm-slim AS deps
 # FROM arm32v7/node:22.2.0-bookworm-slim AS deps
 
 RUN groupadd --system --gid 101 nginx \

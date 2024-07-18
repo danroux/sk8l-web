@@ -3532,16 +3532,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vuejs-accessibility@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "eslint-plugin-vuejs-accessibility@npm:2.3.0"
+"eslint-plugin-vuejs-accessibility@npm:^2.4.0":
+  version: 2.4.0
+  resolution: "eslint-plugin-vuejs-accessibility@npm:2.4.0"
   dependencies:
     aria-query: "npm:^5.3.0"
     emoji-regex: "npm:^10.0.0"
     vue-eslint-parser: "npm:^9.0.1"
   peerDependencies:
     eslint: ^5.0.0 || ^6.0.0 || ^7.0.0 || ^8.0.0 || ^9.0.0
-  checksum: 10c0/5038c1d50f8572fb3c485c093780c487707d15dd07d26f465fb4af799e678b7c7498a75e41b0311cf3c554a7fcd84026e39f9defc6d644b6ebf8d9847899d9e7
+  checksum: 10c0/2413588a68ad4e8d91cabe6d20351f53cec0a513af2b9c838c97d9f8fc9cb3bcf17702e81d604395125de88208026635448295be31012b5abcf859deaa831324
   languageName: node
   linkType: hard
 
@@ -6313,7 +6313,7 @@ __metadata:
     eslint-config-airbnb: "npm:^19.0.4"
     eslint-plugin-import: "npm:^2.25.3"
     eslint-plugin-vue: "npm:^9.26.0"
-    eslint-plugin-vuejs-accessibility: "npm:^2.3.0"
+    eslint-plugin-vuejs-accessibility: "npm:^2.4.0"
     google-protobuf: "npm:^3.21.2"
     grpc-web: "npm:^1.5.0"
     jest: "npm:^29.7.0"

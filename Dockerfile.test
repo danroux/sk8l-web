@@ -1,7 +1,7 @@
 ARG UI_TEST_IMAGE_TAG=dev
 FROM ghcr.io/danroux/sk8l-ui:${UI_TEST_IMAGE_TAG} AS release
 
-FROM cypress/included:13.12.0
+FROM cypress/included:13.14.2
 LABEL org.opencontainers.image.source=https://github.com/danroux/sk8l-ui
 LABEL org.opencontainers.image.description="sk8l-ui ui-test image"
 LABEL org.opencontainers.image.licenses=MIT

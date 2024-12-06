@@ -1,0 +1,19 @@
+```release-note:enhancement
+ci/dependabot: npm:(deps-dev): bump eslint-plugin-vuejs-accessibility from 2.3.0 to 2.4.1
+
+npm:(deps-dev): bump eslint-plugin-vuejs-accessibility
+
+Bumps [eslint-plugin-vuejs-accessibility](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility) from 2.3.0 to 2.4.1.
+- [Release notes](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility/releases)
+- [Changelog](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/vue-a11y/eslint-plugin-vuejs-accessibility/compare/v2.3.0...v2.4.1)
+
+---
+updated-dependencies:
+- dependency-name: eslint-plugin-vuejs-accessibility
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] <support@github.com>
+```
